@@ -1,5 +1,5 @@
-import { instrumentNames } from "@/ts/instruments";
-import type { beat } from "@/ts/types";
+import type { beat, instrumentName } from "@/ts/types";
+import { instrumentNames } from "./instruments";
 
 export function convertBeatToString(beat: beat) {
 	const notesAsString = beat.notes
@@ -18,16 +18,17 @@ export function convertURLToBeat(
 	const name = urlParams.get("name");
 	const noteDurationString = urlParams.get("noteDuration");
 	const notesString = urlParams.get("notes");
-	if (!noteDurationString || !notesString) return;
+	if (!name || !noteDurationString || !notesString) return;
 	const noteDuration = parseInt(noteDurationString);
 	const notes = notesString
 		?.split("-")
 		.map((time) => time.split(""));
 	if (
-		notes.some((time) =>
-			time.some((note) => !instrumentNames.includes(note))
+		notes.every((time): time is instrumentName[] =>
+			time.every((note) => instrumentNames.includes(note))
 		)
 	)
-		return;
-	return { name, noteDuration, notes } as beat;
+		return { name, noteDuration, notes };
+
+	return;
 }
