@@ -22,5 +22,6 @@
 		row-gap: 10px;
 		column-gap: 2px;
 		position: relative;
+		margin-top: 10px;
 	}
 </style>
