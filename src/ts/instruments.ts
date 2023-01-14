@@ -1,4 +1,4 @@
-import type { instrument } from "@/ts/types";
+import type { instrument, instrumentName } from "@/ts/types";
 import { AudioController } from "@/ts/AudioController";
 
 export const instruments: instrument[] = [
@@ -15,6 +15,10 @@ export const instruments: instrument[] = [
 		soundFile: "fx/Bass-Drum-Hit-Level-4a.mp3",
 	},
 ];
+
+export const instrumentNames: string[] = instruments.map(
+	(i) => i.name
+);
 
 export const audioControls = instruments.map(
 	(instrument) =>

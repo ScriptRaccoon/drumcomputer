@@ -44,11 +44,15 @@
 	}
 
 	onMount(() => {
+		if (window.location.search.length == 0) return;
 		const beatFromURL = convertURLToBeat(
 			new URLSearchParams(window.location.search)
 		);
 		if (beatFromURL) {
 			$currentBeat = beatFromURL;
+		} else {
+			// TODO: make alert here
+			console.error("beat could not be read from URL");
 		}
 	});
 </script>
