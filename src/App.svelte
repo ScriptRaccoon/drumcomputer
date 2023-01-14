@@ -30,11 +30,11 @@
 				audioControl.play();
 			}
 		}
-		increaseNote();
+		incrementTime();
 		setTimeout(playNotes, $currentBeat.noteDuration);
 	}
 
-	function increaseNote() {
+	function incrementTime() {
 		$currentTime++;
 		if ($currentTime >= $currentBeat.notes.length) {
 			$currentTime = 0;
