@@ -1,24 +1,25 @@
 import type { beat } from "@/ts/types";
+import { convertBeatToString } from "./beatConverter";
 
 export const exampleBeat: beat = {
 	name: "example",
 	noteDuration: 140,
 	notes: [
-		["HH", "B"],
+		["H", "B"],
 		[],
-		["HH"],
+		["H"],
 		[],
-		["HH", "S"],
+		["H", "S"],
 		[],
-		["HH", "B"],
+		["H", "B"],
 		[],
-		["HH", "B"],
+		["H", "B"],
 		[],
-		["HH"],
+		["H"],
 		[],
-		["HH", "S"],
+		["H", "S"],
 		[],
-		["HH"],
+		["H"],
 		["S"],
 	],
 };

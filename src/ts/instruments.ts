@@ -3,7 +3,7 @@ import { AudioController } from "@/ts/AudioController";
 
 export const instruments: instrument[] = [
 	{
-		name: "HH",
+		name: "H",
 		soundFile: "fx/Hi-Hat-Closed-Hit-A2.mp3",
 	},
 	{

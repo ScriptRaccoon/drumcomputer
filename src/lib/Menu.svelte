@@ -9,6 +9,7 @@
 		faPause,
 		faTrashAlt,
 		faMinus,
+		faShareNodes,
 	} from "@fortawesome/free-solid-svg-icons";
 	import {
 		playState,
@@ -18,6 +19,7 @@
 		durationError,
 	} from "@/ts/stores";
 	import Button from "./Button.svelte";
+	import { convertBeatToString } from "@/ts/beatConverter";
 
 	function addTime() {
 		$currentBeat.notes = [...$currentBeat.notes, []];
@@ -37,6 +39,15 @@
 				$playState = "stopped";
 			}
 		);
+	}
+
+	async function shareBeat() {
+		const sharingURL =
+			window.location.origin +
+			convertBeatToString($currentBeat);
+
+		await navigator.clipboard.writeText(sharingURL);
+		window.alert("Copied sharing URL to clipboard!");
 	}
 </script>
 
@@ -90,6 +101,10 @@
 	>
 		<Fa icon={faTrashAlt} />
 	</Button>
+
+	<Button name="share" action={shareBeat}>
+		<Fa icon={faShareNodes} /></Button
+	>
 </menu>
 
 <style lang="scss">

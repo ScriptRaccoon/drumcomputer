@@ -1,4 +1,4 @@
-export type instrumentName = "HH" | "B" | "S";
+export type instrumentName = "H" | "B" | "S";
 
 export type instrument = {
 	name: instrumentName;

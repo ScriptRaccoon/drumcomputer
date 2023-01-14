@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from "svelte";
 	import Header from "@/lib/Header.svelte";
 	import Menu from "@/lib/Menu.svelte";
 	import Beat from "@/lib/Beat.svelte";
@@ -7,6 +8,7 @@
 	import { audioControls } from "@/ts/instruments";
 	import Form from "@/lib/Form.svelte";
 	import Confirm from "@/lib/Confirm.svelte";
+	import { convertURLToBeat } from "./ts/beatConverter";
 
 	function startMusic() {
 		$playState = "playing";
@@ -40,6 +42,15 @@
 			$currentTime = 0;
 		}
 	}
+
+	onMount(() => {
+		const beatFromURL = convertURLToBeat(
+			new URLSearchParams(window.location.search)
+		);
+		if (beatFromURL) {
+			$currentBeat = beatFromURL;
+		}
+	});
 </script>
 
 <Header />
