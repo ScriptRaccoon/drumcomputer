@@ -12,8 +12,15 @@
 
 <style>
 	p {
-		padding-top: 10px;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		margin: 10px;
+		padding: 10px;
 		font-weight: bold;
 		color: var(--error-color);
+		background-color: var(--font-color);
+		box-shadow: 0px 0px 20px #000a;
+		border-radius: 3px;
 	}
 </style>

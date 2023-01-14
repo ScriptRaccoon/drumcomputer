@@ -29,11 +29,11 @@
 		<span>beat name</span>
 		<input type="text" bind:value={$currentBeat.name} />
 	</label>
-	<ErrorMessage
-		message={"Error: note duration must be a positive integer"}
-		show={$durationError}
-	/>
 </form>
+<ErrorMessage
+	message={"Error: note duration must be a positive integer"}
+	show={$durationError}
+/>
 
 <style lang="scss">
 	@use "../scss/mixins" as *;
