@@ -17,6 +17,7 @@
 		currentTime,
 		makeConfirm,
 		durationError,
+		makeAlert,
 	} from "@/ts/stores";
 	import Button from "./Button.svelte";
 	import { convertBeatToString } from "@/ts/beatConverter";
@@ -45,9 +46,9 @@
 		const sharingURL =
 			window.location.origin +
 			convertBeatToString($currentBeat);
-
+		console.log(sharingURL);
 		await navigator.clipboard.writeText(sharingURL);
-		window.alert("Copied sharing URL to clipboard!");
+		makeAlert("Copied sharing URL to clipboard!", sharingURL);
 	}
 </script>
 

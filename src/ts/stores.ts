@@ -9,9 +9,16 @@ export const durationError = writable<boolean>(false);
 export const showConfirm = writable<boolean>(false);
 export const confirmText = writable("");
 export const confirmAction = writable<() => void>(undefined);
+export const showAlert = writable<boolean>(false);
+export const alertTexts = writable<string[]>([]);
 
 export function makeConfirm(txt: string, action: () => void) {
 	showConfirm.set(true);
 	confirmText.set(txt);
 	confirmAction.set(action);
+}
+
+export function makeAlert(...txts: string[]) {
+	showAlert.set(true);
+	alertTexts.set(txts);
 }

@@ -4,11 +4,17 @@
 	import Menu from "@/lib/Menu.svelte";
 	import Beat from "@/lib/Beat.svelte";
 
-	import { currentBeat, currentTime, playState } from "./ts/stores";
+	import {
+		currentBeat,
+		currentTime,
+		makeAlert,
+		playState,
+	} from "./ts/stores";
 	import { audioControls } from "@/ts/instruments";
 	import Form from "@/lib/Form.svelte";
 	import Confirm from "@/lib/Confirm.svelte";
 	import { convertURLToBeat } from "./ts/beatConverter";
+	import Alert from "./lib/Alert.svelte";
 
 	function startMusic() {
 		$playState = "playing";
@@ -51,8 +57,7 @@
 		if (beatFromURL) {
 			$currentBeat = beatFromURL;
 		} else {
-			// TODO: make alert here
-			console.error("beat could not be read from URL");
+			makeAlert("Error: Beat could not be read from URL");
 		}
 	});
 </script>
@@ -70,6 +75,7 @@
 </main>
 
 <Confirm />
+<Alert />
 
 <style lang="scss">
 	@use "./scss/mixins" as *;
