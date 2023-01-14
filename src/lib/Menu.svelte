@@ -15,6 +15,7 @@
 		currentBeat,
 		currentTime,
 		makeConfirm,
+		durationError,
 	} from "@/ts/stores";
 	import Button from "./Button.svelte";
 
@@ -48,7 +49,8 @@
 	<Button
 		name="play"
 		disabled={$playState == "playing" ||
-			$currentBeat.notes.length == 0}
+			$currentBeat.notes.length == 0 ||
+			$durationError}
 		action={() => dispatch("play")}
 	>
 		<Fa icon={faPlay} />
@@ -56,7 +58,7 @@
 
 	<Button
 		name="pause"
-		disabled={$playState !== "playing"}
+		disabled={$playState !== "playing" || $durationError}
 		action={() => dispatch("pause")}
 	>
 		<Fa icon={faPause} />
@@ -64,7 +66,7 @@
 
 	<Button
 		name="stop"
-		disabled={$playState == "stopped"}
+		disabled={$playState == "stopped" || $durationError}
 		action={() => dispatch("stop")}
 	>
 		<Fa icon={faStop} />

@@ -1,11 +1,22 @@
 <script>
-	import { playState, currentBeat } from "@/ts/stores";
+	import {
+		playState,
+		currentBeat,
+		durationError,
+	} from "@/ts/stores";
+	import ErrorMessage from "./ErrorMessage.svelte";
+	$: $durationError =
+		$currentBeat.noteDuration === null ||
+		$currentBeat.noteDuration <= 0 ||
+		$currentBeat.noteDuration !=
+			Math.floor($currentBeat.noteDuration);
 </script>
 
 <form on:submit|preventDefault>
 	<label>
 		<span>note duration</span>
 		<input
+			class:error={$durationError}
 			disabled={$playState == "playing"}
 			type="number"
 			min="1"
@@ -14,6 +25,10 @@
 			bind:value={$currentBeat.noteDuration}
 		/>
 	</label>
+	<ErrorMessage
+		message={"Error: note duration must be a positive integer"}
+		show={$durationError}
+	/>
 </form>
 
 <style lang="scss">
@@ -21,6 +36,7 @@
 
 	form {
 		padding-bottom: 20px;
+		text-align: center;
 	}
 
 	input[type="number"] {
@@ -40,6 +56,9 @@
 			color: var(--dark-font-color);
 			cursor: not-allowed;
 			border-color: transparent;
+		}
+		&.error {
+			background-color: var(--error-color);
 		}
 	}
 
