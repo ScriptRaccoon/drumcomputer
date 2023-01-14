@@ -8,6 +8,7 @@ export type instrument = {
 export type playStates = "stopped" | "playing" | "paused";
 
 export type beat = {
+	name: string;
 	notes: instrumentName[][];
 	noteDuration: number;
 };

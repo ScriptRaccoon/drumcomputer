@@ -30,14 +30,9 @@
 
 	function deleteBeat() {
 		makeConfirm(
-			"This will delete the current beat. Are you sure?",
+			"This will delete all notes. Are you sure?",
 			() => {
-				const previousNoteDuration =
-					$currentBeat.noteDuration;
-				$currentBeat = {
-					noteDuration: previousNoteDuration,
-					notes: [],
-				};
+				$currentBeat.notes = [];
 				$currentTime = 0;
 				$playState = "stopped";
 			}
