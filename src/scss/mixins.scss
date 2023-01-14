@@ -1,0 +1,15 @@
+@mixin flex-center($direction: row) {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	flex-direction: $direction;
+}
+
+@mixin input-reset {
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;
+	background: none;
+	border: none;
+}

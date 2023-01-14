@@ -1,0 +1,22 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	--font-color: white;
+	--dark-font-color: gray;
+	--bg-color: #131119;
+	--note-color-off: #413c50;
+	--note-color-on: orangered;
+	--button-color: steelblue;
+}
+
+body {
+	background-color: var(--bg-color);
+	color: var(--font-color);
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+		sans-serif;
+	padding: 10px;
+}
