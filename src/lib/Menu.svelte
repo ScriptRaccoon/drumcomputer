@@ -99,11 +99,7 @@
 		<Fa icon={faStop} />
 	</Button>
 
-	<Button
-		name="add time"
-		action={addTime}
-		disabled={$playState == "playing"}
-	>
+	<Button name="add time" action={addTime}>
 		<Fa icon={faPlus} />
 	</Button>
 
