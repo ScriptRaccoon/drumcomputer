@@ -73,7 +73,6 @@
 
 	form {
 		@include flex-center();
-		gap: 15px;
 	}
 
 	input[type="text"],
@@ -117,8 +116,6 @@
 	}
 
 	.duration-buttons {
-		display: flex;
-		flex-direction: column;
-		margin-bottom: -5px;
+		margin-right: 20px;
 	}
 </style>
