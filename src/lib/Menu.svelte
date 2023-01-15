@@ -42,13 +42,33 @@
 		);
 	}
 
+	function validateBeat() {
+		if ($currentBeat.name.length == 0) {
+			makeAlert("You need to specifiy a name first.");
+			return false;
+		}
+		if ($currentBeat.notes.every((time) => time.length == 0)) {
+			makeAlert("You need to add some notes first.");
+			return false;
+		}
+		if ($durationError) {
+			makeAlert(
+				"The note duration must be a positive integer."
+			);
+			return false;
+		}
+		return true;
+	}
+
 	async function shareBeat() {
-		const sharingURL =
-			window.location.origin +
-			convertBeatToString($currentBeat);
-		console.log(sharingURL);
-		await navigator.clipboard.writeText(sharingURL);
-		makeAlert("Copied sharing URL to clipboard!", sharingURL);
+		if (validateBeat()) {
+			const sharingURL =
+				window.location.origin +
+				convertBeatToString($currentBeat);
+			console.log(sharingURL);
+			await navigator.clipboard.writeText(sharingURL);
+			makeAlert("Copied sharing URL to clipboard!", sharingURL);
+		}
 	}
 </script>
 
