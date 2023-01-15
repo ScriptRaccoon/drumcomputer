@@ -106,7 +106,8 @@
 	<Button
 		name="remove time"
 		action={removeTime}
-		disabled={$playState == "playing"}
+		disabled={$playState == "playing" &&
+			$currentTime == $currentBeat.notes.length - 1}
 	>
 		<Fa icon={faMinus} />
 	</Button>
