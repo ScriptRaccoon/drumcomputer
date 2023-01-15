@@ -12,7 +12,7 @@
 		{/each}
 	</div>
 {:else}
-	<p>The beat is empty</p>
+	<p class="empty-message">The beat is empty</p>
 {/if}
 
 <style>
@@ -22,6 +22,9 @@
 		row-gap: 10px;
 		column-gap: 2px;
 		position: relative;
+		margin-top: 30px;
+	}
+	.empty-message {
 		margin-top: 30px;
 	}
 </style>
