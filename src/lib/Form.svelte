@@ -49,8 +49,7 @@
 			action={increaseNoteDuration}
 		>
 			<Fa icon={faPlus} />
-		</SmallButton>
-		<SmallButton
+		</SmallButton><SmallButton
 			name="decrease note duration"
 			action={decreaseNoteDuration}
 		>
@@ -101,7 +100,7 @@
 	}
 
 	input[type="number"] {
-		width: 40px;
+		width: 35px;
 		&.error {
 			background-color: var(--error-color);
 		}
