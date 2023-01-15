@@ -5,7 +5,7 @@
 	export let time: number;
 	export let instrument: instrument;
 
-	let checked = $currentBeat.notes[time].includes(instrument.name);
+	$: checked = $currentBeat.notes[time].includes(instrument.name);
 
 	function handleChange() {
 		$currentBeat.notes[time] = switchedArray(
