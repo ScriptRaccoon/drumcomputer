@@ -3,16 +3,10 @@
 import type { instrumentName } from "@/ts/types";
 
 export class AudioController {
-	name: instrumentName;
 	#channels: HTMLAudioElement[];
 	#currentChannel: number;
 
-	constructor(
-		name: instrumentName,
-		audioSource: string,
-		channelNumber: number = 10
-	) {
-		this.name = name;
+	constructor(audioSource: string, channelNumber: number = 10) {
 		this.#channels = new Array(channelNumber)
 			.fill(null)
 			.map(() => new Audio(audioSource));

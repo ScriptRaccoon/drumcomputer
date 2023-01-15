@@ -3,6 +3,9 @@
 	import Header from "@/lib/Header.svelte";
 	import Menu from "@/lib/Menu.svelte";
 	import Beat from "@/lib/Beat.svelte";
+	import Form from "@/lib/Form.svelte";
+	import Confirm from "@/lib/Confirm.svelte";
+	import Alert from "@/lib/Alert.svelte";
 
 	import {
 		currentBeat,
@@ -10,11 +13,9 @@
 		makeAlert,
 		playState,
 	} from "./ts/stores";
-	import { audioControls } from "@/ts/instruments";
-	import Form from "@/lib/Form.svelte";
-	import Confirm from "@/lib/Confirm.svelte";
-	import { convertURLToBeat } from "./ts/beatConverter";
-	import Alert from "./lib/Alert.svelte";
+
+	import { convertURLToBeat } from "@/ts/beatConverter";
+	import { instruments } from "@/ts/instruments";
 
 	function startMusic() {
 		$playState = "playing";
@@ -32,10 +33,10 @@
 
 	function playNotes() {
 		if ($playState !== "playing") return;
-		const playedInstruments = $currentBeat.notes[$currentTime];
-		for (const audioControl of audioControls) {
-			if (playedInstruments.includes(audioControl.name)) {
-				audioControl.play();
+		const currentNotes = $currentBeat.notes[$currentTime];
+		for (const instrument of instruments) {
+			if (currentNotes.includes(instrument.name)) {
+				instrument.audioPlayer.play();
 			}
 		}
 		incrementTime();
