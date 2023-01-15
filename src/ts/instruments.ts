@@ -1,27 +1,23 @@
 import type { instrument } from "@/ts/types";
-import { AudioController } from "@/ts/AudioController";
+import { AudioPlayer } from "@/ts/AudioPlayer";
 
 export const instruments: instrument[] = [
 	{
 		name: "H",
 		longName: "Hi Hat",
-		audioPlayer: new AudioController(
-			"fx/Hi-Hat-Closed-Hit-A2.mp3"
-		),
+		audioPlayer: new AudioPlayer("fx/Hi-Hat-Closed-Hit-A2.mp3"),
 	},
 	{
 		name: "S",
 		longName: "Snare",
-		audioPlayer: new AudioController(
+		audioPlayer: new AudioPlayer(
 			"fx/Snare-Drum-Hit-Level-4a.mp3"
 		),
 	},
 	{
 		name: "B",
 		longName: "Bass drum",
-		audioPlayer: new AudioController(
-			"fx/Bass-Drum-Hit-Level-4a.mp3"
-		),
+		audioPlayer: new AudioPlayer("fx/Bass-Drum-Hit-Level-4a.mp3"),
 	},
 ];
 

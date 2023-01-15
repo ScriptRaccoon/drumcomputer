@@ -1,8 +1,6 @@
 // https://blog.cotten.io/playing-audio-resources-simultaneously-in-javascript-546ec4d6216a
 
-import type { instrumentName } from "@/ts/types";
-
-export class AudioController {
+export class AudioPlayer {
 	#channels: HTMLAudioElement[];
 	#currentChannel: number;
 
