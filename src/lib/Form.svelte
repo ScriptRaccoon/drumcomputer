@@ -1,15 +1,32 @@
 <script>
+	import Fa from "svelte-fa";
+	import {
+		faMinus,
+		faPlus,
+	} from "@fortawesome/free-solid-svg-icons";
 	import {
 		playState,
 		currentBeat,
 		durationError,
 	} from "@/ts/stores";
+	import SmallButton from "./SmallButton.svelte";
 	import ErrorMessage from "./ErrorMessage.svelte";
 	$: $durationError =
 		$currentBeat.noteDuration === null ||
 		$currentBeat.noteDuration <= 0 ||
 		$currentBeat.noteDuration !=
 			Math.floor($currentBeat.noteDuration);
+
+	function increaseNoteDuration() {
+		$currentBeat.noteDuration += 5;
+	}
+
+	function decreaseNoteDuration() {
+		$currentBeat.noteDuration = Math.max(
+			0,
+			$currentBeat.noteDuration - 5
+		);
+	}
 </script>
 
 <form on:submit|preventDefault>
@@ -25,6 +42,22 @@
 			bind:value={$currentBeat.noteDuration}
 		/>
 	</label>
+
+	<div class="duration-buttons">
+		<SmallButton
+			name="increase note duration"
+			action={increaseNoteDuration}
+		>
+			<Fa icon={faPlus} />
+		</SmallButton>
+		<SmallButton
+			name="decrease note duration"
+			action={decreaseNoteDuration}
+		>
+			<Fa icon={faMinus} />
+		</SmallButton>
+	</div>
+
 	<label>
 		<span>beat name</span>
 		<input type="text" bind:value={$currentBeat.name} />
@@ -40,8 +73,7 @@
 
 	form {
 		@include flex-center();
-		padding-bottom: 20px;
-		gap: 20px;
+		gap: 15px;
 	}
 
 	input[type="text"],
@@ -82,5 +114,11 @@
 
 	label span {
 		color: var(--dark-font-color);
+	}
+
+	.duration-buttons {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: -5px;
 	}
 </style>
