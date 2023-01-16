@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { fade, scale } from "svelte/transition";
 	import { showAlert, alertTexts } from "@/ts/stores";
-	import Button from "./Button.svelte";
+	import Button from "@/components/ui/Button.svelte";
 	const speed = 200;
 	function hideMe() {
 		$showAlert = false;
@@ -34,7 +34,7 @@
 {/if}
 
 <style lang="scss">
-	@use "../scss/mixins" as *;
+	@use "../../scss/mixins" as *;
 	.backdrop {
 		@include flex-center();
 		position: fixed;

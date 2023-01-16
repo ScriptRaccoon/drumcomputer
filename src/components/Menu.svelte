@@ -19,7 +19,7 @@
 		durationError,
 		makeAlert,
 	} from "@/ts/stores";
-	import Button from "./Button.svelte";
+	import Button from "@/components/ui/Button.svelte";
 	import { convertBeatToString } from "@/ts/beatConverter";
 
 	function addTime() {

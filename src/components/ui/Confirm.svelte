@@ -5,7 +5,7 @@
 		confirmText,
 		confirmAction,
 	} from "@/ts/stores";
-	import Button from "./Button.svelte";
+	import Button from "@/components/ui/Button.svelte";
 	const speed = 200;
 	function hideMe() {
 		$showConfirm = false;
@@ -38,7 +38,7 @@
 {/if}
 
 <style lang="scss">
-	@use "../scss/mixins" as *;
+	@use "../../scss/mixins" as *;
 	.backdrop {
 		@include flex-center();
 		position: fixed;

@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import Header from "@/lib/Header.svelte";
-	import Menu from "@/lib/Menu.svelte";
-	import Beat from "@/lib/Beat.svelte";
-	import Form from "@/lib/Form.svelte";
-	import Confirm from "@/lib/Confirm.svelte";
-	import Alert from "@/lib/Alert.svelte";
+	import Header from "@/components/layout/Header.svelte";
+	import Menu from "@/components/Menu.svelte";
+	import Beat from "@/components/Beat.svelte";
+	import Form from "@/components/Form.svelte";
+	import Confirm from "@/components/ui/Confirm.svelte";
+	import Alert from "@/components/ui/Alert.svelte";
 
 	import {
 		currentBeat,

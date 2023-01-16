@@ -9,8 +9,8 @@
 		currentBeat,
 		durationError,
 	} from "@/ts/stores";
-	import SmallButton from "./SmallButton.svelte";
-	import ErrorMessage from "./ErrorMessage.svelte";
+	import SmallButton from "@/components/ui/SmallButton.svelte";
+	import ErrorMessage from "@/components/ui/ErrorMessage.svelte";
 	$: $durationError =
 		$currentBeat.noteDuration === null ||
 		$currentBeat.noteDuration <= 0 ||
