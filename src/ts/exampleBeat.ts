@@ -1,5 +1,4 @@
 import type { beat } from "@/ts/types";
-import { convertBeatToString } from "./beatConverter";
 
 export const exampleBeat: beat = {
 	name: "example",
