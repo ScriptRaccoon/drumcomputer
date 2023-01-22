@@ -4,12 +4,12 @@ export type instrumentName =
 	| "C"
 	| "R"
 	| "H"
-	| "OH"
+	| "O"
 	| "B"
 	| "S"
 	| "D"
-	| "ST"
-	| "MT";
+	| "T"
+	| "M";
 
 export type instrument = {
 	name: instrumentName;

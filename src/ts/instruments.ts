@@ -13,7 +13,7 @@ export const instruments: instrument[] = [
 		audioPlayer: new AudioPlayer("fx/Ride-Cymbal-Hit-A.mp3"),
 	},
 	{
-		name: "OH",
+		name: "O",
 		longName: "Open Hi Hat",
 		audioPlayer: new AudioPlayer("fx/Hi-Hat-Open-Hit-A2.mp3"),
 	},
@@ -35,14 +35,14 @@ export const instruments: instrument[] = [
 		),
 	},
 	{
-		name: "ST",
+		name: "T",
 		longName: "Small Tom",
 		audioPlayer: new AudioPlayer(
 			"fx/Small-Tom-Drum-Hit-Level-4B.mp3"
 		),
 	},
 	{
-		name: "MT",
+		name: "M",
 		longName: "Medium Tom",
 		audioPlayer: new AudioPlayer(
 			"fx/Medium-Tom-Drum-Hit-Level-4B.mp3"
