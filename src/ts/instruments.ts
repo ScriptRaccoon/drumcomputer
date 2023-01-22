@@ -16,7 +16,7 @@ export const instruments: instrument[] = [
 		name: "S",
 		longName: "Snare",
 		audioPlayer: new AudioPlayer(
-			"fx/Snare-Drum-Hit-Level-4a.mp3"
+			"fx/Snare-Drum-Hit-Level-5a.mp3"
 		),
 	},
 	{
