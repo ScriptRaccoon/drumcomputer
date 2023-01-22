@@ -1,6 +1,15 @@
 import type { AudioPlayer } from "@/ts/AudioPlayer";
 
-export type instrumentName = "C" | "R" | "H" | "OH" | "B" | "S" | "D";
+export type instrumentName =
+	| "C"
+	| "R"
+	| "H"
+	| "OH"
+	| "B"
+	| "S"
+	| "D"
+	| "ST"
+	| "MT";
 
 export type instrument = {
 	name: instrumentName;

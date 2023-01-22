@@ -31,6 +31,21 @@ export const instruments: instrument[] = [
 		),
 	},
 	{
+		name: "ST",
+		longName: "Small Tom",
+		audioPlayer: new AudioPlayer(
+			"fx/Small-Tom-Drum-Hit-Level-4B.mp3"
+		),
+	},
+	{
+		name: "MT",
+		longName: "Medium Tom",
+		audioPlayer: new AudioPlayer(
+			"fx/Medium-Tom-Drum-Hit-Level-4B.mp3"
+		),
+	},
+
+	{
 		name: "B",
 		longName: "Bass drum",
 		audioPlayer: new AudioPlayer("fx/Bass-Drum-Hit-Level-4a.mp3"),
