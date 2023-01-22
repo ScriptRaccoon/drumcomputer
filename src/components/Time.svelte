@@ -30,6 +30,7 @@
 		aspect-ratio: 1;
 		border-radius: 10%;
 		background-color: var(--note-color-off);
+		print-color-adjust: exact;
 		&:checked {
 			background-color: var(--note-color-on);
 		}
