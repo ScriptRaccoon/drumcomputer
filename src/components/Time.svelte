@@ -4,14 +4,13 @@
 	export let time: number;
 </script>
 
-<div class="time">
+<div class="time" class:current={$currentTime == time}>
 	{#each instruments as instrument}
 		<input
 			class="note"
 			type="checkbox"
 			value={instrument.name}
 			bind:group={$currentBeat.notes[time]}
-			class:current={$currentTime == time}
 		/>
 	{/each}
 </div>
@@ -21,6 +20,14 @@
 		display: flex;
 		flex-direction: column;
 		gap: 2px;
+		&.current .note {
+			&:checked {
+				background-color: var(--note-color-on-current);
+			}
+			&:not(:checked) {
+				background-color: var(--note-color-off-current);
+			}
+		}
 	}
 	.note {
 		appearance: none;
@@ -37,9 +44,6 @@
 		&:focus-visible {
 			z-index: 10;
 			outline: 1px solid white;
-		}
-		&.current {
-			filter: brightness(1.4);
 		}
 	}
 </style>

@@ -8,8 +8,10 @@
 	--font-color: white;
 	--dark-font-color: gray;
 	--bg-color: #131119;
-	--note-color-off: #413c50;
-	--note-color-on: orangered;
+	--note-color-off: hsl(255, 14%, 27%);
+	--note-color-on: hsl(16, 100%, 50%);
+	--note-color-off-current: hsl(255, 14%, 37%);
+	--note-color-on-current: hsl(16, 100%, 60%);
 	--button-color: steelblue;
 	--error-color: rgb(222, 38, 38);
 }
