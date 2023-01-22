@@ -1,5 +1,5 @@
 <header>
-	<h1>Drum Machine</h1>
+	<h1>Drum Computer</h1>
 </header>
 
 <style>

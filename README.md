@@ -1,6 +1,6 @@
-# Drum machine
+# Drum computer
 
-This is a drum machine in the browser. It is very easy to use.
+This is a drum computer in the browser. It is very easy to use.
 
 Sound effects:
 https://www.fesliyanstudios.com/
