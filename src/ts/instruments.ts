@@ -3,15 +3,21 @@ import { AudioPlayer } from "@/ts/AudioPlayer";
 
 export const instruments: instrument[] = [
 	{
-		name: "H",
-		longName: "Hi Hat",
-		audioPlayer: new AudioPlayer("fx/Hi-Hat-Closed-Hit-A2.mp3"),
+		name: "R",
+		longName: "Ride cymbal",
+		audioPlayer: new AudioPlayer("fx/Ride-Cymbal-Hit-A.mp3"),
 	},
 	{
 		name: "OH",
 		longName: "Open Hi Hat",
 		audioPlayer: new AudioPlayer("fx/Hi-Hat-Open-Hit-A2.mp3"),
 	},
+	{
+		name: "H",
+		longName: "Hi Hat",
+		audioPlayer: new AudioPlayer("fx/Hi-Hat-Closed-Hit-A2.mp3"),
+	},
+
 	{
 		name: "S",
 		longName: "Snare",
