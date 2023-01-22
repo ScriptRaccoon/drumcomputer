@@ -33,7 +33,7 @@
 		appearance: none;
 		-webkit-appearance: none;
 		cursor: pointer;
-		width: min(40px, 10vw);
+		width: var(--note-size);
 		aspect-ratio: 1;
 		border-radius: 10%;
 		background-color: var(--note-color-off);

@@ -1,12 +1,12 @@
 <script>
 	import { currentBeat } from "@/ts/stores";
 	import Time from "@/components/Time.svelte";
-	import TimeCounter from "@/components/utils/TimeCounter.svelte";
+	import Instruments from "./Instruments.svelte";
 </script>
 
 {#if $currentBeat.notes.length > 0}
 	<div class="beat">
-		<TimeCounter />
+		<Instruments />
 		{#each $currentBeat.notes as _, time}
 			<Time {time} />
 		{/each}
@@ -17,12 +17,13 @@
 
 <style>
 	.beat {
+		max-width: 100%;
+		overflow-x: auto;
 		display: flex;
-		flex-wrap: wrap;
 		row-gap: 20px;
 		column-gap: 2px;
 		position: relative;
-		margin-top: 30px;
+		padding: 30px 20px 10px 0px;
 	}
 	.empty-message {
 		margin-top: 30px;

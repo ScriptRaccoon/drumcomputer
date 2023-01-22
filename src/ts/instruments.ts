@@ -4,12 +4,12 @@ import { AudioPlayer } from "@/ts/AudioPlayer";
 export const instruments: instrument[] = [
 	{
 		name: "C",
-		longName: "Crash cymbal",
+		longName: "Crash",
 		audioPlayer: new AudioPlayer("fx/Crash-Cymbal-Hit-C.mp3"),
 	},
 	{
 		name: "R",
-		longName: "Ride cymbal",
+		longName: "Ride",
 		audioPlayer: new AudioPlayer("fx/Ride-Cymbal-Hit-A.mp3"),
 	},
 	{
@@ -24,7 +24,7 @@ export const instruments: instrument[] = [
 	},
 	{
 		name: "D",
-		longName: "Drum sticks",
+		longName: "Sticks",
 		audioPlayer: new AudioPlayer("fx/Drum-Sticks-Hit-C.mp3"),
 	},
 	{
