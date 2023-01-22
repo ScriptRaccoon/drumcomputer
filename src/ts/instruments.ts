@@ -22,7 +22,11 @@ export const instruments: instrument[] = [
 		longName: "Hi Hat",
 		audioPlayer: new AudioPlayer("fx/Hi-Hat-Closed-Hit-A2.mp3"),
 	},
-
+	{
+		name: "D",
+		longName: "Drum sticks",
+		audioPlayer: new AudioPlayer("fx/Drum-Sticks-Hit-C.mp3"),
+	},
 	{
 		name: "S",
 		longName: "Snare",
@@ -49,11 +53,6 @@ export const instruments: instrument[] = [
 		name: "B",
 		longName: "Bass drum",
 		audioPlayer: new AudioPlayer("fx/Bass-Drum-Hit-Level-4a.mp3"),
-	},
-	{
-		name: "D",
-		longName: "Drum sticks",
-		audioPlayer: new AudioPlayer("fx/Drum-Sticks-Hit-C.mp3"),
 	},
 ];
 
