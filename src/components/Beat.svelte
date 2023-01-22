@@ -19,7 +19,7 @@
 	.beat {
 		display: flex;
 		flex-wrap: wrap;
-		row-gap: 10px;
+		row-gap: 20px;
 		column-gap: 2px;
 		position: relative;
 		margin-top: 30px;
