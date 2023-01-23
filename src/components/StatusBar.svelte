@@ -6,7 +6,7 @@
 
 <div class="status">
 	<span class="time">Time: {timeString}</span>
-	<span>Note duration: {$currentBeat.noteDuration}</span>
+	<span>Note duration: {$currentBeat.noteDuration} ms</span>
 </div>
 
 <style lang="scss">
