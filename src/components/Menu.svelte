@@ -76,75 +76,83 @@
 </script>
 
 <menu>
-	<Button
-		name="play"
-		disabled={$playState == "playing" ||
-			$currentBeat.notes.length == 0}
-		action={() => dispatch("play")}
-	>
-		<Fa icon={faPlay} />
-	</Button>
+	<div>
+		<Button
+			name="play"
+			disabled={$playState == "playing" ||
+				$currentBeat.notes.length == 0}
+			action={() => dispatch("play")}
+		>
+			<Fa icon={faPlay} />
+		</Button>
 
-	<Button
-		name="pause"
-		disabled={$playState !== "playing"}
-		action={() => dispatch("pause")}
-	>
-		<Fa icon={faPause} />
-	</Button>
+		<Button
+			name="pause"
+			disabled={$playState !== "playing"}
+			action={() => dispatch("pause")}
+		>
+			<Fa icon={faPause} />
+		</Button>
 
-	<Button
-		name="stop"
-		disabled={$playState == "stopped"}
-		action={() => dispatch("stop")}
-	>
-		<Fa icon={faStop} />
-	</Button>
+		<Button
+			name="stop"
+			disabled={$playState == "stopped"}
+			action={() => dispatch("stop")}
+		>
+			<Fa icon={faStop} />
+		</Button>
 
-	<Button name="slower" action={decreaseSpeed}>
-		<Fa icon={faBackward} />
-	</Button>
+		<Button name="slower" action={decreaseSpeed}>
+			<Fa icon={faBackward} />
+		</Button>
 
-	<Button
-		name="faster"
-		action={increaseSpeed}
-		disabled={$currentBeat.noteDuration <= 0}
-	>
-		<Fa icon={faForward} />
-	</Button>
+		<Button
+			name="faster"
+			action={increaseSpeed}
+			disabled={$currentBeat.noteDuration <= 0}
+		>
+			<Fa icon={faForward} />
+		</Button>
+	</div>
 
-	<Button name="add time" action={addTime}>
-		<Fa icon={faPlus} />
-	</Button>
+	<div>
+		<Button name="add time" action={addTime}>
+			<Fa icon={faPlus} />
+		</Button>
 
-	<Button
-		name="remove time"
-		action={removeTime}
-		disabled={$playState == "playing" &&
-			$currentTime == $currentBeat.notes.length - 1}
-	>
-		<Fa icon={faMinus} />
-	</Button>
+		<Button
+			name="remove time"
+			action={removeTime}
+			disabled={$playState == "playing" &&
+				$currentTime == $currentBeat.notes.length - 1}
+		>
+			<Fa icon={faMinus} />
+		</Button>
 
-	<Button
-		name="delete notes"
-		disabled={$playState == "playing"}
-		action={deleteNotes}
-	>
-		<Fa icon={faTrashAlt} />
-	</Button>
+		<Button
+			name="delete notes"
+			disabled={$playState == "playing"}
+			action={deleteNotes}
+		>
+			<Fa icon={faTrashAlt} />
+		</Button>
 
-	<Button name="share" action={shareBeat}>
-		<Fa icon={faShareNodes} /></Button
-	>
+		<Button name="share" action={shareBeat}>
+			<Fa icon={faShareNodes} /></Button
+		>
+	</div>
 </menu>
 
 <style lang="scss">
 	@use "../scss/mixins" as *;
 
 	menu {
-		@include flex-center();
 		padding-block: 20px;
+		@include flex-center();
 		gap: 10px;
+		> div {
+			@include flex-center();
+			gap: 10px;
+		}
 	}
 </style>
