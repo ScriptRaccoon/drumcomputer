@@ -3,7 +3,7 @@
 	import Header from "@/components/layout/Header.svelte";
 	import Menu from "@/components/Menu.svelte";
 	import Beat from "@/components/Beat.svelte";
-	import Form from "@/components/Form.svelte";
+	import SubMenu from "@/components/SubMenu.svelte";
 	import Confirm from "@/components/ui/Confirm.svelte";
 	import Alert from "@/components/ui/Alert.svelte";
 
@@ -71,7 +71,7 @@
 		on:stop={stopMusic}
 		on:pause={pauseMusic}
 	/>
-	<Form />
+	<SubMenu />
 	<Beat />
 </main>
 
