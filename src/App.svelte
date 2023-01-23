@@ -15,6 +15,7 @@
 
 	import { convertURLToBeat } from "@/ts/beatConverter";
 	import { instruments } from "@/ts/instruments";
+	import StatusBar from "./components/StatusBar.svelte";
 
 	function startMusic() {
 		$playState = "playing";
@@ -70,6 +71,7 @@
 		on:stop={stopMusic}
 		on:pause={pauseMusic}
 	/>
+	<StatusBar />
 	<Beat />
 </main>
 
