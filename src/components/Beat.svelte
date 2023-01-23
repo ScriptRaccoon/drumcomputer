@@ -23,7 +23,7 @@
 		row-gap: 20px;
 		column-gap: 2px;
 		position: relative;
-		padding: 30px 20px 10px 0px;
+		padding: 10px 20px 10px 0px;
 	}
 	.empty-message {
 		margin-top: 30px;

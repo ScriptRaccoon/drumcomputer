@@ -3,7 +3,6 @@
 	import Header from "@/components/layout/Header.svelte";
 	import Menu from "@/components/Menu.svelte";
 	import Beat from "@/components/Beat.svelte";
-	import SubMenu from "@/components/SubMenu.svelte";
 	import Confirm from "@/components/ui/Confirm.svelte";
 	import Alert from "@/components/ui/Alert.svelte";
 
@@ -71,7 +70,6 @@
 		on:stop={stopMusic}
 		on:pause={pauseMusic}
 	/>
-	<SubMenu />
 	<Beat />
 </main>
 

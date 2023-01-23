@@ -10,6 +10,8 @@
 		faTrashAlt,
 		faMinus,
 		faShareNodes,
+		faForward,
+		faBackward,
 	} from "@fortawesome/free-solid-svg-icons";
 	import {
 		playState,
@@ -70,6 +72,17 @@
 			makeAlert("Copied sharing URL to clipboard!", sharingURL);
 		}
 	}
+
+	function decreaseSpeed() {
+		$currentBeat.noteDuration += 5;
+	}
+
+	function increaseSpeed() {
+		$currentBeat.noteDuration = Math.max(
+			0,
+			$currentBeat.noteDuration - 5
+		);
+	}
 </script>
 
 <menu>
@@ -97,6 +110,18 @@
 		action={() => dispatch("stop")}
 	>
 		<Fa icon={faStop} />
+	</Button>
+
+	<Button name="slower" action={decreaseSpeed}>
+		<Fa icon={faBackward} />
+	</Button>
+
+	<Button
+		name="faster"
+		action={increaseSpeed}
+		disabled={$currentBeat.noteDuration <= 0}
+	>
+		<Fa icon={faForward} />
 	</Button>
 
 	<Button name="add time" action={addTime}>
