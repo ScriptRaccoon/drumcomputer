@@ -2,9 +2,19 @@
 	import { currentBeat, currentTime } from "@/ts/stores";
 	import { instruments } from "@/ts/instruments";
 	export let time: number;
+	let timeElement: HTMLElement;
+
+	$: current = $currentTime === time;
+
+	$: if (current) {
+		timeElement?.scrollIntoView({
+			behavior: "smooth",
+			inline: "center",
+		});
+	}
 </script>
 
-<div class="time" class:current={$currentTime == time}>
+<div bind:this={timeElement} class="time" class:current>
 	{#each instruments as instrument}
 		<input
 			class="note"
