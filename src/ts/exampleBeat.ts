@@ -1,7 +1,6 @@
 import type { beat } from "@/ts/types";
 
 export const exampleBeat: beat = {
-	name: "example",
 	noteDuration: 140,
 	notes: [
 		["H", "B"],

@@ -45,10 +45,6 @@
 	}
 
 	function validateBeat() {
-		if ($currentBeat.name.length == 0) {
-			makeAlert("You need to specifiy a name first.");
-			return false;
-		}
 		if ($currentBeat.notes.every((time) => time.length == 0)) {
 			makeAlert("You need to add some notes first.");
 			return false;

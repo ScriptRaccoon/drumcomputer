@@ -6,8 +6,7 @@ export function convertBeatToString(beat: beat) {
 		.map((time) => time.join(""))
 		.join("-");
 	return (
-		`?name=${beat.name}` +
-		`&noteDuration=${beat.noteDuration}` +
+		`?noteDuration=${beat.noteDuration}` +
 		`&notes=${notesAsString}`
 	);
 }
@@ -15,10 +14,9 @@ export function convertBeatToString(beat: beat) {
 export function convertURLToBeat(
 	urlParams: URLSearchParams
 ): beat | undefined {
-	const name = urlParams.get("name");
 	const noteDurationString = urlParams.get("noteDuration");
 	const notesString = urlParams.get("notes");
-	if (!name || !noteDurationString || !notesString) return;
+	if (!noteDurationString || !notesString) return;
 	const noteDuration = parseInt(noteDurationString);
 	const notes = notesString
 		?.split("-")
@@ -28,7 +26,7 @@ export function convertURLToBeat(
 			time.every((note) => instrumentNames.includes(note))
 		)
 	)
-		return { name, noteDuration, notes };
+		return { noteDuration, notes };
 
 	return;
 }
