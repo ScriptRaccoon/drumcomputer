@@ -22,7 +22,7 @@
 			opacity: 0.4;
 			cursor: not-allowed;
 		}
-		font-size: 14px;
+		// font-size: 14px;
 		padding: 4px;
 	}
 </style>

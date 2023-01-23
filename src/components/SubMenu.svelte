@@ -1,8 +1,8 @@
 <script>
 	import Fa from "svelte-fa";
 	import {
-		faMinus,
-		faPlus,
+		faForward,
+		faBackward,
 	} from "@fortawesome/free-solid-svg-icons";
 	import {
 		playState,
@@ -48,12 +48,12 @@
 			name="increase note duration"
 			action={increaseNoteDuration}
 		>
-			<Fa icon={faPlus} />
+			<Fa icon={faBackward} />
 		</SmallButton><SmallButton
 			name="decrease note duration"
 			action={decreaseNoteDuration}
 		>
-			<Fa icon={faMinus} />
+			<Fa icon={faForward} />
 		</SmallButton>
 	</div>
 
