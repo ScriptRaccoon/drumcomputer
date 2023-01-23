@@ -22,3 +22,5 @@ export function makeAlert(...txts: string[]) {
 	showAlert.set(true);
 	alertTexts.set(txts);
 }
+
+export const beatScrolls = writable<boolean>(true);

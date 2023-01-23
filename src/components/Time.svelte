@@ -1,12 +1,16 @@
 <script lang="ts">
-	import { currentBeat, currentTime } from "@/ts/stores";
+	import {
+		beatScrolls,
+		currentBeat,
+		currentTime,
+	} from "@/ts/stores";
 	import { instruments } from "@/ts/instruments";
 	export let time: number;
 	let timeElement: HTMLElement;
 
 	$: current = $currentTime === time;
 
-	$: if (current) {
+	$: if (current && $beatScrolls) {
 		timeElement?.scrollIntoView({
 			behavior: "smooth",
 			inline: "center",
