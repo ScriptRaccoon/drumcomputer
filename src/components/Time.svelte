@@ -12,7 +12,6 @@
 
 	$: if (current && $beatScrolls) {
 		timeElement?.scrollIntoView({
-			behavior: "smooth",
 			inline: "center",
 		});
 	}
