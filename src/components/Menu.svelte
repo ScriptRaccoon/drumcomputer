@@ -31,7 +31,7 @@
 		$currentBeat.notes = $currentBeat.notes.slice(0, l - 1);
 	}
 
-	function deleteBeat() {
+	function deleteNotes() {
 		makeConfirm(
 			"This will delete all notes. Are you sure?",
 			() => {
@@ -113,9 +113,9 @@
 	</Button>
 
 	<Button
-		name="delete beat"
+		name="delete notes"
 		disabled={$playState == "playing"}
-		action={deleteBeat}
+		action={deleteNotes}
 	>
 		<Fa icon={faTrashAlt} />
 	</Button>
