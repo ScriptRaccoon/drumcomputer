@@ -27,4 +27,7 @@
 		padding-block: 5px;
 		column-gap: 25px;
 	}
+	input[type="checkbox"] {
+		accent-color: var(--button-color);
+	}
 </style>
