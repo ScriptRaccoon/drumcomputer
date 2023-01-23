@@ -5,7 +5,10 @@
 		currentTime,
 	} from "@/ts/stores";
 	$: noteNumber = $currentBeat.notes.length;
-	$: timeString = `${$currentTime + 1}/${noteNumber}`;
+	$: decimalLength = noteNumber.toString().length;
+	$: timeString = `${($currentTime + 1)
+		.toString()
+		.padStart(decimalLength, "0")}/${noteNumber}`;
 </script>
 
 <div class="status">
