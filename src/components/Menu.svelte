@@ -18,7 +18,6 @@
 		currentBeat,
 		currentTime,
 		makeConfirm,
-		durationError,
 		makeAlert,
 	} from "@/ts/stores";
 	import Button from "@/components/ui/Button.svelte";
@@ -49,12 +48,7 @@
 			makeAlert("You need to add some notes first.");
 			return false;
 		}
-		if ($durationError) {
-			makeAlert(
-				"The note duration must be a positive integer."
-			);
-			return false;
-		}
+
 		return true;
 	}
 
@@ -85,8 +79,7 @@
 	<Button
 		name="play"
 		disabled={$playState == "playing" ||
-			$currentBeat.notes.length == 0 ||
-			$durationError}
+			$currentBeat.notes.length == 0}
 		action={() => dispatch("play")}
 	>
 		<Fa icon={faPlay} />
@@ -94,7 +87,7 @@
 
 	<Button
 		name="pause"
-		disabled={$playState !== "playing" || $durationError}
+		disabled={$playState !== "playing"}
 		action={() => dispatch("pause")}
 	>
 		<Fa icon={faPause} />
@@ -102,7 +95,7 @@
 
 	<Button
 		name="stop"
-		disabled={$playState == "stopped" || $durationError}
+		disabled={$playState == "stopped"}
 		action={() => dispatch("stop")}
 	>
 		<Fa icon={faStop} />

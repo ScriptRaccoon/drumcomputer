@@ -5,7 +5,6 @@ import { exampleBeat } from "@/ts/exampleBeat";
 export const currentBeat = writable<beat>(exampleBeat);
 export const currentTime = writable(0);
 export const playState = writable<playStates>("stopped");
-export const durationError = writable<boolean>(false);
 export const showConfirm = writable<boolean>(false);
 export const confirmText = writable("");
 export const confirmAction = writable<() => void>(undefined);
