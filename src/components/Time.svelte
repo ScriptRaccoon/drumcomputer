@@ -3,6 +3,7 @@
 		beatScrolls,
 		currentBeat,
 		currentTime,
+		playState,
 	} from "@/ts/stores";
 	import { instruments } from "@/ts/instruments";
 	export let time: number;
@@ -10,23 +11,25 @@
 
 	$: current = $currentTime === time;
 
-	$: if (current && $beatScrolls) {
+	$: if ($playState == "playing" && current && $beatScrolls) {
 		timeElement?.scrollIntoView({
 			inline: "center",
 		});
 	}
 </script>
 
-<div bind:this={timeElement} class="time" class:current>
-	{#each instruments as instrument}
-		<input
-			class="note"
-			type="checkbox"
-			value={instrument.name}
-			bind:group={$currentBeat.notes[time]}
-		/>
-	{/each}
-</div>
+{#if time < $currentBeat.notes.length}
+	<div bind:this={timeElement} class="time" class:current>
+		{#each instruments as instrument}
+			<input
+				class="note"
+				type="checkbox"
+				value={instrument.name}
+				bind:group={$currentBeat.notes[time]}
+			/>
+		{/each}
+	</div>
+{/if}
 
 <style lang="scss">
 	.time {
