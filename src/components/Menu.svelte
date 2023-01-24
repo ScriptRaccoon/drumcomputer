@@ -58,7 +58,10 @@
 				window.location.origin +
 				convertBeatToString($currentBeat);
 			await navigator.clipboard.writeText(sharingURL);
-			makeAlert("Copied sharing URL to clipboard!", sharingURL);
+			makeAlert(
+				"Copied sharing URL to clipboard!",
+				`<code>${sharingURL.replace(/&/g, "&amp;")}</code>`
+			);
 		}
 	}
 

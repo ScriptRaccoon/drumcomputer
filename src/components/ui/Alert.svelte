@@ -18,7 +18,7 @@
 		<div class="content" transition:scale={{ duration: speed }}>
 			{#each $alertTexts as txt}
 				<p>
-					{txt}
+					{@html txt}
 				</p>
 			{/each}
 			<menu>
@@ -52,6 +52,10 @@
 		p {
 			font-size: 1.2rem;
 			margin-bottom: 1rem;
+			:global(code) {
+				font-size: 1rem;
+				color: var(--dark-font-color);
+			}
 		}
 	}
 </style>
