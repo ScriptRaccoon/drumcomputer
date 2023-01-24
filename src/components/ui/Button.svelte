@@ -23,7 +23,7 @@
 			cursor: not-allowed;
 		}
 		background-color: var(--button-color);
-		padding: 5px 12px;
-		border-radius: 4px;
+		padding: 0.3rem 0.8rem;
+		border-radius: 0.25rem;
 	}
 </style>

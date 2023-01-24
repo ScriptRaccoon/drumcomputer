@@ -146,12 +146,12 @@
 	@use "../scss/mixins" as *;
 
 	menu {
-		padding-block: 20px;
+		padding-block: 1rem;
 		@include flex-center();
-		gap: 10px;
+		gap: 0.6rem;
 		> div {
 			@include flex-center();
-			gap: 10px;
+			gap: 0.6rem;
 		}
 	}
 </style>

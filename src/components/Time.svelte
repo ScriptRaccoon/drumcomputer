@@ -35,7 +35,7 @@
 	.time {
 		display: flex;
 		flex-direction: column;
-		gap: 2px;
+		row-gap: 0.125rem;
 		&.current .note {
 			&:checked {
 				background-color: var(--note-color-on-current);
@@ -58,8 +58,7 @@
 			background-color: var(--note-color-on);
 		}
 		&:focus-visible {
-			z-index: 10;
-			outline: 1px solid white;
+			outline: 0.1rem solid white;
 		}
 	}
 </style>

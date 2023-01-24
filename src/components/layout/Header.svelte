@@ -5,11 +5,11 @@
 <style>
 	header {
 		text-align: center;
-		padding-block: 30px 20px;
+		padding: 1.5rem;
 	}
 	h1 {
 		font-weight: 500;
-		font-size: 40px;
+		font-size: 2.5rem;
 		line-height: 1;
 	}
 </style>

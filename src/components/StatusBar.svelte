@@ -27,15 +27,10 @@
 
 <style lang="scss">
 	.status {
-		width: 100%;
+		width: min(30rem, 100%);
 		display: flex;
-		justify-content: space-evenly;
-		padding-block: 5px;
-		gap: 5px;
-		@media (min-width: 640px) {
-			justify-content: center;
-			gap: 35px;
-		}
+		justify-content: space-between;
+		padding-block: 0.4rem;
 	}
 	.label {
 		color: var(--dark-font-color);

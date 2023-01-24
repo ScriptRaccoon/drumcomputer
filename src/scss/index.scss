@@ -13,7 +13,7 @@
 	--note-color-off-current: hsl(255, 14%, 37%);
 	--note-color-on-current: hsl(16, 100%, 60%);
 	--button-color: steelblue;
-	--note-size: min(40px, 10vw);
+	--note-size: min(2.5rem, 10vw);
 }
 
 body {
@@ -21,5 +21,5 @@ body {
 	color: var(--font-color);
 	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
 		sans-serif;
-	padding: 10px;
+	padding: 0.8rem;
 }

@@ -43,26 +43,15 @@
 		background-color: #0006;
 	}
 	.content {
-		max-width: min(460px, 95vw);
-		background-color: black;
-		color: white;
-		padding: 20px;
-		border-radius: 10px;
-		box-shadow: 0px 0px 10px #fff2;
+		max-width: min(40rem, 95vw);
+		background-color: #000;
+		padding: 1.5rem;
+		border-radius: 0.8rem;
+		box-shadow: 0 0 1rem #fff2;
+		text-align: center;
 		p {
-			font-size: 20px;
-			text-align: center;
-			margin-bottom: 10px;
-			&:not(:first-child) {
-				font-size: 16px;
-				color: var(--dark-font-color);
-			}
+			font-size: 1.2rem;
+			margin-bottom: 1rem;
 		}
-	}
-	menu {
-		padding-top: 20px;
-		display: flex;
-		justify-content: center;
-		gap: 10px;
 	}
 </style>

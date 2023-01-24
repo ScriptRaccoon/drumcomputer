@@ -20,12 +20,11 @@
 		max-width: 100%;
 		overflow-x: auto;
 		display: flex;
-		row-gap: 20px;
-		column-gap: 2px;
+		column-gap: 0.125rem;
 		position: relative;
-		padding: 10px 20px 10px 0px;
+		padding: 1rem 1rem 1rem 0rem;
 	}
 	.empty-message {
-		margin-top: 30px;
+		margin-top: 2rem;
 	}
 </style>
