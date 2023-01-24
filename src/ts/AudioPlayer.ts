@@ -9,6 +9,13 @@ export class AudioPlayer {
 			.fill(null)
 			.map(() => new Audio(audioSource));
 		this.#currentChannel = 0;
+		this.load();
+	}
+
+	load() {
+		for (let i = 0; i < this.#channels.length; i++) {
+			this.#channels[i].load();
+		}
 	}
 
 	play() {

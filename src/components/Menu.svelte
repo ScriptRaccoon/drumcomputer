@@ -57,7 +57,6 @@
 			const sharingURL =
 				window.location.origin +
 				convertBeatToString($currentBeat);
-			console.log(sharingURL);
 			await navigator.clipboard.writeText(sharingURL);
 			makeAlert("Copied sharing URL to clipboard!", sharingURL);
 		}
