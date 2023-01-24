@@ -10,13 +10,14 @@ export const alertTexts = writable<string[]>([]);
 export const alertState = writable<alertStates>(null);
 export const alertAction = writable(() => {});
 
-export function setAlert(
-	state: alertStates,
-	action: () => void,
-	...txts: string[]
-) {
+export function setConfirm(action: () => void, ...txts: string[]) {
+	alertState.set("confirm");
+	alertTexts.set(txts);
 	alertAction.set(action);
-	alertState.set(state);
+}
+
+export function setAlert(...txts: string[]) {
+	alertState.set("alert");
 	alertTexts.set(txts);
 }
 

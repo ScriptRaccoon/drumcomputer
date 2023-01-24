@@ -18,6 +18,7 @@
 		currentBeat,
 		currentTime,
 		setAlert,
+		setConfirm,
 	} from "@/ts/stores";
 	import Button from "@/components/ui/Button.svelte";
 	import { convertBeatToString } from "@/ts/beatConverter";
@@ -32,24 +33,16 @@
 	}
 
 	function deleteNotes() {
-		setAlert(
-			"confirm",
-			() => {
-				$currentBeat.notes = [];
-				$currentTime = 0;
-				$playState = "stopped";
-			},
-			"This will delete all notes. Are you sure?"
-		);
+		setConfirm(() => {
+			$currentBeat.notes = [];
+			$currentTime = 0;
+			$playState = "stopped";
+		}, "This will delete all notes. Are you sure?");
 	}
 
 	function validateBeat() {
 		if ($currentBeat.notes.every((time) => time.length == 0)) {
-			setAlert(
-				"alert",
-				() => {},
-				"You need to add some notes first."
-			);
+			setAlert("You need to add some notes first.");
 			return false;
 		}
 
@@ -63,8 +56,6 @@
 				convertBeatToString($currentBeat);
 			await navigator.clipboard.writeText(sharingURL);
 			setAlert(
-				"alert",
-				() => {},
 				"Copied sharing URL to clipboard!",
 				`<code>${sharingURL.replace(/&/g, "&amp;")}</code>`
 			);

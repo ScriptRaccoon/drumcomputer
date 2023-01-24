@@ -57,11 +57,7 @@
 		if (beatFromURL) {
 			$currentBeat = beatFromURL;
 		} else {
-			setAlert(
-				"alert",
-				() => {},
-				"Error: Beat could not be read from URL"
-			);
+			setAlert("Error: Beat could not be read from URL");
 		}
 	});
 </script>
