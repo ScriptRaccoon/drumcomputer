@@ -3,7 +3,7 @@
 	import Header from "@/components/layout/Header.svelte";
 	import Menu from "@/components/Menu.svelte";
 	import Beat from "@/components/Beat.svelte";
-	import Alert from "@/components/ui/Alert.svelte";
+	import Dialog from "@/components/ui/Dialog.svelte";
 
 	import {
 		currentBeat,
@@ -74,7 +74,7 @@
 	<Beat />
 </main>
 
-<Alert />
+<Dialog />
 
 <style lang="scss">
 	@use "./scss/mixins" as *;
