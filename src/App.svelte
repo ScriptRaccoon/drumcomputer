@@ -3,13 +3,12 @@
 	import Header from "@/components/layout/Header.svelte";
 	import Menu from "@/components/Menu.svelte";
 	import Beat from "@/components/Beat.svelte";
-	import Confirm from "@/components/ui/Confirm.svelte";
 	import Alert from "@/components/ui/Alert.svelte";
 
 	import {
 		currentBeat,
 		currentTime,
-		makeAlert,
+		setAlert,
 		playState,
 	} from "./ts/stores";
 
@@ -58,7 +57,11 @@
 		if (beatFromURL) {
 			$currentBeat = beatFromURL;
 		} else {
-			makeAlert("Error: Beat could not be read from URL");
+			setAlert(
+				"alert",
+				() => {},
+				"Error: Beat could not be read from URL"
+			);
 		}
 	});
 </script>
@@ -75,7 +78,6 @@
 	<Beat />
 </main>
 
-<Confirm />
 <Alert />
 
 <style lang="scss">

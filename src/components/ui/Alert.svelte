@@ -1,33 +1,42 @@
 <script lang="ts">
 	import { fade, scale } from "svelte/transition";
-	import { showAlert, alertTexts } from "@/ts/stores";
+	import { alertState, alertTexts, alertAction } from "@/ts/stores";
 	import Button from "@/components/ui/Button.svelte";
-	const speed = 200;
+	const animationSpeed = 200;
 	function hideMe() {
-		$showAlert = false;
+		$alertState = null;
 	}
 </script>
 
-{#if $showAlert}
+{#if $alertState}
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div
 		class="backdrop"
-		transition:fade={{ duration: speed }}
+		transition:fade={{ duration: animationSpeed }}
 		on:click|self={hideMe}
 	>
-		<div class="content" transition:scale={{ duration: speed }}>
+		<div
+			class="content"
+			transition:scale={{ duration: animationSpeed }}
+		>
 			{#each $alertTexts as txt}
 				<p>
 					{@html txt}
 				</p>
 			{/each}
 			<menu>
-				<Button
-					name="Ok"
-					action={() => {
-						hideMe();
-					}}>Ok</Button
-				>
+				{#if $alertState == "alert"}
+					<Button name="Ok" action={hideMe}>Ok</Button>
+				{:else}
+					<Button
+						name="Yes"
+						action={() => {
+							$alertAction();
+							hideMe();
+						}}>Yes</Button
+					>
+					<Button name="No" action={hideMe}>No</Button>
+				{/if}
 			</menu>
 		</div>
 	</div>
@@ -57,5 +66,9 @@
 				color: var(--dark-font-color);
 			}
 		}
+	}
+	menu {
+		@include flex-center();
+		gap: 1rem;
 	}
 </style>

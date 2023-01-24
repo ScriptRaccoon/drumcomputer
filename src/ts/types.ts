@@ -23,3 +23,5 @@ export type beat = {
 	notes: instrumentName[][];
 	noteDuration: number;
 };
+
+export type alertStates = "alert" | "confirm" | null;

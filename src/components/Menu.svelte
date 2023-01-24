@@ -17,8 +17,7 @@
 		playState,
 		currentBeat,
 		currentTime,
-		makeConfirm,
-		makeAlert,
+		setAlert,
 	} from "@/ts/stores";
 	import Button from "@/components/ui/Button.svelte";
 	import { convertBeatToString } from "@/ts/beatConverter";
@@ -33,19 +32,24 @@
 	}
 
 	function deleteNotes() {
-		makeConfirm(
-			"This will delete all notes. Are you sure?",
+		setAlert(
+			"confirm",
 			() => {
 				$currentBeat.notes = [];
 				$currentTime = 0;
 				$playState = "stopped";
-			}
+			},
+			"This will delete all notes. Are you sure?"
 		);
 	}
 
 	function validateBeat() {
 		if ($currentBeat.notes.every((time) => time.length == 0)) {
-			makeAlert("You need to add some notes first.");
+			setAlert(
+				"alert",
+				() => {},
+				"You need to add some notes first."
+			);
 			return false;
 		}
 
@@ -58,7 +62,9 @@
 				window.location.origin +
 				convertBeatToString($currentBeat);
 			await navigator.clipboard.writeText(sharingURL);
-			makeAlert(
+			setAlert(
+				"alert",
+				() => {},
 				"Copied sharing URL to clipboard!",
 				`<code>${sharingURL.replace(/&/g, "&amp;")}</code>`
 			);
