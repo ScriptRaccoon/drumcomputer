@@ -13,11 +13,9 @@
 </script>
 
 {#if $dialogState}
-	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div
 		class="backdrop"
 		transition:fade={{ duration: animationSpeed }}
-		on:click|self={hideMe}
 	>
 		<div
 			class="content"
