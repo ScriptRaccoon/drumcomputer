@@ -10,8 +10,7 @@
 		faTrashAlt,
 		faMinus,
 		faShareNodes,
-		faForward,
-		faBackward,
+		faGaugeSimpleHigh,
 	} from "@fortawesome/free-solid-svg-icons";
 	import {
 		playState,
@@ -102,7 +101,7 @@
 		</Button>
 
 		<Button name="slower" action={decreaseSpeed}>
-			<Fa icon={faBackward} />
+			<Fa icon={faGaugeSimpleHigh} flip="horizontal" />
 		</Button>
 
 		<Button
@@ -110,7 +109,7 @@
 			action={increaseSpeed}
 			disabled={$currentBeat.noteDuration <= 0}
 		>
-			<Fa icon={faForward} />
+			<Fa icon={faGaugeSimpleHigh} />
 		</Button>
 	</div>
 
