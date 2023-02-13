@@ -16,8 +16,7 @@
 		playState,
 		currentBeat,
 		currentTime,
-		setAlert,
-		setConfirm,
+		dialogState,
 	} from "@/ts/stores";
 	import Button from "@/components/Button.svelte";
 	import { convertBeatToString } from "@/ts/beatConverter";
@@ -32,10 +31,12 @@
 	}
 
 	function confirmToDeleteNotes() {
-		setConfirm(
-			deleteNotes,
-			"This will delete all notes. Are you sure?"
-		);
+		$dialogState = {
+			open: true,
+			type: "confirm",
+			contents: ["This will delete all notes. Are you sure?"],
+			action: deleteNotes,
+		};
 	}
 
 	function deleteNotes() {
@@ -46,7 +47,11 @@
 
 	function validateBeat() {
 		if ($currentBeat.notes.every((time) => time.length == 0)) {
-			setAlert("You need to add some notes first.");
+			$dialogState = {
+				open: true,
+				type: "alert",
+				contents: ["You need to add some notes first."],
+			};
 			return false;
 		}
 
@@ -59,10 +64,15 @@
 				window.location.origin +
 				convertBeatToString($currentBeat);
 			await navigator.clipboard.writeText(sharingURL);
-			setAlert(
-				"Copied sharing URL to clipboard!",
-				`<code>${sharingURL.replace(/&/g, "&amp;")}</code>`
-			);
+			// prettier-ignore
+			$dialogState = {
+				open: true,
+				type: "alert",
+				contents: [
+					"Copied sharing URL to clipboard!",
+					`<code>${sharingURL.replace(/&/g,"&amp;")}</code>`,
+				],
+			};
 		}
 	}
 

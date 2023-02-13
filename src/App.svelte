@@ -8,7 +8,7 @@
 	import {
 		currentBeat,
 		currentTime,
-		setAlert,
+		dialogState,
 		playState,
 	} from "./ts/stores";
 
@@ -57,7 +57,11 @@
 		if (beatFromURL) {
 			$currentBeat = beatFromURL;
 		} else {
-			setAlert("Error: Beat could not be read from URL");
+			$dialogState = {
+				open: true,
+				type: "alert",
+				contents: ["Error: Beat could not be read from URL"],
+			};
 		}
 	});
 </script>

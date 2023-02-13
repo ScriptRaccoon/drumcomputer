@@ -1,49 +1,44 @@
 <script lang="ts">
-	import {
-		dialogState,
-		dialogTexts,
-		dialogAction,
-	} from "@/ts/stores";
+	import { dialogState } from "@/ts/stores";
 	import Button from "@/components/Button.svelte";
 
 	let dialogElement: HTMLDialogElement;
 
 	function closeDialog() {
-		$dialogState = null;
+		$dialogState.open = false;
 		dialogElement?.close();
 	}
 
-	$: if ($dialogState) {
+	function openDialog() {
 		dialogElement?.showModal();
 	}
+
+	$: if ($dialogState.open) openDialog();
 </script>
 
-{#key $dialogState}
-	<dialog bind:this={dialogElement}>
-		{#each $dialogTexts as txt}
-			<p>
-				{@html txt}
-			</p>
-		{/each}
-		<menu>
-			{#if $dialogState == "alert"}
-				<Button ariaLabel="Ok" action={closeDialog}>Ok</Button
-				>
-			{:else}
-				<Button ariaLabel="Cancel" action={closeDialog}
-					>Cancel</Button
-				>
-				<Button
-					ariaLabel="Confirm"
-					action={() => {
-						$dialogAction();
-						closeDialog();
-					}}>Confirm</Button
-				>
-			{/if}
-		</menu>
-	</dialog>
-{/key}
+<dialog bind:this={dialogElement}>
+	{#each $dialogState.contents as txt}
+		<p>
+			{@html txt}
+		</p>
+	{/each}
+	<menu>
+		{#if $dialogState.type === "alert"}
+			<Button ariaLabel="Ok" action={closeDialog}>Ok</Button>
+		{:else if $dialogState.type === "confirm"}
+			<Button ariaLabel="Cancel" action={closeDialog}
+				>Cancel</Button
+			>
+			<Button
+				ariaLabel="Confirm"
+				action={() => {
+					if ($dialogState.action) $dialogState.action();
+					closeDialog();
+				}}>Confirm</Button
+			>
+		{/if}
+	</menu>
+</dialog>
 
 <style lang="scss">
 	@use "../scss/mixins" as *;
