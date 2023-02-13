@@ -25,8 +25,9 @@ export function convertURLToBeat(
 		notes.every((time): time is instrumentName[] =>
 			time.every((note) => instrumentNames.includes(note))
 		)
-	)
+	) {
 		return { noteDuration, notes };
+	}
 
 	return;
 }
