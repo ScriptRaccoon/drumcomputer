@@ -1,7 +1,7 @@
 <script>
 	import { currentBeat } from "@/ts/stores";
 	import Time from "@/components/Time.svelte";
-	import Instruments from "./Instruments.svelte";
+	import Instruments from "@/components/Instruments.svelte";
 </script>
 
 {#if $currentBeat.notes.length > 0}

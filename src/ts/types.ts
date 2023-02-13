@@ -24,4 +24,4 @@ export type beat = {
 	noteDuration: number;
 };
 
-export type alertStates = "alert" | "confirm" | null;
+export type dialogStates = "alert" | "confirm" | null;

@@ -20,7 +20,7 @@
 		setAlert,
 		setConfirm,
 	} from "@/ts/stores";
-	import Button from "@/components/ui/Button.svelte";
+	import Button from "@/components/Button.svelte";
 	import { convertBeatToString } from "@/ts/beatConverter";
 
 	function addTime() {

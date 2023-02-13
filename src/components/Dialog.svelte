@@ -1,14 +1,18 @@
 <script lang="ts">
 	import { fade, scale } from "svelte/transition";
-	import { alertState, alertTexts, alertAction } from "@/ts/stores";
-	import Button from "@/components/ui/Button.svelte";
+	import {
+		dialogState,
+		dialogTexts,
+		dialogAction,
+	} from "@/ts/stores";
+	import Button from "@/components/Button.svelte";
 	const animationSpeed = 200;
 	function hideMe() {
-		$alertState = null;
+		$dialogState = null;
 	}
 </script>
 
-{#if $alertState}
+{#if $dialogState}
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div
 		class="backdrop"
@@ -19,19 +23,19 @@
 			class="content"
 			transition:scale={{ duration: animationSpeed }}
 		>
-			{#each $alertTexts as txt}
+			{#each $dialogTexts as txt}
 				<p>
 					{@html txt}
 				</p>
 			{/each}
 			<menu>
-				{#if $alertState == "alert"}
+				{#if $dialogState == "alert"}
 					<Button name="Ok" action={hideMe}>Ok</Button>
 				{:else}
 					<Button
 						name="Yes"
 						action={() => {
-							$alertAction();
+							$dialogAction();
 							hideMe();
 						}}>Yes</Button
 					>
@@ -43,7 +47,7 @@
 {/if}
 
 <style lang="scss">
-	@use "../../scss/mixins" as *;
+	@use "../scss/mixins" as *;
 	.backdrop {
 		@include flex-center();
 		position: fixed;

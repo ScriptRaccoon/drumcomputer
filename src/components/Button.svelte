@@ -9,7 +9,7 @@
 </button>
 
 <style lang="scss">
-	@use "../../scss/mixins" as *;
+	@use "../scss/mixins" as *;
 
 	button {
 		@include input-reset;

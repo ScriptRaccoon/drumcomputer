@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import Header from "@/components/layout/Header.svelte";
+	import Header from "@/components/Header.svelte";
 	import Menu from "@/components/Menu.svelte";
 	import Beat from "@/components/Beat.svelte";
-	import Dialog from "@/components/ui/Dialog.svelte";
+	import Dialog from "@/components/Dialog.svelte";
 
 	import {
 		currentBeat,
