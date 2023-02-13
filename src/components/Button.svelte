@@ -4,7 +4,7 @@
 	export let action: () => void = () => {};
 </script>
 
-<button title={name} aria-label={name} {disabled} on:click={action}>
+<button aria-label={name} {disabled} on:click={action}>
 	<slot />
 </button>
 
