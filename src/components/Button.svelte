@@ -1,10 +1,10 @@
 <script lang="ts">
-	export let name: string = "";
+	export let ariaLabel: string = "";
 	export let disabled: boolean = false;
 	export let action: () => void = () => {};
 </script>
 
-<button aria-label={name} {disabled} on:click={action}>
+<button aria-label={ariaLabel} {disabled} on:click={action}>
 	<slot />
 </button>
 
@@ -14,9 +14,11 @@
 	button {
 		@include input-reset;
 		cursor: pointer;
-		&:hover,
-		&:focus-visible {
+		&:hover {
 			filter: brightness(1.2);
+		}
+		&:focus {
+			outline: 0.1rem solid var(--font-color);
 		}
 		&:disabled {
 			opacity: 0.4;

@@ -31,12 +31,17 @@
 		$currentBeat.notes = $currentBeat.notes.slice(0, l - 1);
 	}
 
+	function confirmToDeleteNotes() {
+		setConfirm(
+			deleteNotes,
+			"This will delete all notes. Are you sure?"
+		);
+	}
+
 	function deleteNotes() {
-		setConfirm(() => {
-			$currentBeat.notes = [];
-			$currentTime = 0;
-			$playState = "stopped";
-		}, "This will delete all notes. Are you sure?");
+		$currentBeat.notes = [];
+		$currentTime = 0;
+		$playState = "stopped";
 	}
 
 	function validateBeat() {
@@ -76,7 +81,7 @@
 <menu>
 	<div>
 		<Button
-			name="play"
+			ariaLabel="play"
 			disabled={$playState == "playing" ||
 				$currentBeat.notes.length == 0}
 			action={() => dispatch("play")}
@@ -85,7 +90,7 @@
 		</Button>
 
 		<Button
-			name="pause"
+			ariaLabel="pause"
 			disabled={$playState !== "playing"}
 			action={() => dispatch("pause")}
 		>
@@ -93,19 +98,19 @@
 		</Button>
 
 		<Button
-			name="stop"
+			ariaLabel="stop"
 			disabled={$playState == "stopped"}
 			action={() => dispatch("stop")}
 		>
 			<Fa icon={faStop} />
 		</Button>
 
-		<Button name="slower" action={decreaseSpeed}>
+		<Button ariaLabel="slower" action={decreaseSpeed}>
 			<Fa icon={faGaugeSimpleHigh} flip="horizontal" />
 		</Button>
 
 		<Button
-			name="faster"
+			ariaLabel="faster"
 			action={increaseSpeed}
 			disabled={$currentBeat.noteDuration <= 0}
 		>
@@ -114,12 +119,12 @@
 	</div>
 
 	<div>
-		<Button name="add time" action={addTime}>
+		<Button ariaLabel="add time" action={addTime}>
 			<Fa icon={faPlus} />
 		</Button>
 
 		<Button
-			name="remove time"
+			ariaLabel="remove time"
 			action={removeTime}
 			disabled={$playState == "playing" &&
 				$currentTime == $currentBeat.notes.length - 1}
@@ -128,14 +133,14 @@
 		</Button>
 
 		<Button
-			name="delete notes"
+			ariaLabel="delete notes"
 			disabled={$playState == "playing"}
-			action={deleteNotes}
+			action={confirmToDeleteNotes}
 		>
 			<Fa icon={faTrashAlt} />
 		</Button>
 
-		<Button name="share" action={shareBeat}>
+		<Button ariaLabel="share" action={shareBeat}>
 			<Fa icon={faShareNodes} /></Button
 		>
 	</div>
