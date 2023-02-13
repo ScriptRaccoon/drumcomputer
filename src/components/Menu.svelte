@@ -63,13 +63,13 @@
 	}
 
 	function decreaseSpeed() {
-		$currentBeat.noteDuration += 5;
+		$currentBeat.noteDuration += 1;
 	}
 
 	function increaseSpeed() {
 		$currentBeat.noteDuration = Math.max(
 			0,
-			$currentBeat.noteDuration - 5
+			$currentBeat.noteDuration - 1
 		);
 	}
 </script>
