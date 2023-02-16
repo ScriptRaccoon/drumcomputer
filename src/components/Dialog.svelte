@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { dialogState } from "@/ts/stores";
 	import Button from "@/components/Button.svelte";
+	import { tick } from "svelte";
 
 	let dialogElement: HTMLDialogElement;
 
@@ -9,17 +10,19 @@
 		dialogElement?.close();
 	}
 
-	function openDialog() {
+	async function openDialog() {
 		dialogElement?.showModal();
+		await tick();
+		dialogElement.querySelector("button")?.focus();
 	}
 
 	$: if ($dialogState.open) openDialog();
 </script>
 
 <dialog bind:this={dialogElement}>
-	{#each $dialogState.contents as txt}
+	{#each $dialogState.contents as content}
 		<p>
-			{@html txt}
+			{@html content}
 		</p>
 	{/each}
 	<menu>
