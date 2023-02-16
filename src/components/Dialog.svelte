@@ -16,29 +16,37 @@
 		dialogElement.querySelector("button")?.focus();
 	}
 
-	$: if ($dialogState.open) openDialog();
+	function confirmDialog() {
+		if ($dialogState.action) $dialogState.action();
+		closeDialog();
+	}
+
+	$: if ($dialogState.open) {
+		openDialog();
+	}
 </script>
 
-<dialog bind:this={dialogElement}>
+<dialog
+	bind:this={dialogElement}
+	aria-label={$dialogState.type}
+	aria-describedby="dialogContent"
+>
 	{#each $dialogState.contents as content}
-		<p>
+		<p id="dialogContent">
 			{@html content}
 		</p>
 	{/each}
+
 	<menu>
 		{#if $dialogState.type === "alert"}
 			<Button ariaLabel="Ok" action={closeDialog}>Ok</Button>
 		{:else if $dialogState.type === "confirm"}
-			<Button ariaLabel="Cancel" action={closeDialog}
-				>Cancel</Button
-			>
-			<Button
-				ariaLabel="Confirm"
-				action={() => {
-					if ($dialogState.action) $dialogState.action();
-					closeDialog();
-				}}>Confirm</Button
-			>
+			<Button ariaLabel="Cancel" action={closeDialog}>
+				Cancel
+			</Button>
+			<Button ariaLabel="Confirm" action={confirmDialog}>
+				Confirm
+			</Button>
 		{/if}
 	</menu>
 </dialog>
@@ -56,8 +64,13 @@
 		max-width: min(40rem, 95vw);
 		padding: 1.5rem;
 		border-radius: 0.8rem;
-		box-shadow: 0 0 1rem #fff2;
 		text-align: center;
+		border: 0.1rem solid var(--font-color);
+
+		&::backdrop {
+			background: #000a;
+			backdrop-filter: blur(0.1rem);
+		}
 	}
 
 	p {
@@ -72,10 +85,5 @@
 	menu {
 		@include flex-center();
 		gap: 1rem;
-	}
-
-	dialog::backdrop {
-		background: #000a;
-		backdrop-filter: blur(0.2rem);
 	}
 </style>

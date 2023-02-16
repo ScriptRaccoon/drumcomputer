@@ -1,22 +1,22 @@
 <script>
 	import { currentBeat } from "@/ts/stores";
 	import Time from "@/components/Time.svelte";
-	import Instruments from "@/components/Instruments.svelte";
+	import InstrumentBar from "@/components/InstrumentBar.svelte";
 </script>
 
 {#if $currentBeat.notes.length > 0}
-	<div class="beat">
-		<Instruments />
+	<section aria-label="beat">
+		<InstrumentBar />
 		{#each $currentBeat.notes as _, time}
 			<Time {time} />
 		{/each}
-	</div>
+	</section>
 {:else}
 	<p class="empty-message">The beat is empty</p>
 {/if}
 
 <style>
-	.beat {
+	section {
 		max-width: 100%;
 		overflow-x: auto;
 		display: flex;

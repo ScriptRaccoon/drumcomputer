@@ -2,13 +2,13 @@ import type {
 	playStates,
 	beat,
 	dialogStateType,
-	instrumentName,
+	instrumentKey,
 } from "./types";
 import { writable, derived } from "svelte/store";
 import { exampleBeat } from "@/ts/exampleBeat";
 
 export const currentBeat = writable<beat>(exampleBeat);
-export const currentTime = writable(0);
+export const currentTime = writable<number>(0);
 export const currentNotes = derived(
 	[currentBeat, currentTime],
 	([beat, time]) => beat.notes[time]

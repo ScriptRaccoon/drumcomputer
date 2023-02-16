@@ -1,20 +1,20 @@
 import type { AudioPlayer } from "@/ts/AudioPlayer";
 
 // prettier-ignore
-export type instrumentName =
+export type instrumentKey =
 	"C" | "R" | "H" | "O" | "B" |
 	"S" | "D" | "T" | "M";
 
 export type instrument = {
-	name: instrumentName;
-	longName: string;
+	key: instrumentKey;
+	name: string;
 	audioPlayer: AudioPlayer;
 };
 
 export type playStates = "stopped" | "playing" | "paused";
 
 export type beat = {
-	notes: instrumentName[][];
+	notes: instrumentKey[][];
 	noteDuration: number;
 };
 

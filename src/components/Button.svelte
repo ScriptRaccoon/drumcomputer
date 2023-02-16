@@ -14,18 +14,21 @@
 	button {
 		@include input-reset;
 		cursor: pointer;
-		&:hover {
-			filter: brightness(1.2);
-		}
-		&:focus {
-			outline: 0.1rem solid var(--font-color);
-		}
-		&:disabled {
-			opacity: 0.4;
-			cursor: not-allowed;
-		}
 		background-color: var(--button-color);
 		padding: 0.3rem 0.8rem;
 		border-radius: 0.25rem;
+
+		&:hover {
+			filter: brightness(1.2);
+		}
+
+		&:focus {
+			outline: 0.1rem solid var(--font-color);
+		}
+
+		&:disabled {
+			opacity: 0.4;
+			pointer-events: none;
+		}
 	}
 </style>

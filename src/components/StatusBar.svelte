@@ -4,6 +4,7 @@
 		currentBeat,
 		currentTime,
 	} from "@/ts/stores";
+
 	$: noteNumber = $currentBeat.notes.length;
 	$: decimalLength = noteNumber.toString().length;
 	$: timeString = `${($currentTime + 1)
@@ -11,22 +12,25 @@
 		.padStart(decimalLength, "0")}/${noteNumber}`;
 </script>
 
-<div class="status">
-	<span><span class="label">Time</span> {timeString}</span>
-	<span
-		><span class="label">Note duration</span>
-		{$currentBeat.noteDuration} ms</span
-	>
+<section aria-label="status">
 	<span>
-		<label>
-			<span class="label">Scrolling</span>
-			<input type="checkbox" bind:checked={$beatScrolls} />
-		</label>
+		<span class="label">Time</span>
+		{timeString}
 	</span>
-</div>
+
+	<span>
+		<span class="label">Note duration</span>
+		{$currentBeat.noteDuration} ms
+	</span>
+
+	<label>
+		<span class="label">Scrolling</span>
+		<input type="checkbox" bind:checked={$beatScrolls} />
+	</label>
+</section>
 
 <style lang="scss">
-	.status {
+	section {
 		width: min(30rem, 100%);
 		display: flex;
 		justify-content: space-between;

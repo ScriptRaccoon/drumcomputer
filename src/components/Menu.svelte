@@ -18,16 +18,17 @@
 		currentTime,
 		dialogState,
 	} from "@/ts/stores";
+
 	import Button from "@/components/Button.svelte";
-	import { convertBeatToString } from "@/ts/beatConverter";
+	import { convertBeatToParams } from "@/ts/beatConverter";
 
 	function addTime() {
 		$currentBeat.notes = [...$currentBeat.notes, []];
 	}
 
 	function removeTime() {
-		const l = $currentBeat.notes.length;
-		$currentBeat.notes = $currentBeat.notes.slice(0, l - 1);
+		const length = $currentBeat.notes.length;
+		$currentBeat.notes = $currentBeat.notes.slice(0, length - 1);
 	}
 
 	function confirmToDeleteNotes() {
@@ -46,7 +47,11 @@
 	}
 
 	function validateBeat() {
-		if ($currentBeat.notes.every((time) => time.length == 0)) {
+		const isEmpty = $currentBeat.notes.every(
+			(time) => time.length == 0
+		);
+
+		if (isEmpty) {
 			$dialogState = {
 				open: true,
 				type: "alert",
@@ -59,21 +64,22 @@
 	}
 
 	async function shareBeat() {
-		if (validateBeat()) {
-			const sharingURL =
-				window.location.origin +
-				convertBeatToString($currentBeat);
-			await navigator.clipboard.writeText(sharingURL);
-			// prettier-ignore
-			$dialogState = {
-				open: true,
-				type: "alert",
-				contents: [
-					"Copied sharing URL to clipboard!",
-					`<code>${sharingURL.replace(/&/g,"&amp;")}</code>`,
-				],
-			};
-		}
+		if (!validateBeat()) return;
+
+		const sharingURL =
+			window.location.origin +
+			convertBeatToParams($currentBeat);
+
+		await navigator.clipboard.writeText(sharingURL);
+
+		$dialogState = {
+			open: true,
+			type: "alert",
+			contents: [
+				"Copied sharing URL to clipboard!",
+				`<code>${sharingURL.replace(/&/g, "&amp;")}</code>`,
+			],
+		};
 	}
 
 	function decreaseSpeed() {

@@ -40,7 +40,7 @@
 
 	function playNotes() {
 		for (const instrument of instruments) {
-			if ($currentNotes.includes(instrument.name)) {
+			if ($currentNotes.includes(instrument.key)) {
 				instrument.audioPlayer.play();
 			}
 		}

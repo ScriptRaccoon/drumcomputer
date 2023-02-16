@@ -3,59 +3,57 @@ import { AudioPlayer } from "@/ts/AudioPlayer";
 
 export const instruments: instrument[] = [
 	{
-		name: "C",
-		longName: "Crash",
+		key: "C",
+		name: "Crash",
 		audioPlayer: new AudioPlayer("fx/Crash-Cymbal-Hit-C.mp3"),
 	},
 	{
-		name: "R",
-		longName: "Ride",
+		key: "R",
+		name: "Ride",
 		audioPlayer: new AudioPlayer("fx/Ride-Cymbal-Hit-A.mp3"),
 	},
 	{
-		name: "O",
-		longName: "Open Hi Hat",
+		key: "O",
+		name: "Open Hi Hat",
 		audioPlayer: new AudioPlayer("fx/Hi-Hat-Open-Hit-A2.mp3"),
 	},
 	{
-		name: "H",
-		longName: "Hi Hat",
+		key: "H",
+		name: "Hi Hat",
 		audioPlayer: new AudioPlayer("fx/Hi-Hat-Closed-Hit-A2.mp3"),
 	},
 	{
-		name: "D",
-		longName: "Sticks",
+		key: "D",
+		name: "Sticks",
 		audioPlayer: new AudioPlayer("fx/Drum-Sticks-Hit-C.mp3"),
 	},
 	{
-		name: "S",
-		longName: "Snare",
+		key: "S",
+		name: "Snare",
 		audioPlayer: new AudioPlayer(
 			"fx/Snare-Drum-Hit-Level-5a.mp3"
 		),
 	},
 	{
-		name: "T",
-		longName: "Small Tom",
+		key: "T",
+		name: "Small Tom",
 		audioPlayer: new AudioPlayer(
 			"fx/Small-Tom-Drum-Hit-Level-4B.mp3"
 		),
 	},
 	{
-		name: "M",
-		longName: "Medium Tom",
+		key: "M",
+		name: "Medium Tom",
 		audioPlayer: new AudioPlayer(
 			"fx/Medium-Tom-Drum-Hit-Level-4B.mp3"
 		),
 	},
 
 	{
-		name: "B",
-		longName: "Bass drum",
+		key: "B",
+		name: "Bass drum",
 		audioPlayer: new AudioPlayer("fx/Bass-Drum-Hit-Level-4a.mp3"),
 	},
 ];
 
-export const instrumentNames: string[] = instruments.map(
-	(i) => i.name
-);
+export const instrumentKeys: string[] = instruments.map((i) => i.key);

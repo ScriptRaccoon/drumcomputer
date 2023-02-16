@@ -6,12 +6,13 @@
 		playState,
 	} from "@/ts/stores";
 	import { instruments } from "@/ts/instruments";
+
 	export let time: number;
+
 	let timeElement: HTMLElement;
 
-	$: current = $currentTime === time;
-
-	$: if ($playState == "playing" && current && $beatScrolls) {
+	$: isCurrent = $currentTime === time;
+	$: if ($playState == "playing" && isCurrent && $beatScrolls) {
 		timeElement?.scrollIntoView({
 			inline: "center",
 		});
@@ -19,12 +20,12 @@
 </script>
 
 {#if time < $currentBeat.notes.length}
-	<div bind:this={timeElement} class="time" class:current>
+	<div bind:this={timeElement} class="time" class:isCurrent>
 		{#each instruments as instrument}
 			<input
 				class="note"
 				type="checkbox"
-				value={instrument.name}
+				value={instrument.key}
 				bind:group={$currentBeat.notes[time]}
 			/>
 		{/each}
@@ -36,15 +37,17 @@
 		display: flex;
 		flex-direction: column;
 		row-gap: 0.125rem;
-		&.current .note {
-			&:checked {
-				background-color: var(--note-color-on-current);
-			}
-			&:not(:checked) {
-				background-color: var(--note-color-off-current);
-			}
+	}
+
+	.time.isCurrent .note {
+		&:checked {
+			background-color: var(--note-color-on-current);
+		}
+		&:not(:checked) {
+			background-color: var(--note-color-off-current);
 		}
 	}
+
 	.note {
 		appearance: none;
 		-webkit-appearance: none;
