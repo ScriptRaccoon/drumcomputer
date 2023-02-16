@@ -46,25 +46,14 @@
 		$playState = "stopped";
 	}
 
-	function validateBeat() {
+	async function shareBeat() {
 		const isEmpty = $currentBeat.notes.every(
 			(time) => time.length == 0
 		);
-
 		if (isEmpty) {
-			$dialogState = {
-				open: true,
-				type: "alert",
-				contents: ["You need to add some notes first."],
-			};
-			return false;
+			showEmptyError();
+			return;
 		}
-
-		return true;
-	}
-
-	async function shareBeat() {
-		if (!validateBeat()) return;
 
 		const sharingURL =
 			window.location.origin +
@@ -79,6 +68,14 @@
 				"Copied sharing URL to clipboard!",
 				`<code>${sharingURL.replace(/&/g, "&amp;")}</code>`,
 			],
+		};
+	}
+
+	function showEmptyError() {
+		$dialogState = {
+			open: true,
+			type: "alert",
+			contents: ["You need to add some notes first."],
 		};
 	}
 
