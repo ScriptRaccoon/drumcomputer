@@ -1,6 +1,6 @@
 <script lang="ts">
 	import {
-		beatScrolls,
+		timelineScrolls,
 		currentBeat,
 		currentTime,
 	} from "@/ts/stores";
@@ -25,7 +25,7 @@
 
 	<label>
 		<span class="label">Scrolling</span>
-		<input type="checkbox" bind:checked={$beatScrolls} />
+		<input type="checkbox" bind:checked={$timelineScrolls} />
 	</label>
 </section>
 

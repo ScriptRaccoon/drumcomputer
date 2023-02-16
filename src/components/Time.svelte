@@ -1,6 +1,6 @@
 <script lang="ts">
 	import {
-		beatScrolls,
+		timelineScrolls,
 		currentBeat,
 		currentTime,
 		playState,
@@ -12,7 +12,7 @@
 	let timeElement: HTMLElement;
 
 	$: isCurrent = $currentTime === time;
-	$: if ($playState == "playing" && isCurrent && $beatScrolls) {
+	$: if ($playState == "playing" && isCurrent && $timelineScrolls) {
 		timeElement?.scrollIntoView({
 			inline: "center",
 		});

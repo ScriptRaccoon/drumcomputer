@@ -2,7 +2,7 @@
 	import { onMount } from "svelte";
 	import Header from "@/components/Header.svelte";
 	import Menu from "@/components/Menu.svelte";
-	import Beat from "@/components/Beat.svelte";
+	import Timeline from "@/components/Timeline.svelte";
 	import Dialog from "@/components/Dialog.svelte";
 
 	import {
@@ -81,7 +81,7 @@
 		on:pause={pauseMusic}
 	/>
 	<StatusBar />
-	<Beat />
+	<Timeline />
 </main>
 
 <Dialog />

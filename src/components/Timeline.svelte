@@ -5,14 +5,14 @@
 </script>
 
 {#if $currentBeat.notes.length > 0}
-	<section aria-label="beat">
+	<section aria-label="timeline">
 		<InstrumentBar />
 		{#each $currentBeat.notes as _, time}
 			<Time {time} />
 		{/each}
 	</section>
 {:else}
-	<p class="empty-message">The beat is empty</p>
+	<p class="empty-message">The timeline is empty</p>
 {/if}
 
 <style>

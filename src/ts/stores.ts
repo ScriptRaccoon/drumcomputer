@@ -22,4 +22,4 @@ export const dialogState = writable<dialogStateType>({
 	contents: [],
 });
 
-export const beatScrolls = writable<boolean>(true);
+export const timelineScrolls = writable<boolean>(true);
