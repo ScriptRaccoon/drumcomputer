@@ -10,13 +10,21 @@ export class AudioPlayer {
 			.fill(null)
 			.map(() => new Audio(audioSource));
 		this.#currentChannel = 0;
-		this.#load();
 	}
 
-	#load() {
-		for (let i = 0; i < this.#channels.length; i++) {
-			this.#channels[i].load();
+	load(callback: () => void) {
+		this.#loadChannel(0, callback);
+	}
+
+	#loadChannel(i: number, callback: () => void) {
+		if (i == this.#channels.length) {
+			callback();
+			return;
 		}
+		this.#channels[i].load();
+		this.#channels[i].addEventListener("canplaythrough", () =>
+			this.#loadChannel(i + 1, callback)
+		);
 	}
 
 	play() {

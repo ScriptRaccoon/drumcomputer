@@ -11,10 +11,11 @@
 		dialogState,
 		playState,
 		currentNotes,
+		instrumentsLoaded,
 	} from "./ts/stores";
 
 	import { convertURLParamsToBeat } from "@/ts/beatConverter";
-	import { instruments } from "@/ts/instruments";
+	import { instruments, loadInstruments } from "@/ts/instruments";
 	import StatusBar from "./components/StatusBar.svelte";
 
 	function startMusic() {
@@ -53,8 +54,6 @@
 		}
 	}
 
-	onMount(loadBeatFromURL);
-
 	function loadBeatFromURL() {
 		const search = window.location.search;
 		if (!search) return;
@@ -70,6 +69,11 @@
 			};
 		}
 	}
+
+	onMount(() => {
+		loadInstruments(() => ($instrumentsLoaded = true));
+		loadBeatFromURL();
+	});
 </script>
 
 <Header />
@@ -82,6 +86,9 @@
 	/>
 	<StatusBar />
 	<Timeline />
+	{#if !$instrumentsLoaded}
+		<p>Instruments are being loaded ...</p>
+	{/if}
 </main>
 
 <Dialog />
@@ -90,5 +97,9 @@
 	@use "./scss/mixins" as *;
 	main {
 		@include flex-center(column);
+	}
+	p {
+		margin-top: 1rem;
+		text-align: center;
 	}
 </style>

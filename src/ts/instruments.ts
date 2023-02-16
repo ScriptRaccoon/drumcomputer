@@ -57,3 +57,18 @@ export const instruments: instrument[] = [
 ];
 
 export const instrumentKeys: string[] = instruments.map((i) => i.key);
+
+export function loadInstruments(callback: () => void): void {
+	let counter = 0;
+
+	instruments.forEach((instrument) => {
+		instrument.audioPlayer.load(incrementCounter);
+	});
+
+	function incrementCounter() {
+		counter++;
+		if (counter == instruments.length) {
+			callback();
+		}
+	}
+}
