@@ -10,15 +10,16 @@
 		currentTime,
 		dialogState,
 		playState,
+		currentNotes,
 	} from "./ts/stores";
 
-	import { convertURLToBeat } from "@/ts/beatConverter";
+	import { convertURLParamsToBeat } from "@/ts/beatConverter";
 	import { instruments } from "@/ts/instruments";
 	import StatusBar from "./components/StatusBar.svelte";
 
 	function startMusic() {
 		$playState = "playing";
-		playNotes();
+		playMusic();
 	}
 
 	function stopMusic() {
@@ -30,30 +31,35 @@
 		$playState = "paused";
 	}
 
-	function playNotes() {
+	function playMusic() {
 		if ($playState !== "playing") return;
-		const currentNotes = $currentBeat.notes[$currentTime];
+		playNotes();
+		incrementCurrentTime();
+		setTimeout(playMusic, $currentBeat.noteDuration);
+	}
+
+	function playNotes() {
 		for (const instrument of instruments) {
-			if (currentNotes.includes(instrument.name)) {
+			if ($currentNotes.includes(instrument.name)) {
 				instrument.audioPlayer.play();
 			}
 		}
-		incrementTime();
-		setTimeout(playNotes, $currentBeat.noteDuration);
 	}
 
-	function incrementTime() {
+	function incrementCurrentTime() {
 		$currentTime++;
 		if ($currentTime >= $currentBeat.notes.length) {
 			$currentTime = 0;
 		}
 	}
 
-	onMount(() => {
-		if (window.location.search.length == 0) return;
-		const beatFromURL = convertURLToBeat(
-			new URLSearchParams(window.location.search)
-		);
+	onMount(loadBeatFromURL);
+
+	function loadBeatFromURL() {
+		const search = window.location.search;
+		if (!search) return;
+		const params = new URLSearchParams(search);
+		const beatFromURL = convertURLParamsToBeat(params);
 		if (beatFromURL) {
 			$currentBeat = beatFromURL;
 		} else {
@@ -63,7 +69,7 @@
 				contents: ["Error: Beat could not be read from URL"],
 			};
 		}
-	});
+	}
 </script>
 
 <Header />

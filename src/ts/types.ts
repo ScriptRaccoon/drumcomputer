@@ -1,15 +1,9 @@
 import type { AudioPlayer } from "@/ts/AudioPlayer";
 
+// prettier-ignore
 export type instrumentName =
-	| "C"
-	| "R"
-	| "H"
-	| "O"
-	| "B"
-	| "S"
-	| "D"
-	| "T"
-	| "M";
+	"C" | "R" | "H" | "O" | "B" |
+	"S" | "D" | "T" | "M";
 
 export type instrument = {
 	name: instrumentName;

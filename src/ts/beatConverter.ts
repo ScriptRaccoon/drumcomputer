@@ -11,7 +11,7 @@ export function convertBeatToString(beat: beat) {
 	);
 }
 
-export function convertURLToBeat(
+export function convertURLParamsToBeat(
 	urlParams: URLSearchParams
 ): beat | undefined {
 	const noteDurationString = urlParams.get("noteDuration");

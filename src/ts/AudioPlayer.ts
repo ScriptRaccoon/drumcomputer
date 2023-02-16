@@ -1,3 +1,4 @@
+// inspired by:
 // https://blog.cotten.io/playing-audio-resources-simultaneously-in-javascript-546ec4d6216a
 
 export class AudioPlayer {
@@ -9,10 +10,10 @@ export class AudioPlayer {
 			.fill(null)
 			.map(() => new Audio(audioSource));
 		this.#currentChannel = 0;
-		this.load();
+		this.#load();
 	}
 
-	load() {
+	#load() {
 		for (let i = 0; i < this.#channels.length; i++) {
 			this.#channels[i].load();
 		}
