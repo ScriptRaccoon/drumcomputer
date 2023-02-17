@@ -17,6 +17,7 @@
 	import { convertURLParamsToBeat } from "@/ts/beatConverter";
 	import { instruments, loadInstruments } from "@/ts/instruments";
 	import StatusBar from "./components/StatusBar.svelte";
+	import Loading from "./components/Loading.svelte";
 
 	function startMusic() {
 		$playState = "playing";
@@ -86,9 +87,7 @@
 	/>
 	<StatusBar />
 	<Timeline />
-	{#if !$instrumentsLoaded}
-		<p>Instruments are being loaded ...</p>
-	{/if}
+	<Loading />
 </main>
 
 <Dialog />
@@ -97,9 +96,5 @@
 	@use "./scss/mixins" as *;
 	main {
 		@include flex-center(column);
-	}
-	p {
-		margin-top: 1rem;
-		text-align: center;
 	}
 </style>
