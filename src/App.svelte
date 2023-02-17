@@ -11,13 +11,11 @@
 		dialogState,
 		playState,
 		currentNotes,
-		instrumentsLoaded,
 	} from "./ts/stores";
 
 	import { convertURLParamsToBeat } from "@/ts/beatConverter";
 	import { Instrument } from "@/ts/Instrument";
 	import StatusBar from "./components/StatusBar.svelte";
-	import Loading from "./components/Loading.svelte";
 
 	function startMusic() {
 		$playState = "playing";
@@ -72,7 +70,7 @@
 	}
 
 	onMount(() => {
-		Instrument.loadAll(() => ($instrumentsLoaded = true));
+		Instrument.loadAll();
 		loadBeatFromURL();
 	});
 </script>
@@ -87,7 +85,6 @@
 	/>
 	<StatusBar />
 	<Timeline />
-	<Loading />
 </main>
 
 <Dialog />

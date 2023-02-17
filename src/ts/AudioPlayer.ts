@@ -12,19 +12,8 @@ export class AudioPlayer {
 		this.#currentChannel = 0;
 	}
 
-	load(callback: () => void) {
-		this.#loadChannel(0, callback);
-	}
-
-	#loadChannel(i: number, callback: () => void) {
-		if (i == this.#channels.length) {
-			callback();
-			return;
-		}
-		this.#channels[i].load();
-		this.#channels[i].addEventListener("canplaythrough", () =>
-			this.#loadChannel(i + 1, callback)
-		);
+	load() {
+		this.#channels.every((channel) => channel.load());
 	}
 
 	play() {

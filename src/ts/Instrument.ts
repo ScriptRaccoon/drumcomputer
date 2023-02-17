@@ -23,18 +23,11 @@ export class Instrument {
 		this.#audioPlayer.play();
 	}
 
-	static loadAll(callback: () => void) {
-		let counter = 0;
+	load() {
+		this.#audioPlayer.load();
+	}
 
-		Instrument.list.forEach((instrument) => {
-			instrument.#audioPlayer.load(incrementCounter);
-		});
-
-		function incrementCounter() {
-			counter++;
-			if (counter == Instrument.list.length) {
-				callback();
-			}
-		}
+	static loadAll() {
+		this.list.every((instrument) => instrument.load());
 	}
 }

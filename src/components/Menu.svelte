@@ -17,7 +17,6 @@
 		currentBeat,
 		currentTime,
 		dialogState,
-		instrumentsLoaded,
 	} from "@/ts/stores";
 
 	import Button from "@/components/Button.svelte";
@@ -97,8 +96,7 @@
 		<Button
 			ariaLabel="play"
 			disabled={$playState == "playing" ||
-				$currentBeat.notes.length == 0 ||
-				!$instrumentsLoaded}
+				$currentBeat.notes.length == 0}
 			action={() => dispatch("play")}
 		>
 			<Fa icon={faPlay} />
