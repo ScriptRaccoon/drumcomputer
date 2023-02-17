@@ -1,8 +1,7 @@
 import { AudioPlayer } from "@/ts/AudioPlayer";
-import type { instrumentKey } from "./types";
 
 export class Instrument {
-	key: instrumentKey;
+	key: string;
 	name: string;
 	path: string;
 	#audioPlayer: AudioPlayer;
@@ -10,7 +9,7 @@ export class Instrument {
 	static list: Instrument[] = [];
 	static keys: string[] = [];
 
-	constructor(key: instrumentKey, name: string, path: string) {
+	constructor(key: string, name: string, path: string) {
 		this.key = key;
 		this.name = name;
 		this.path = path;

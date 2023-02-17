@@ -1,12 +1,7 @@
-// prettier-ignore
-export type instrumentKey =
-	"C" | "R" | "H" | "O" | "B" |
-	"S" | "D" | "T" | "M";
-
 export type playStates = "stopped" | "playing" | "paused";
 
 export type beat = {
-	notes: instrumentKey[][];
+	notes: string[][];
 	noteDuration: number;
 };
 
