@@ -3,7 +3,6 @@ import { AudioPlayer } from "@/ts/AudioPlayer";
 export class Instrument {
 	key: string;
 	name: string;
-	path: string;
 	#audioPlayer: AudioPlayer;
 
 	static list: Instrument[] = [];
@@ -12,7 +11,6 @@ export class Instrument {
 	constructor(key: string, name: string, path: string) {
 		this.key = key;
 		this.name = name;
-		this.path = path;
 		this.#audioPlayer = new AudioPlayer(path);
 		Instrument.list.push(this);
 		Instrument.keys.push(key);
