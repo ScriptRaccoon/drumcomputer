@@ -23,6 +23,7 @@
 	<div bind:this={timeElement} class="time" class:isCurrent>
 		{#each instruments as instrument}
 			<input
+				aria-label="{instrument.name} at {time}"
 				class="note"
 				type="checkbox"
 				value={instrument.key}
