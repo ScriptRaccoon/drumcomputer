@@ -1,5 +1,5 @@
 import type { beat, instrumentKey } from "@/ts/types";
-import { instrumentKeys } from "./instruments";
+import { Instrument } from "@/ts/Instrument";
 
 export function convertBeatToParams(beat: beat) {
 	const notesAsString = beat.notes
@@ -23,7 +23,7 @@ export function convertURLParamsToBeat(
 		.map((time) => time.split(""));
 	if (
 		notes.every((time): time is instrumentKey[] =>
-			time.every((note) => instrumentKeys.includes(note))
+			time.every((note) => Instrument.keys.includes(note))
 		)
 	) {
 		return { noteDuration, notes };

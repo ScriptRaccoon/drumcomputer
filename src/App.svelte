@@ -15,7 +15,7 @@
 	} from "./ts/stores";
 
 	import { convertURLParamsToBeat } from "@/ts/beatConverter";
-	import { instruments, loadInstruments } from "@/ts/instruments";
+	import { Instrument } from "@/ts/Instrument";
 	import StatusBar from "./components/StatusBar.svelte";
 	import Loading from "./components/Loading.svelte";
 
@@ -41,9 +41,9 @@
 	}
 
 	function playNotes() {
-		for (const instrument of instruments) {
+		for (const instrument of Instrument.list) {
 			if ($currentNotes.includes(instrument.key)) {
-				instrument.audioPlayer.play();
+				instrument.play();
 			}
 		}
 	}
@@ -72,7 +72,7 @@
 	}
 
 	onMount(() => {
-		loadInstruments(() => ($instrumentsLoaded = true));
+		Instrument.loadAll(() => ($instrumentsLoaded = true));
 		loadBeatFromURL();
 	});
 </script>

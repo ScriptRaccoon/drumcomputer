@@ -5,7 +5,7 @@
 		currentTime,
 		playState,
 	} from "@/ts/stores";
-	import { instruments } from "@/ts/instruments";
+	import { Instrument } from "@/ts/Instrument";
 
 	export let time: number;
 
@@ -21,7 +21,7 @@
 
 {#if time < $currentBeat.notes.length}
 	<div bind:this={timeElement} class="time" class:isCurrent>
-		{#each instruments as instrument}
+		{#each Instrument.list as instrument}
 			<input
 				aria-label="{instrument.name} at {time}"
 				class="note"

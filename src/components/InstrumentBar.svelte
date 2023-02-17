@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { instruments } from "@/ts/instruments";
+	import { Instrument } from "@/ts/Instrument";
 </script>
 
 <aside>
-	{#each instruments as instrument}
+	{#each Instrument.list as instrument}
 		<div>{instrument.name}</div>
 	{/each}
 </aside>

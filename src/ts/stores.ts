@@ -1,9 +1,4 @@
-import type {
-	playStates,
-	beat,
-	dialogStateType,
-	instrumentKey,
-} from "./types";
+import type { playStates, beat, dialogStateType } from "./types";
 import { writable, derived } from "svelte/store";
 import { exampleBeat } from "@/ts/exampleBeat";
 
