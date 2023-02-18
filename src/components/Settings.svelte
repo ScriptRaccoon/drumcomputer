@@ -14,7 +14,7 @@
 
 	const error = {
 		noteDuration: false,
-		blockLength: false,
+		division: false,
 	};
 
 	function changeNoteDuration(e: any) {
@@ -35,21 +35,21 @@
 		}
 	}
 
-	function changeBlockLength(e: any) {
+	function changeDivision(e: any) {
 		const inputElement = e?.target as HTMLInputElement;
 		const value = inputElement.value;
 		if (stringIsPositiveInteger(value)) {
-			error.blockLength = false;
+			error.division = false;
 			const difference =
-				parseInt(value) - $currentBeat.blockLength;
+				parseInt(value) - $currentBeat.division;
 			if (difference < 0) {
-				confirmToDecreaseBlockLength(-difference);
+				confirmToDecreaseDivision(-difference);
 			} else {
-				increaseBlockLength(difference);
+				increaseDivision(difference);
 			}
 		} else {
-			error.blockLength = true;
-			const content = "Block length must be a positive integer";
+			error.division = true;
+			const content = "Division must be a positive integer";
 			$dialogState = {
 				open: true,
 				type: "alert",
@@ -58,34 +58,34 @@
 		}
 	}
 
-	function confirmToDecreaseBlockLength(amount: number) {
+	function confirmToDecreaseDivision(amount: number) {
 		const content =
-			"Decreasing the block length will delete all notes " +
+			"Decreasing the division will delete all notes " +
 			"which are in the removed columns. Are you sure?";
 		$dialogState = {
 			open: true,
 			type: "confirm",
 			contents: [content],
-			action: () => decreaseBlockLength(amount),
+			action: () => decreaseDivision(amount),
 		};
 	}
 
-	function decreaseBlockLength(amount: number) {
-		$currentBeat.blockLength -= amount;
+	function decreaseDivision(amount: number) {
+		$currentBeat.division -= amount;
 
 		$currentBeat.blocks = $currentBeat.blocks.map((block) =>
-			block.splice(0, $currentBeat.blockLength)
+			block.splice(0, $currentBeat.division)
 		);
 	}
 
-	function increaseBlockLength(amount: number) {
+	function increaseDivision(amount: number) {
 		for (const block of $currentBeat.blocks) {
 			for (let i = 0; i < amount; i++) {
-				block[$currentBeat.blockLength + i] = [];
+				block[$currentBeat.division + i] = [];
 			}
 		}
 
-		$currentBeat.blockLength += amount;
+		$currentBeat.division += amount;
 	}
 </script>
 
@@ -108,14 +108,16 @@
 		/>
 	</label>
 	<label>
-		<span>Block length</span>
+		<span aria-describedby="divisionDescription"
+			>Division<span aria-hidden="true">*</span></span
+		>
 		<input
-			class:error={error.blockLength}
+			class:error={error.division}
 			type="number"
 			min="1"
 			max="10"
-			value={$currentBeat.blockLength}
-			on:change={changeBlockLength}
+			value={$currentBeat.division}
+			on:change={changeDivision}
 		/>
 	</label>
 	<Button
@@ -124,6 +126,9 @@
 	>
 		Ok
 	</Button>
+	<div id="divisionDescription" class="description">
+		<span aria-hidden="true">*</span>number of hits per block
+	</div>
 </form>
 
 <style lang="scss">
@@ -172,11 +177,14 @@
 		}
 	}
 
-	label {
-		span {
-			color: var(--dark-font-color);
-			display: inline-block;
-			width: 6.5rem;
-		}
+	label > span {
+		color: var(--dark-font-color);
+		display: inline-block;
+		width: 6.5rem;
+	}
+
+	.description {
+		color: var(--dark-font-color);
+		font-size: smaller;
 	}
 </style>

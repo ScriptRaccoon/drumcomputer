@@ -56,7 +56,7 @@
 
 	function incrementTime() {
 		$currentTime++;
-		if ($currentTime >= $currentBeat.blockLength) {
+		if ($currentTime >= $currentBeat.division) {
 			$currentTime = 0;
 			$currentBlockIndex++;
 			if ($currentBlockIndex == $blockAmount) {

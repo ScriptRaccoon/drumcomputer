@@ -20,7 +20,7 @@
 	const dispatch = createEventDispatcher();
 
 	function addBlock() {
-		const emptyBlock = new Array($currentBeat.blockLength).fill(
+		const emptyBlock = new Array($currentBeat.division).fill(
 			[]
 		) as block;
 		$currentBeat.blocks = [...$currentBeat.blocks, emptyBlock];
