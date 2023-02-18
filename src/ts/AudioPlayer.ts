@@ -5,7 +5,7 @@ export class AudioPlayer {
 	#channels: HTMLAudioElement[];
 	#currentChannel: number;
 
-	constructor(audioSource: string, channelNumber: number = 10) {
+	constructor(audioSource: string, channelNumber: number = 15) {
 		this.#channels = new Array(channelNumber)
 			.fill(null)
 			.map(() => new Audio(audioSource));
