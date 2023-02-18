@@ -5,6 +5,10 @@ import { exampleBeat } from "@/ts/exampleBeat";
 export const currentBeat = writable<beat>(exampleBeat);
 export const currentTime = writable<number>(0);
 export const currentBlockIndex = writable<number>(0);
+export const blockAmount = derived(
+	currentBeat,
+	(beat) => beat.blocks.length
+);
 
 export const playState = writable<playStates>("stopped");
 

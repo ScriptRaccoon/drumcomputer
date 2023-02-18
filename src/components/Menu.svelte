@@ -17,6 +17,7 @@
 		dialogState,
 		currentBlockIndex,
 		showSettings,
+		blockAmount,
 	} from "@/ts/stores";
 
 	import Button from "@/components/Button.svelte";
@@ -65,8 +66,7 @@
 <menu>
 	<Button
 		ariaLabel="play"
-		disabled={$playState == "playing" ||
-			$currentBeat.blocks.length == 0}
+		disabled={$playState == "playing" || $blockAmount == 0}
 		action={startMusic}
 	>
 		<Fa icon={faPlay} />

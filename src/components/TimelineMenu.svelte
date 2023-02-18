@@ -7,6 +7,7 @@
 	} from "@fortawesome/free-solid-svg-icons";
 
 	import {
+		blockAmount,
 		currentBeat,
 		currentBlockIndex,
 		playState,
@@ -27,10 +28,9 @@
 	}
 
 	function removeBlock() {
-		const length = $currentBeat.blocks.length;
 		$currentBeat.blocks = $currentBeat.blocks.slice(
 			0,
-			length - 1
+			$blockAmount - 1
 		);
 	}
 </script>
@@ -43,9 +43,9 @@
 	<Button
 		ariaLabel="remove block"
 		action={removeBlock}
-		disabled={$currentBeat.blocks.length == 0 ||
+		disabled={$blockAmount == 0 ||
 			($playState == "playing" &&
-				$currentBlockIndex == $currentBeat.blocks.length - 1)}
+				$currentBlockIndex == $blockAmount - 1)}
 	>
 		<Fa icon={faMinus} />
 	</Button>
