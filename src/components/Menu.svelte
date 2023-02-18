@@ -43,32 +43,16 @@
 	}
 
 	async function shareBeat() {
-		// const isEmpty = $currentBeat.notes.every(
-		// 	(time) => time.length == 0
-		// );
-		// if (isEmpty) {
-		// 	showEmptyError();
-		// 	return;
-		// }
-		// const sharingURL =
-		// 	window.location.origin +
-		// 	convertBeatToParams($currentBeat);
-		// await navigator.clipboard.writeText(sharingURL);
-		// $dialogState = {
-		// 	open: true,
-		// 	type: "alert",
-		// 	contents: [
-		// 		"Copied sharing URL to clipboard!",
-		// 		`<code>${sharingURL.replace(/&/g, "&amp;")}</code>`,
-		// 	],
-		// };
-	}
-
-	function showEmptyError() {
+		const params = convertBeatToParams($currentBeat);
+		const sharingURL = window.location.origin + params;
+		await navigator.clipboard.writeText(sharingURL);
 		$dialogState = {
 			open: true,
 			type: "alert",
-			contents: ["You need to add some notes first."],
+			contents: [
+				"Copied sharing URL to clipboard!",
+				`<code>${sharingURL.replace(/&/g, "&amp;")}</code>`,
+			],
 		};
 	}
 

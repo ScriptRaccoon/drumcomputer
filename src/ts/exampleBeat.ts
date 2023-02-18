@@ -14,7 +14,3 @@ export const exampleBeat: beat = {
 		[["t", "b"], ["t"], ["m"], []],
 	],
 };
-
-/* CODE:
-?noteduration=110&blocklength=4&notes=hdb-d-hb-...
-*/

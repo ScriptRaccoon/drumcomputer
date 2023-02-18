@@ -1,12 +1,14 @@
 import type { beat } from "@/ts/types";
-import { Instrument } from "@/ts/Instrument";
+import { chunkArray, stringIsPositiveInteger } from "./utils";
 
 export function convertBeatToParams(beat: beat) {
-	const notesAsString = beat.notes
+	const notesAsString = beat.blocks
+		.flat()
 		.map((time) => time.join(""))
 		.join("-");
 	return (
 		`?noteduration=${beat.noteDuration}` +
+		`&blocklength=${beat.blockLength}` +
 		`&notes=${notesAsString}`
 	);
 }
@@ -15,16 +17,22 @@ export function convertURLParamsToBeat(
 	urlParams: URLSearchParams
 ): beat | undefined {
 	const noteDurationString = urlParams.get("noteduration");
+	const blockLengthString = urlParams.get("blocklength");
 	const notesString = urlParams.get("notes");
-	if (!noteDurationString || !notesString) return;
+	const valid =
+		noteDurationString &&
+		blockLengthString &&
+		notesString &&
+		stringIsPositiveInteger(noteDurationString) &&
+		stringIsPositiveInteger(blockLengthString);
+	if (!valid) return;
 	const noteDuration = parseInt(noteDurationString);
-	const notes = notesString
+	const blockLength = parseInt(blockLengthString);
+	const notesArray = notesString
 		.toLowerCase()
 		.split("-")
-		.map((time) => time.split(""));
-	if (notes.flat().every((key) => Instrument.keys.includes(key))) {
-		return { noteDuration, notes };
-	}
-
-	return;
+		.map((block) => block.split(""));
+	const blocks = chunkArray(notesArray, blockLength);
+	if (!blocks) return;
+	return { noteDuration, blockLength, blocks };
 }
