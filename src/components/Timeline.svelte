@@ -7,6 +7,11 @@
 
 	let timelineElement: HTMLElement;
 
+	export async function scrollLeft() {
+		await tick();
+		timelineElement.scrollLeft = 0;
+	}
+
 	async function scrollRight() {
 		await tick();
 		timelineElement.scrollLeft = timelineElement.scrollWidth;

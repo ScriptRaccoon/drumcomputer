@@ -19,6 +19,8 @@
 	import { Instrument } from "@/ts/Instrument";
 	import Settings from "./components/Settings.svelte";
 
+	let scrollLeft: () => Promise<void>;
+
 	function startMusic() {
 		$playState = "playing";
 		playMusic();
@@ -28,6 +30,7 @@
 		$playState = "stopped";
 		$currentBlockIndex = 0;
 		$currentTime = 0;
+		scrollLeft();
 	}
 
 	function pauseMusic() {
@@ -90,7 +93,7 @@
 {:else}
 	<main>
 		<Menu {startMusic} {stopMusic} {pauseMusic} />
-		<Timeline />
+		<Timeline bind:scrollLeft />
 	</main>
 {/if}
 
