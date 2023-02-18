@@ -35,12 +35,12 @@
 </script>
 
 <menu>
-	<Button ariaLabel="add time" action={addBlock}>
+	<Button ariaLabel="add block" action={addBlock}>
 		<Fa icon={faPlus} />
 	</Button>
 
 	<Button
-		ariaLabel="remove time"
+		ariaLabel="remove block"
 		action={removeBlock}
 		disabled={$playState == "playing" &&
 			$currentBlockIndex == $currentBeat.blocks.length - 1}
