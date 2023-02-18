@@ -190,6 +190,7 @@
 	label {
 		font-size: 1.25rem;
 		color: var(--dark-font-color);
+		white-space: nowrap;
 	}
 
 	.description {
