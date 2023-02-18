@@ -43,8 +43,9 @@
 	<Button
 		ariaLabel="remove block"
 		action={removeBlock}
-		disabled={$playState == "playing" &&
-			$currentBlockIndex == $currentBeat.blocks.length - 1}
+		disabled={$currentBeat.blocks.length == 0 ||
+			($playState == "playing" &&
+				$currentBlockIndex == $currentBeat.blocks.length - 1)}
 	>
 		<Fa icon={faMinus} />
 	</Button>

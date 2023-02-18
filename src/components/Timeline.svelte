@@ -18,17 +18,17 @@
 	}
 </script>
 
-{#if $currentBeat.blocks.length > 0}
-	<section aria-label="timeline" bind:this={timelineElement}>
+<section aria-label="timeline" bind:this={timelineElement}>
+	{#if $currentBeat.blocks.length > 0}
 		<InstrumentBar />
 		{#each $currentBeat.blocks as block, blockIndex}
 			<Block bind:block {blockIndex} />
 		{/each}
-		<TimelineMenu on:blockAdded={scrollRight} />
-	</section>
-{:else}
-	<p class="empty-message">The timeline is empty</p>
-{/if}
+	{:else}
+		<p>Add a block</p>
+	{/if}
+	<TimelineMenu on:blockAdded={scrollRight} />
+</section>
 
 <style>
 	section {
@@ -39,7 +39,7 @@
 		position: relative;
 		padding: 1rem 1rem 1rem 0rem;
 	}
-	.empty-message {
-		margin-top: 2rem;
+	p {
+		align-self: center;
 	}
 </style>
