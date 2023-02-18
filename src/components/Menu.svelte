@@ -8,7 +8,7 @@
 		faPause,
 		faTrashAlt,
 		faShareNodes,
-		faGaugeSimpleHigh,
+		faGear,
 	} from "@fortawesome/free-solid-svg-icons";
 	import {
 		playState,
@@ -16,10 +16,15 @@
 		currentTime,
 		dialogState,
 		currentBlockIndex,
+		showSettings,
 	} from "@/ts/stores";
 
 	import Button from "@/components/Button.svelte";
 	import { convertBeatToParams } from "@/ts/beatConverter";
+
+	export let startMusic: () => void;
+	export let stopMusic: () => void;
+	export let pauseMusic: () => void;
 
 	function confirmToDeleteNotes() {
 		$dialogState = {
@@ -67,15 +72,9 @@
 		};
 	}
 
-	function decreaseSpeed() {
-		$currentBeat.noteDuration += 1;
-	}
-
-	function increaseSpeed() {
-		$currentBeat.noteDuration = Math.max(
-			0,
-			$currentBeat.noteDuration - 1
-		);
+	function switchToSettings() {
+		stopMusic();
+		$showSettings = true;
 	}
 </script>
 
@@ -84,7 +83,7 @@
 		ariaLabel="play"
 		disabled={$playState == "playing" ||
 			$currentBeat.blocks.length == 0}
-		action={() => dispatch("play")}
+		action={startMusic}
 	>
 		<Fa icon={faPlay} />
 	</Button>
@@ -92,7 +91,7 @@
 	<Button
 		ariaLabel="pause"
 		disabled={$playState !== "playing"}
-		action={() => dispatch("pause")}
+		action={pauseMusic}
 	>
 		<Fa icon={faPause} />
 	</Button>
@@ -100,28 +99,25 @@
 	<Button
 		ariaLabel="stop"
 		disabled={$playState == "stopped"}
-		action={() => dispatch("stop")}
+		action={stopMusic}
 	>
 		<Fa icon={faStop} />
 	</Button>
 
-	<Button ariaLabel="slower" action={decreaseSpeed}>
-		<Fa icon={faGaugeSimpleHigh} flip="horizontal" />
-	</Button>
-
-	<Button
-		ariaLabel="faster"
-		action={increaseSpeed}
-		disabled={$currentBeat.noteDuration <= 0}
-	>
-		<Fa icon={faGaugeSimpleHigh} />
-	</Button>
 	<Button
 		ariaLabel="delete notes"
 		disabled={$playState == "playing"}
 		action={confirmToDeleteNotes}
 	>
 		<Fa icon={faTrashAlt} />
+	</Button>
+
+	<Button
+		ariaLabel="open settings"
+		action={switchToSettings}
+		disabled={$playState == "playing"}
+	>
+		<Fa icon={faGear} />
 	</Button>
 
 	<Button ariaLabel="share" action={shareBeat}>

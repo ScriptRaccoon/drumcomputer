@@ -16,3 +16,5 @@ export const dialogState = writable<dialogStateType>({
 });
 
 export const timelineScrolls = writable<boolean>(true);
+
+export const showSettings = writable<boolean>(false);

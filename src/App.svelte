@@ -12,11 +12,12 @@
 		playState,
 		currentBlockIndex,
 		blockLength,
+		showSettings,
 	} from "./ts/stores";
 
 	import { convertURLParamsToBeat } from "@/ts/beatConverter";
 	import { Instrument } from "@/ts/Instrument";
-	import StatusBar from "./components/StatusBar.svelte";
+	import Settings from "./components/Settings.svelte";
 
 	function startMusic() {
 		$playState = "playing";
@@ -84,15 +85,14 @@
 
 <Header />
 
-<main>
-	<Menu
-		on:play={startMusic}
-		on:stop={stopMusic}
-		on:pause={pauseMusic}
-	/>
-	<!-- <StatusBar /> -->
-	<Timeline />
-</main>
+{#if $showSettings}
+	<Settings />
+{:else}
+	<main>
+		<Menu {startMusic} {stopMusic} {pauseMusic} />
+		<Timeline />
+	</main>
+{/if}
 
 <Dialog />
 
