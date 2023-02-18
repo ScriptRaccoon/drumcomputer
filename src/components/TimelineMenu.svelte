@@ -6,7 +6,6 @@
 		faMinus,
 	} from "@fortawesome/free-solid-svg-icons";
 
-	import Button from "./Button.svelte";
 	import {
 		currentBeat,
 		currentBlockIndex,
@@ -14,12 +13,19 @@
 		blockLength,
 	} from "@/ts/stores";
 
-	function addTime() {
+	import { createEventDispatcher } from "svelte";
+
+	import Button from "./Button.svelte";
+
+	const dispatch = createEventDispatcher();
+
+	function addBlock() {
 		const emptyBlock = new Array($blockLength).fill([]) as block;
 		$currentBeat.blocks = [...$currentBeat.blocks, emptyBlock];
+		dispatch("blockAdded");
 	}
 
-	function removeTime() {
+	function removeBlock() {
 		const length = $currentBeat.blocks.length;
 		$currentBeat.blocks = $currentBeat.blocks.slice(
 			0,
@@ -29,13 +35,13 @@
 </script>
 
 <menu>
-	<Button ariaLabel="add time" action={addTime}>
+	<Button ariaLabel="add time" action={addBlock}>
 		<Fa icon={faPlus} />
 	</Button>
 
 	<Button
 		ariaLabel="remove time"
-		action={removeTime}
+		action={removeBlock}
 		disabled={$playState == "playing" &&
 			$currentBlockIndex == $currentBeat.blocks.length - 1}
 	>
