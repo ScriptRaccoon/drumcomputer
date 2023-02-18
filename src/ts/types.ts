@@ -1,9 +1,11 @@
 export type playStates = "stopped" | "playing" | "paused";
 
 export type beat = {
-	notes: string[][];
+	blocks: block[];
 	noteDuration: number;
 };
+
+export type block = string[][];
 
 export type dialogStateType = {
 	open: boolean;

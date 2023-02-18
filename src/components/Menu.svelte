@@ -17,18 +17,19 @@
 		currentBeat,
 		currentTime,
 		dialogState,
+		currentBlockIndex,
 	} from "@/ts/stores";
 
 	import Button from "@/components/Button.svelte";
 	import { convertBeatToParams } from "@/ts/beatConverter";
 
 	function addTime() {
-		$currentBeat.notes = [...$currentBeat.notes, []];
+		// $currentBeat.notes = [...$currentBeat.notes, []];
 	}
 
 	function removeTime() {
-		const length = $currentBeat.notes.length;
-		$currentBeat.notes = $currentBeat.notes.slice(0, length - 1);
+		// const length = $currentBeat.notes.length;
+		// $currentBeat.notes = $currentBeat.notes.slice(0, length - 1);
 	}
 
 	function confirmToDeleteNotes() {
@@ -41,34 +42,32 @@
 	}
 
 	function deleteNotes() {
-		$currentBeat.notes = [];
+		$currentBeat.blocks = [];
 		$currentTime = 0;
+		$currentBlockIndex = 0;
 		$playState = "stopped";
 	}
 
 	async function shareBeat() {
-		const isEmpty = $currentBeat.notes.every(
-			(time) => time.length == 0
-		);
-		if (isEmpty) {
-			showEmptyError();
-			return;
-		}
-
-		const sharingURL =
-			window.location.origin +
-			convertBeatToParams($currentBeat);
-
-		await navigator.clipboard.writeText(sharingURL);
-
-		$dialogState = {
-			open: true,
-			type: "alert",
-			contents: [
-				"Copied sharing URL to clipboard!",
-				`<code>${sharingURL.replace(/&/g, "&amp;")}</code>`,
-			],
-		};
+		// const isEmpty = $currentBeat.notes.every(
+		// 	(time) => time.length == 0
+		// );
+		// if (isEmpty) {
+		// 	showEmptyError();
+		// 	return;
+		// }
+		// const sharingURL =
+		// 	window.location.origin +
+		// 	convertBeatToParams($currentBeat);
+		// await navigator.clipboard.writeText(sharingURL);
+		// $dialogState = {
+		// 	open: true,
+		// 	type: "alert",
+		// 	contents: [
+		// 		"Copied sharing URL to clipboard!",
+		// 		`<code>${sharingURL.replace(/&/g, "&amp;")}</code>`,
+		// 	],
+		// };
 	}
 
 	function showEmptyError() {
@@ -96,7 +95,7 @@
 		<Button
 			ariaLabel="play"
 			disabled={$playState == "playing" ||
-				$currentBeat.notes.length == 0}
+				$currentBeat.blocks.length == 0}
 			action={() => dispatch("play")}
 		>
 			<Fa icon={faPlay} />
@@ -132,7 +131,7 @@
 	</div>
 
 	<div>
-		<Button ariaLabel="add time" action={addTime}>
+		<!-- <Button ariaLabel="add time" action={addTime}>
 			<Fa icon={faPlus} />
 		</Button>
 
@@ -143,7 +142,7 @@
 				$currentTime == $currentBeat.notes.length - 1}
 		>
 			<Fa icon={faMinus} />
-		</Button>
+		</Button> -->
 
 		<Button
 			ariaLabel="delete notes"

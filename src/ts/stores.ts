@@ -4,10 +4,8 @@ import { exampleBeat } from "@/ts/exampleBeat";
 
 export const currentBeat = writable<beat>(exampleBeat);
 export const currentTime = writable<number>(0);
-export const currentNotes = derived(
-	[currentBeat, currentTime],
-	([beat, time]) => beat.notes[time]
-);
+export const currentBlockIndex = writable<number>(0);
+export const blockLength = writable<number>(4);
 
 export const playState = writable<playStates>("stopped");
 

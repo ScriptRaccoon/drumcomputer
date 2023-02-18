@@ -10,7 +10,8 @@
 		currentTime,
 		dialogState,
 		playState,
-		currentNotes,
+		currentBlockIndex,
+		blockLength,
 	} from "./ts/stores";
 
 	import { convertURLParamsToBeat } from "@/ts/beatConverter";
@@ -24,6 +25,7 @@
 
 	function stopMusic() {
 		$playState = "stopped";
+		$currentBlockIndex = 0;
 		$currentTime = 0;
 	}
 
@@ -34,22 +36,27 @@
 	function playMusic() {
 		if ($playState !== "playing") return;
 		playNotes();
-		incrementCurrentTime();
+		incrementTime();
 		setTimeout(playMusic, $currentBeat.noteDuration);
 	}
 
 	function playNotes() {
-		for (const instrument of Instrument.list) {
-			if ($currentNotes.includes(instrument.key)) {
-				instrument.play();
-			}
-		}
+		const currentNotes =
+			$currentBeat.blocks[$currentBlockIndex][$currentTime];
+		const playingInstruments = Instrument.list.filter(
+			(instrument) => currentNotes.includes(instrument.key)
+		);
+		playingInstruments.forEach((instrument) => instrument.play());
 	}
 
-	function incrementCurrentTime() {
+	function incrementTime() {
 		$currentTime++;
-		if ($currentTime >= $currentBeat.notes.length) {
+		if ($currentTime >= $blockLength) {
 			$currentTime = 0;
+			$currentBlockIndex++;
+			if ($currentBlockIndex == $currentBeat.blocks.length) {
+				$currentBlockIndex = 0;
+			}
 		}
 	}
 
@@ -83,7 +90,7 @@
 		on:stop={stopMusic}
 		on:pause={pauseMusic}
 	/>
-	<StatusBar />
+	<!-- <StatusBar /> -->
 	<Timeline />
 </main>
 
