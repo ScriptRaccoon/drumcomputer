@@ -3,20 +3,9 @@
 	import InstrumentBar from "@/components/InstrumentBar.svelte";
 	import Block from "@/components/Block.svelte";
 	import TimelineMenu from "./TimelineMenu.svelte";
-	import { tick } from "svelte";
+	import { scrollRight } from "@/ts/utils";
 
-	let timelineElement: HTMLElement;
-
-	export async function scrollLeft() {
-		await tick();
-		if (timelineElement) timelineElement.scrollLeft = 0;
-	}
-
-	async function scrollRight() {
-		await tick();
-		if (timelineElement)
-			timelineElement.scrollLeft = timelineElement.scrollWidth;
-	}
+	export let timelineElement: HTMLElement;
 </script>
 
 <section aria-label="timeline" bind:this={timelineElement}>
@@ -28,7 +17,9 @@
 	{:else}
 		<p>Add a block</p>
 	{/if}
-	<TimelineMenu on:blockAdded={scrollRight} />
+	<TimelineMenu
+		on:blockAdded={() => scrollRight(timelineElement)}
+	/>
 </section>
 
 <style>

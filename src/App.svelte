@@ -18,8 +18,9 @@
 	import { convertURLParamsToBeat } from "@/ts/beatConverter";
 	import { Instrument } from "@/ts/Instrument";
 	import Settings from "./components/Settings.svelte";
+	import { scrollLeft } from "./ts/utils";
 
-	let scrollLeft: () => Promise<void>;
+	let timelineElement: HTMLElement;
 
 	function startMusic() {
 		$playState = "playing";
@@ -30,7 +31,7 @@
 		$playState = "stopped";
 		$currentBlockIndex = 0;
 		$currentTime = 0;
-		scrollLeft();
+		scrollLeft(timelineElement);
 	}
 
 	function pauseMusic() {
@@ -93,7 +94,7 @@
 {:else}
 	<main>
 		<Menu {startMusic} {stopMusic} {pauseMusic} />
-		<Timeline bind:scrollLeft />
+		<Timeline bind:timelineElement />
 	</main>
 {/if}
 

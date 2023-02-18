@@ -1,3 +1,5 @@
+import { tick } from "svelte";
+
 export function stringIsPositiveInteger(str: string): boolean {
 	return (
 		!!str && str == parseInt(str).toString() && parseInt(str) >= 1
@@ -17,4 +19,14 @@ export function chunkArray<T>(
 		result.push(chunk);
 	}
 	return result;
+}
+
+export async function scrollLeft(element: HTMLElement) {
+	await tick();
+	if (element) element.scrollLeft = 0;
+}
+
+export async function scrollRight(element: HTMLElement) {
+	await tick();
+	if (element) element.scrollLeft = element.scrollWidth;
 }
