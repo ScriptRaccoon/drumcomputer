@@ -9,12 +9,13 @@
 
 	export async function scrollLeft() {
 		await tick();
-		timelineElement.scrollLeft = 0;
+		if (timelineElement) timelineElement.scrollLeft = 0;
 	}
 
 	async function scrollRight() {
 		await tick();
-		timelineElement.scrollLeft = timelineElement.scrollWidth;
+		if (timelineElement)
+			timelineElement.scrollLeft = timelineElement.scrollWidth;
 	}
 </script>
 

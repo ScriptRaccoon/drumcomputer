@@ -90,7 +90,7 @@
 
 	<Button
 		ariaLabel="delete notes"
-		disabled={$playState == "playing"}
+		disabled={$playState == "playing" || $blockAmount == 0}
 		action={confirmToDeleteNotes}
 	>
 		<Fa icon={faTrashAlt} />
@@ -104,7 +104,11 @@
 		<Fa icon={faGear} />
 	</Button>
 
-	<Button ariaLabel="share" action={shareBeat}>
+	<Button
+		ariaLabel="share"
+		action={shareBeat}
+		disabled={$blockAmount == 0}
+	>
 		<Fa icon={faShareNodes} /></Button
 	>
 </menu>
