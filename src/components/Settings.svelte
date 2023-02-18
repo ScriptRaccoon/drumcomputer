@@ -1,10 +1,8 @@
 <script lang="ts">
-	import type { block } from "@/ts/types";
 	import {
 		showSettings,
 		timelineScrolls,
 		currentBeat,
-		blockLength,
 		dialogState,
 	} from "@/ts/stores";
 	import Button from "./Button.svelte";
@@ -42,7 +40,8 @@
 		const value = inputElement.value;
 		if (stringIsPositiveInteger(value)) {
 			error.blockLength = false;
-			const difference = parseInt(value) - $blockLength;
+			const difference =
+				parseInt(value) - $currentBeat.blockLength;
 			if (difference < 0) {
 				confirmToDecreaseBlockLength(-difference);
 			} else {
@@ -72,21 +71,21 @@
 	}
 
 	function decreaseBlockLength(amount: number) {
-		$blockLength -= amount;
+		$currentBeat.blockLength -= amount;
 
 		$currentBeat.blocks = $currentBeat.blocks.map((block) =>
-			block.splice(0, $blockLength)
+			block.splice(0, $currentBeat.blockLength)
 		);
 	}
 
 	function increaseBlockLength(amount: number) {
 		for (const block of $currentBeat.blocks) {
 			for (let i = 0; i < amount; i++) {
-				block[$blockLength + i] = [];
+				block[$currentBeat.blockLength + i] = [];
 			}
 		}
 
-		$blockLength += amount;
+		$currentBeat.blockLength += amount;
 	}
 </script>
 
@@ -115,7 +114,7 @@
 			type="number"
 			min="1"
 			max="10"
-			value={$blockLength}
+			value={$currentBeat.blockLength}
 			on:change={changeBlockLength}
 		/>
 	</label>

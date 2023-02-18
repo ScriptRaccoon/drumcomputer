@@ -11,7 +11,6 @@
 		dialogState,
 		playState,
 		currentBlockIndex,
-		blockLength,
 		showSettings,
 	} from "./ts/stores";
 
@@ -55,7 +54,7 @@
 
 	function incrementTime() {
 		$currentTime++;
-		if ($currentTime >= $blockLength) {
+		if ($currentTime >= $currentBeat.blockLength) {
 			$currentTime = 0;
 			$currentBlockIndex++;
 			if ($currentBlockIndex == $currentBeat.blocks.length) {

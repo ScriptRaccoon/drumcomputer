@@ -2,6 +2,7 @@ import type { beat } from "@/ts/types";
 
 export const exampleBeat: beat = {
 	noteDuration: 110,
+	blockLength: 4,
 	blocks: [
 		[["h", "d", "b"], ["d"], ["h", "b"], ["d"]],
 		[["h", "s"], ["d"], ["o", "h", "d"], ["b"]],
@@ -13,3 +14,7 @@ export const exampleBeat: beat = {
 		[["t", "b"], ["t"], ["m"], []],
 	],
 };
+
+/* CODE:
+?noteduration=110&blocklength=4&notes=hdb-d-hb-...
+*/

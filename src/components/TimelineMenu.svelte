@@ -10,7 +10,6 @@
 		currentBeat,
 		currentBlockIndex,
 		playState,
-		blockLength,
 	} from "@/ts/stores";
 
 	import { createEventDispatcher } from "svelte";
@@ -20,7 +19,9 @@
 	const dispatch = createEventDispatcher();
 
 	function addBlock() {
-		const emptyBlock = new Array($blockLength).fill([]) as block;
+		const emptyBlock = new Array($currentBeat.blockLength).fill(
+			[]
+		) as block;
 		$currentBeat.blocks = [...$currentBeat.blocks, emptyBlock];
 		dispatch("blockAdded");
 	}
