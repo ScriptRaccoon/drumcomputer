@@ -8,6 +8,10 @@ https://drumcomputer.netlify.app?noteduration=120&notes=hb--o--hs--h-b-h-b-hb-b-
 
 https://drumcomputer.netlify.app?noteduration=220&notes=crb-r-rs-r-rb-rb-rs-rb-rb-rb-rs-rb-r-rb-rs-rb-rb-r-rs-r-rb-rb-rs-rb-rb-rb-rs-rb-r-rb-rs-rb
 
+### Nirvana - In Bloom
+
+https://drumcomputer.netlify.app?noteduration=180&notes=cb--o-b-os--cb--o-s-s-b-t-b-m-b
+
 ### John Williams - The Imperial March
 
 https://drumcomputer.netlify.app?noteduration=94&notes=m------m---m-m-m-m---m-m-m-m-m-m-m---m------m---m-m-m-m---m-m-m-m-m-m-m---tm------tm---m-m-m-tm---m-m-m-tm-m-m-m-t--tm------tm---m-tm-m-tm---m-m-m-m-m-m-m---tm------tm---m-m-m-tm---m-m-m-tm-m-m-m-t--tm------tm---m-tm-m-tm---m-m-m-m-m-m-m--
