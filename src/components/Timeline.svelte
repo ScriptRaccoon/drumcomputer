@@ -2,6 +2,7 @@
 	import { currentBeat } from "@/ts/stores";
 	import InstrumentBar from "@/components/InstrumentBar.svelte";
 	import Block from "@/components/Block.svelte";
+	import TimelineMenu from "./TimelineMenu.svelte";
 </script>
 
 {#if $currentBeat.blocks.length > 0}
@@ -10,6 +11,7 @@
 		{#each $currentBeat.blocks as block, blockIndex}
 			<Block bind:block {blockIndex} />
 		{/each}
+		<TimelineMenu />
 	</section>
 {:else}
 	<p class="empty-message">The timeline is empty</p>
