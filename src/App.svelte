@@ -56,7 +56,7 @@
 	function loadBeatFromURL() {
 		const search = window.location.search;
 		if (!search) return;
-		const params = new URLSearchParams(search);
+		const params = new URLSearchParams(search.toLowerCase());
 		const beatFromURL = convertURLParamsToBeat(params);
 		if (beatFromURL) {
 			$currentBeat = beatFromURL;

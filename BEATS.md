@@ -2,12 +2,12 @@
 
 ### Moby - Extreme Ways
 
-https://drumcomputer.netlify.app?noteDuration=120&notes=HB--O--HS--H-B-H-B-HB-B-HS--H-
+https://drumcomputer.netlify.app?noteduration=120&notes=hb--o--hs--h-b-h-b-hb-b-hs--h-
 
 ### Metallica - One
 
-https://drumcomputer.netlify.app?noteDuration=80&notes=OB-B-B-B-B-B-CS------OB-B-B-B-B-B-CS------OB-B-B-B-B-B-CS------OB-B-B-B-B-B-CS---CS--
+https://drumcomputer.netlify.app?noteduration=80&notes=ob-b-b-b-b-b-cs------ob-b-b-b-b-b-cs------ob-b-b-b-b-b-cs------ob-b-b-b-b-b-cs---cs--
 
 ### Beastie Boys - Intergalactic
 
-https://drumcomputer.netlify.app?noteDuration=120&notes=B----B----B----OS--B--B----B----B----OS--B--B--H--HS--H-S-HB-S-HB--HS--HB--HB--H--HS--H-S-HB-S-HB--HS--HB--HB--HB--HS--HB--HB--H-OS-H--OHS--HB--HB--HS--HB--HB--H-OS-H--OHS--D-D-D-D-D-D--D-D-D-D-D-D-D--D-D-D-D-D-D-D--D-D-D-D-D-D-D---OHB--H--HS--HB--H--HB--HS--HB--HB--H--HS--H-B-H-B-HB--HS--H--HB--H--HS--H-B-H-B-HB--HS--H--HB--------HS----HS----OHB--H--HS--H-B-H-B-HB--HS--H--HB--H--HS--H-B-H-B-HB--HS--H--HB--H--HS--H-B-H-B-HB--HS--H--HB--H--HS--H-B-H-B-HB--OS---
+https://drumcomputer.netlify.app?noteduration=120&notes=b----b----b----os--b--b----b----b----os--b--b--h--hs--h-s-hb-s-hb--hs--hb--hb--h--hs--h-s-hb-s-hb--hs--hb--hb--hb--hs--hb--hb--h-os-h--ohs--hb--hb--hs--hb--hb--h-os-h--ohs--d-d-d-d-d-d--d-d-d-d-d-d-d--d-d-d-d-d-d-d--d-d-d-d-d-d-d---ohb--h--hs--hb--h--hb--hs--hb--hb--h--hs--h-b-h-b-hb--hs--h--hb--h--hs--h-b-h-b-hb--hs--h--hb--------hs----hs----ohb--h--hs--h-b-h-b-hb--hs--h--hb--h--hs--h-b-h-b-hb--hs--h--hb--h--hs--h-b-h-b-hb--hs--h--hb--h--hs--h-b-h-b-hb--os---

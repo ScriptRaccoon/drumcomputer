@@ -6,7 +6,7 @@ export function convertBeatToParams(beat: beat) {
 		.map((time) => time.join(""))
 		.join("-");
 	return (
-		`?noteDuration=${beat.noteDuration}` +
+		`?noteduration=${beat.noteDuration}` +
 		`&notes=${notesAsString}`
 	);
 }
@@ -14,12 +14,13 @@ export function convertBeatToParams(beat: beat) {
 export function convertURLParamsToBeat(
 	urlParams: URLSearchParams
 ): beat | undefined {
-	const noteDurationString = urlParams.get("noteDuration");
+	const noteDurationString = urlParams.get("noteduration");
 	const notesString = urlParams.get("notes");
 	if (!noteDurationString || !notesString) return;
 	const noteDuration = parseInt(noteDurationString);
 	const notes = notesString
-		?.split("-")
+		.toLowerCase()
+		.split("-")
 		.map((time) => time.split(""));
 	if (notes.flat().every((key) => Instrument.keys.includes(key))) {
 		return { noteDuration, notes };
