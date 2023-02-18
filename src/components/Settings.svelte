@@ -13,20 +13,19 @@
 	}
 
 	const error = {
-		noteDuration: false,
+		speed: false,
 		division: false,
 	};
 
-	function changeNoteDuration(e: any) {
+	function changeSpeed(e: any) {
 		const inputElement = e?.target as HTMLInputElement;
 		const value = inputElement.value;
 		if (stringIsPositiveInteger(value)) {
-			error.noteDuration = false;
-			$currentBeat.noteDuration = parseInt(value);
+			error.speed = false;
+			$currentBeat.speed = parseInt(value);
 		} else {
-			error.noteDuration = true;
-			const content =
-				"Note duration must be a positive integer";
+			error.speed = true;
+			const content = "Speed must be a positive integer";
 			$dialogState = {
 				open: true,
 				type: "alert",
@@ -98,16 +97,16 @@
 		type="checkbox"
 		bind:checked={$timelineScrolls}
 	/>
-	<label for="speedInput"> Note duration </label>
+	<label for="speedInput">Speed in bpm</label>
 
 	<input
 		id="speedInput"
-		class:error={error.noteDuration}
+		class:error={error.speed}
 		type="number"
 		min="1"
 		max="1000"
-		value={$currentBeat.noteDuration}
-		on:change={changeNoteDuration}
+		value={$currentBeat.speed}
+		on:change={changeSpeed}
 	/>
 	<label for="divisionInput" aria-describedby="divisionDescription"
 		>Division<span aria-hidden="true">*</span>

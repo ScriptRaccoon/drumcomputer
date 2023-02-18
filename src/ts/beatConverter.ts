@@ -7,7 +7,7 @@ export function convertBeatToParams(beat: beat) {
 		.map((time) => time.join(""))
 		.join("-");
 	return (
-		`?noteduration=${beat.noteDuration}` +
+		`?speed=${beat.speed}` +
 		`&division=${beat.division}` +
 		`&notes=${notesAsString}`
 	);
@@ -16,17 +16,17 @@ export function convertBeatToParams(beat: beat) {
 export function convertURLParamsToBeat(
 	urlParams: URLSearchParams
 ): beat | undefined {
-	const noteDurationString = urlParams.get("noteduration");
+	const speedString = urlParams.get("speed");
 	const divisionString = urlParams.get("division");
 	const notesString = urlParams.get("notes");
 	const valid =
-		noteDurationString &&
+		speedString &&
 		divisionString &&
 		notesString &&
-		stringIsPositiveInteger(noteDurationString) &&
+		stringIsPositiveInteger(speedString) &&
 		stringIsPositiveInteger(divisionString);
 	if (!valid) return;
-	const noteDuration = parseInt(noteDurationString);
+	const speed = parseInt(speedString);
 	const division = parseInt(divisionString);
 	const notesArray = notesString
 		.toLowerCase()
@@ -34,5 +34,5 @@ export function convertURLParamsToBeat(
 		.map((block) => block.split(""));
 	const blocks = chunkArray(notesArray, division);
 	if (!blocks) return;
-	return { noteDuration, division, blocks };
+	return { speed, division, blocks };
 }

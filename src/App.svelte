@@ -13,6 +13,7 @@
 		currentBlockIndex,
 		showSettings,
 		blockAmount,
+		noteDuration,
 	} from "./ts/stores";
 
 	import { convertURLParamsToBeat } from "@/ts/beatConverter";
@@ -42,7 +43,7 @@
 		if ($playState !== "playing") return;
 		playNotes();
 		incrementTime();
-		setTimeout(playMusic, $currentBeat.noteDuration);
+		setTimeout(playMusic, $noteDuration);
 	}
 
 	function playNotes() {

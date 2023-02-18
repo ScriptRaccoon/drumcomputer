@@ -5,6 +5,10 @@ import { exampleBeat } from "@/ts/exampleBeat";
 export const currentBeat = writable<beat>(exampleBeat);
 export const currentTime = writable<number>(0);
 export const currentBlockIndex = writable<number>(0);
+export const noteDuration = derived(
+	currentBeat,
+	(beat) => 60000 / (beat.division * beat.speed)
+);
 export const blockAmount = derived(
 	currentBeat,
 	(beat) => beat.blocks.length

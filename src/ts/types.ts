@@ -2,7 +2,7 @@ export type playStates = "stopped" | "playing" | "paused";
 
 export type beat = {
 	blocks: block[];
-	noteDuration: number;
+	speed: number;
 	division: number;
 };
 
