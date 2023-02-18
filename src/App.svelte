@@ -12,6 +12,7 @@
 		playState,
 		currentBlockIndex,
 		showSettings,
+		blockAmount,
 	} from "./ts/stores";
 
 	import { convertURLParamsToBeat } from "@/ts/beatConverter";
@@ -57,7 +58,7 @@
 		if ($currentTime >= $currentBeat.blockLength) {
 			$currentTime = 0;
 			$currentBlockIndex++;
-			if ($currentBlockIndex == $currentBeat.blocks.length) {
+			if ($currentBlockIndex == $blockAmount) {
 				$currentBlockIndex = 0;
 			}
 		}
