@@ -12,6 +12,7 @@ export function chunkArray<T>(
 ): T[][] | undefined {
 	if (arr.length % length != 0) {
 		console.error("length does not fit");
+		return;
 	}
 	let result: T[][] = [];
 	for (let i = 0; i < arr.length; i += length) {
