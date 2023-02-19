@@ -15,7 +15,7 @@
 		@include input-reset;
 		cursor: pointer;
 		background-color: var(--button-color);
-		padding: 0.3rem 0.8rem;
+		padding: 0.2rem 0.8rem;
 		border-radius: 0.25rem;
 
 		&:hover {
