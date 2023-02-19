@@ -6,7 +6,7 @@
 	import Dialog from "@/components/Dialog.svelte";
 
 	import {
-		currentBeat,
+		currentTrack,
 		currentTime,
 		dialogState,
 		playState,
@@ -16,7 +16,7 @@
 		noteDuration,
 	} from "./ts/stores";
 
-	import { convertURLParamsToBeat } from "@/ts/beatConverter";
+	import { convertURLParamsToTrack } from "@/ts/trackConverter";
 	import { Instrument } from "@/ts/Instrument";
 	import Settings from "./components/Settings.svelte";
 	import { scrollLeft } from "./ts/utils";
@@ -48,7 +48,7 @@
 
 	function playNotes() {
 		const currentNotes =
-			$currentBeat.blocks[$currentBlockIndex][$currentTime];
+			$currentTrack.blocks[$currentBlockIndex][$currentTime];
 		const playingInstruments = Instrument.list.filter(
 			(instrument) => currentNotes.includes(instrument.key)
 		);
@@ -57,7 +57,7 @@
 
 	function incrementTime() {
 		$currentTime++;
-		if ($currentTime >= $currentBeat.division) {
+		if ($currentTime >= $currentTrack.division) {
 			$currentTime = 0;
 			$currentBlockIndex++;
 			if ($currentBlockIndex == $blockAmount) {
@@ -66,25 +66,25 @@
 		}
 	}
 
-	function loadBeatFromURL() {
+	function loadTrackFromURL() {
 		const search = window.location.search;
 		if (!search) return;
 		const params = new URLSearchParams(search.toLowerCase());
-		const beatFromURL = convertURLParamsToBeat(params);
-		if (beatFromURL) {
-			$currentBeat = beatFromURL;
+		const trackFromURL = convertURLParamsToTrack(params);
+		if (trackFromURL) {
+			$currentTrack = trackFromURL;
 		} else {
 			$dialogState = {
 				open: true,
 				type: "alert",
-				contents: ["Error: Beat could not be read from URL"],
+				contents: ["Error: Track could not be read from URL"],
 			};
 		}
 	}
 
 	onMount(() => {
 		Instrument.loadAll();
-		loadBeatFromURL();
+		loadTrackFromURL();
 	});
 </script>
 

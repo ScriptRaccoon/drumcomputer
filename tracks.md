@@ -1,4 +1,4 @@
-# Beats Collection
+# Tracks Collection
 
 ### Moby - Extreme Ways
 

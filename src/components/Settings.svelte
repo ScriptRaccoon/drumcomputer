@@ -2,7 +2,7 @@
 	import {
 		showSettings,
 		timelineScrolls,
-		currentBeat,
+		currentTrack,
 		dialogState,
 	} from "@/ts/stores";
 	import Button from "./Button.svelte";
@@ -22,7 +22,7 @@
 		const value = inputElement.value;
 		if (stringIsPositiveInteger(value)) {
 			error.speed = false;
-			$currentBeat.speed = parseInt(value);
+			$currentTrack.speed = parseInt(value);
 		} else {
 			error.speed = true;
 			const content = "Speed must be a positive integer";
@@ -40,7 +40,7 @@
 		if (stringIsPositiveInteger(value)) {
 			error.division = false;
 			const difference =
-				parseInt(value) - $currentBeat.division;
+				parseInt(value) - $currentTrack.division;
 			if (difference < 0) {
 				confirmToDecreaseDivision(-difference);
 			} else {
@@ -70,21 +70,21 @@
 	}
 
 	function decreaseDivision(amount: number) {
-		$currentBeat.division -= amount;
+		$currentTrack.division -= amount;
 
-		$currentBeat.blocks = $currentBeat.blocks.map((block) =>
-			block.splice(0, $currentBeat.division)
+		$currentTrack.blocks = $currentTrack.blocks.map((block) =>
+			block.splice(0, $currentTrack.division)
 		);
 	}
 
 	function increaseDivision(amount: number) {
-		for (const block of $currentBeat.blocks) {
+		for (const block of $currentTrack.blocks) {
 			for (let i = 0; i < amount; i++) {
-				block[$currentBeat.division + i] = [];
+				block[$currentTrack.division + i] = [];
 			}
 		}
 
-		$currentBeat.division += amount;
+		$currentTrack.division += amount;
 	}
 </script>
 
@@ -105,7 +105,7 @@
 		type="number"
 		min="1"
 		max="1000"
-		value={$currentBeat.speed}
+		value={$currentTrack.speed}
 		on:change={changeSpeed}
 	/>
 	<label for="divisionInput" aria-describedby="divisionDescription"
@@ -117,7 +117,7 @@
 		type="number"
 		min="1"
 		max="10"
-		value={$currentBeat.division}
+		value={$currentTrack.division}
 		on:change={changeDivision}
 	/>
 	<Button

@@ -8,7 +8,7 @@
 
 	import {
 		blockAmount,
-		currentBeat,
+		currentTrack,
 		currentBlockIndex,
 		playState,
 	} from "@/ts/stores";
@@ -21,14 +21,14 @@
 
 	function addBlock() {
 		const emptyBlock: block = new Array(
-			$currentBeat.division
+			$currentTrack.division
 		).fill([]);
-		$currentBeat.blocks = [...$currentBeat.blocks, emptyBlock];
+		$currentTrack.blocks = [...$currentTrack.blocks, emptyBlock];
 		dispatch("blockAdded");
 	}
 
 	function removeBlock() {
-		$currentBeat.blocks = $currentBeat.blocks.slice(
+		$currentTrack.blocks = $currentTrack.blocks.slice(
 			0,
 			$blockAmount - 1
 		);

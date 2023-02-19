@@ -1,22 +1,22 @@
-import type { beat, block } from "@/ts/types";
+import type { track, block } from "@/ts/types";
 import { instrumentKeys } from "@/ts/types";
 import { chunkArray, stringIsPositiveInteger } from "@/ts/utils";
 
-export function convertBeatToParams(beat: beat) {
-	const notesAsString = beat.blocks
+export function convertTrackToParams(track: track) {
+	const notesAsString = track.blocks
 		.flat()
 		.map((time) => time.join(""))
 		.join("-");
 	return (
-		`?speed=${beat.speed}` +
-		`&division=${beat.division}` +
+		`?speed=${track.speed}` +
+		`&division=${track.division}` +
 		`&notes=${notesAsString}`
 	);
 }
 
-export function convertURLParamsToBeat(
+export function convertURLParamsToTrack(
 	urlParams: URLSearchParams
-): beat | undefined {
+): track | undefined {
 	const speedString = urlParams.get("speed");
 	const divisionString = urlParams.get("division");
 	const notesString = urlParams.get("notes");

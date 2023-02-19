@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { createEventDispatcher } from "svelte";
-	const dispatch = createEventDispatcher();
 	import Fa from "svelte-fa";
 	import {
 		faPlay,
@@ -12,7 +11,7 @@
 	} from "@fortawesome/free-solid-svg-icons";
 	import {
 		playState,
-		currentBeat,
+		currentTrack,
 		currentTime,
 		dialogState,
 		currentBlockIndex,
@@ -21,7 +20,7 @@
 	} from "@/ts/stores";
 
 	import Button from "@/components/Button.svelte";
-	import { convertBeatToParams } from "@/ts/beatConverter";
+	import { convertTrackToParams } from "@/ts/trackConverter";
 
 	export let startMusic: () => void;
 	export let stopMusic: () => void;
@@ -37,14 +36,14 @@
 	}
 
 	function deleteNotes() {
-		$currentBeat.blocks = [];
+		$currentTrack.blocks = [];
 		$currentTime = 0;
 		$currentBlockIndex = 0;
 		$playState = "stopped";
 	}
 
-	async function shareBeat() {
-		const params = convertBeatToParams($currentBeat);
+	async function shareTrack() {
+		const params = convertTrackToParams($currentTrack);
 		const sharingURL = window.location.origin + params;
 		await navigator.clipboard.writeText(sharingURL);
 		$dialogState = {
@@ -106,7 +105,7 @@
 
 	<Button
 		ariaLabel="share"
-		action={shareBeat}
+		action={shareTrack}
 		disabled={$blockAmount == 0}
 	>
 		<Fa icon={faShareNodes} /></Button

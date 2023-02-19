@@ -1,6 +1,6 @@
 export type playStates = "stopped" | "playing" | "paused";
 
-export type beat = {
+export type track = {
 	blocks: block[];
 	speed: number;
 	division: number;

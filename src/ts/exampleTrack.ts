@@ -1,6 +1,6 @@
-import type { beat } from "@/ts/types";
+import type { track } from "@/ts/types";
 
-export const exampleBeat: beat = {
+export const exampleTrack: track = {
 	speed: 120,
 	division: 4,
 	blocks: [

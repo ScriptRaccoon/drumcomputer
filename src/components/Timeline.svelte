@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { blockAmount, currentBeat } from "@/ts/stores";
+	import { blockAmount, currentTrack } from "@/ts/stores";
 	import InstrumentBar from "@/components/InstrumentBar.svelte";
 	import Block from "@/components/Block.svelte";
 	import TimelineMenu from "./TimelineMenu.svelte";
@@ -11,7 +11,7 @@
 <section aria-label="timeline" bind:this={timelineElement}>
 	{#if $blockAmount > 0}
 		<InstrumentBar />
-		{#each $currentBeat.blocks as block, blockIndex}
+		{#each $currentTrack.blocks as block, blockIndex}
 			<Block bind:block {blockIndex} />
 		{/each}
 	{:else}
