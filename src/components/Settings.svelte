@@ -159,6 +159,8 @@
 		&:focus {
 			outline: 0.1rem solid var(--font-color);
 		}
+		transform-origin: left;
+		scale: 1.4;
 	}
 
 	input[type="number"] {
