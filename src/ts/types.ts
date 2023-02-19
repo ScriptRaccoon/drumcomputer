@@ -16,7 +16,6 @@ export type dialogStateType = {
 };
 
 // prettier-ignore
-export const instrumentKeys = ["c","r","o","h","d","s","t","m","b"];
+export const instrumentKeys = ["c","r","o","h","d","s","t","m","b"] as const;
 
-// prettier-ignore
-export type instrumentKey = "c" | "r" | "o" | "h" | "d" | "s" | "t" | "m" | "b";
+export type instrumentKey = typeof instrumentKeys[number];

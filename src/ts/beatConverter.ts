@@ -43,7 +43,9 @@ export function convertURLParamsToBeat(
 function checkBlocks(blocks: string[][][]): blocks is block[] {
 	return blocks.every((block) =>
 		block.every((column) =>
-			column.every((char) => instrumentKeys.includes(char))
+			column.every((char) =>
+				(instrumentKeys as any as string[]).includes(char)
+			)
 		)
 	);
 }
