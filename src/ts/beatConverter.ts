@@ -1,5 +1,6 @@
-import type { beat } from "@/ts/types";
-import { chunkArray, stringIsPositiveInteger } from "./utils";
+import type { beat, block } from "@/ts/types";
+import { instrumentKeys } from "@/ts/types";
+import { chunkArray, stringIsPositiveInteger } from "@/ts/utils";
 
 export function convertBeatToParams(beat: beat) {
 	const notesAsString = beat.blocks
@@ -34,5 +35,15 @@ export function convertURLParamsToBeat(
 		.map((block) => block.split(""));
 	const blocks = chunkArray(notesArray, division);
 	if (!blocks) return;
-	return { speed, division, blocks };
+	if (checkBlocks(blocks)) {
+		return { speed, division, blocks };
+	}
+}
+
+function checkBlocks(blocks: string[][][]): blocks is block[] {
+	return blocks.every((block) =>
+		block.every((column) =>
+			column.every((char) => instrumentKeys.includes(char))
+		)
+	);
 }

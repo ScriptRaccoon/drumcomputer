@@ -6,7 +6,7 @@ export type beat = {
 	division: number;
 };
 
-export type block = string[][];
+export type block = instrumentKey[][];
 
 export type dialogStateType = {
 	open: boolean;
@@ -14,3 +14,9 @@ export type dialogStateType = {
 	contents: string[];
 	action?: () => void;
 };
+
+// prettier-ignore
+export const instrumentKeys = ["c","r","o","h","d","s","t","m","b"];
+
+// prettier-ignore
+export type instrumentKey = "c" | "r" | "o" | "h" | "d" | "s" | "t" | "m" | "b";
