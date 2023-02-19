@@ -1,12 +1,17 @@
-import type { playStates, beat, dialogStateType } from "./types";
+import type { playStates, track, dialogStateType } from "./types";
 import { writable, derived } from "svelte/store";
-import { exampleBeat } from "@/ts/exampleBeat";
+import { exampleTrack } from "@/ts/exampleTrack";
 
-export const currentBeat = writable<beat>(exampleBeat);
+export const currentTrack = writable<track>(exampleTrack);
 export const currentTime = writable<number>(0);
-export const currentNotes = derived(
-	[currentBeat, currentTime],
-	([beat, time]) => beat.notes[time]
+export const currentBeatIndex = writable<number>(0);
+export const noteDuration = derived(
+	currentTrack,
+	(track) => 60000 / (track.subdivisions * track.speed)
+);
+export const beatAmount = derived(
+	currentTrack,
+	(track) => track.beats.length
 );
 
 export const playState = writable<playStates>("stopped");
@@ -18,3 +23,5 @@ export const dialogState = writable<dialogStateType>({
 });
 
 export const timelineScrolls = writable<boolean>(true);
+
+export const showSettings = writable<boolean>(false);

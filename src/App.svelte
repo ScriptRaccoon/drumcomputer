@@ -6,16 +6,22 @@
 	import Dialog from "@/components/Dialog.svelte";
 
 	import {
-		currentBeat,
+		currentTrack,
 		currentTime,
 		dialogState,
 		playState,
-		currentNotes,
+		currentBeatIndex,
+		showSettings,
+		beatAmount,
+		noteDuration,
 	} from "./ts/stores";
 
-	import { convertURLParamsToBeat } from "@/ts/beatConverter";
+	import { convertURLParamsToTrack } from "@/ts/trackConverter";
 	import { Instrument } from "@/ts/Instrument";
-	import StatusBar from "./components/StatusBar.svelte";
+	import Settings from "./components/Settings.svelte";
+	import { scrollLeft } from "./ts/utils";
+
+	let timelineElement: HTMLElement;
 
 	function startMusic() {
 		$playState = "playing";
@@ -24,7 +30,9 @@
 
 	function stopMusic() {
 		$playState = "stopped";
+		$currentBeatIndex = 0;
 		$currentTime = 0;
+		scrollLeft(timelineElement);
 	}
 
 	function pauseMusic() {
@@ -34,58 +42,62 @@
 	function playMusic() {
 		if ($playState !== "playing") return;
 		playNotes();
-		incrementCurrentTime();
-		setTimeout(playMusic, $currentBeat.noteDuration);
+		incrementTime();
+		setTimeout(playMusic, $noteDuration);
 	}
 
 	function playNotes() {
-		for (const instrument of Instrument.list) {
-			if ($currentNotes.includes(instrument.key)) {
-				instrument.play();
+		const currentNotes =
+			$currentTrack.beats[$currentBeatIndex][$currentTime];
+		const playingInstruments = Instrument.list.filter(
+			(instrument) => currentNotes.includes(instrument.key)
+		);
+		playingInstruments.forEach((instrument) => instrument.play());
+	}
+
+	function incrementTime() {
+		$currentTime++;
+		if ($currentTime >= $currentTrack.subdivisions) {
+			$currentTime = 0;
+			$currentBeatIndex++;
+			if ($currentBeatIndex == $beatAmount) {
+				$currentBeatIndex = 0;
 			}
 		}
 	}
 
-	function incrementCurrentTime() {
-		$currentTime++;
-		if ($currentTime >= $currentBeat.notes.length) {
-			$currentTime = 0;
-		}
-	}
-
-	function loadBeatFromURL() {
+	function loadTrackFromURL() {
 		const search = window.location.search;
 		if (!search) return;
 		const params = new URLSearchParams(search.toLowerCase());
-		const beatFromURL = convertURLParamsToBeat(params);
-		if (beatFromURL) {
-			$currentBeat = beatFromURL;
+		const trackFromURL = convertURLParamsToTrack(params);
+		if (trackFromURL) {
+			$currentTrack = trackFromURL;
 		} else {
 			$dialogState = {
 				open: true,
 				type: "alert",
-				contents: ["Error: Beat could not be read from URL"],
+				contents: ["Error: Track could not be read from URL"],
 			};
 		}
 	}
 
 	onMount(() => {
 		Instrument.loadAll();
-		loadBeatFromURL();
+		loadTrackFromURL();
 	});
 </script>
 
 <Header />
 
-<main>
-	<Menu
-		on:play={startMusic}
-		on:stop={stopMusic}
-		on:pause={pauseMusic}
-	/>
-	<StatusBar />
-	<Timeline />
-</main>
+{#if $showSettings}
+	<Settings />
+{:else}
+	<main>
+		<Menu {startMusic} {stopMusic} {pauseMusic} />
+		<Timeline bind:timelineElement />
+	</main>
+{/if}
 
 <Dialog />
 

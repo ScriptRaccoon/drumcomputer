@@ -61,7 +61,7 @@
 		transform: translate(-50%, -50%);
 		background-color: #000;
 		color: inherit;
-		max-width: min(40rem, 95vw);
+		width: min(30rem, 95vw);
 		padding: 1.5rem;
 		border-radius: 0.8rem;
 		text-align: center;

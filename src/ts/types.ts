@@ -1,9 +1,12 @@
 export type playStates = "stopped" | "playing" | "paused";
 
-export type beat = {
-	notes: string[][];
-	noteDuration: number;
+export type track = {
+	beats: beat[];
+	speed: number;
+	subdivisions: number;
 };
+
+export type beat = instrumentKey[][];
 
 export type dialogStateType = {
 	open: boolean;
@@ -11,3 +14,8 @@ export type dialogStateType = {
 	contents: string[];
 	action?: () => void;
 };
+
+// prettier-ignore
+export const instrumentKeys = ["c","r","o","h","d","s","t","m","b"] as const;
+
+export type instrumentKey = typeof instrumentKeys[number];
