@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { createEventDispatcher } from "svelte";
 	import Fa from "svelte-fa";
 	import {
 		faPlay,
@@ -14,9 +13,9 @@
 		currentTrack,
 		currentTime,
 		dialogState,
-		currentBlockIndex,
+		currentBeatIndex,
 		showSettings,
-		blockAmount,
+		beatAmount,
 	} from "@/ts/stores";
 
 	import Button from "@/components/Button.svelte";
@@ -36,9 +35,9 @@
 	}
 
 	function deleteNotes() {
-		$currentTrack.blocks = [];
+		$currentTrack.beats = [];
 		$currentTime = 0;
-		$currentBlockIndex = 0;
+		$currentBeatIndex = 0;
 		$playState = "stopped";
 	}
 
@@ -65,7 +64,7 @@
 <menu>
 	<Button
 		ariaLabel="play"
-		disabled={$playState == "playing" || $blockAmount == 0}
+		disabled={$playState == "playing" || $beatAmount == 0}
 		action={startMusic}
 	>
 		<Fa icon={faPlay} />
@@ -89,7 +88,7 @@
 
 	<Button
 		ariaLabel="delete notes"
-		disabled={$playState == "playing" || $blockAmount == 0}
+		disabled={$playState == "playing" || $beatAmount == 0}
 		action={confirmToDeleteNotes}
 	>
 		<Fa icon={faTrashAlt} />
@@ -106,7 +105,7 @@
 	<Button
 		ariaLabel="share"
 		action={shareTrack}
-		disabled={$blockAmount == 0}
+		disabled={$beatAmount == 0}
 	>
 		<Fa icon={faShareNodes} /></Button
 	>

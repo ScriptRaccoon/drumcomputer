@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { block } from "@/ts/types";
+	import type { beat } from "@/ts/types";
 	import Fa from "svelte-fa";
 	import {
 		faPlus,
@@ -7,9 +7,9 @@
 	} from "@fortawesome/free-solid-svg-icons";
 
 	import {
-		blockAmount,
+		beatAmount,
 		currentTrack,
-		currentBlockIndex,
+		currentBeatIndex,
 		playState,
 	} from "@/ts/stores";
 
@@ -19,33 +19,33 @@
 
 	const dispatch = createEventDispatcher();
 
-	function addBlock() {
-		const emptyBlock: block = new Array(
+	function addBeat() {
+		const emptyBeat: beat = new Array(
 			$currentTrack.division
 		).fill([]);
-		$currentTrack.blocks = [...$currentTrack.blocks, emptyBlock];
-		dispatch("blockAdded");
+		$currentTrack.beats = [...$currentTrack.beats, emptyBeat];
+		dispatch("beatAdded");
 	}
 
-	function removeBlock() {
-		$currentTrack.blocks = $currentTrack.blocks.slice(
+	function removeBeat() {
+		$currentTrack.beats = $currentTrack.beats.slice(
 			0,
-			$blockAmount - 1
+			$beatAmount - 1
 		);
 	}
 </script>
 
 <menu>
-	<Button ariaLabel="add block" action={addBlock}>
+	<Button ariaLabel="add beat" action={addBeat}>
 		<Fa icon={faPlus} />
 	</Button>
 
 	<Button
-		ariaLabel="remove block"
-		action={removeBlock}
-		disabled={$blockAmount == 0 ||
+		ariaLabel="remove beat"
+		action={removeBeat}
+		disabled={$beatAmount == 0 ||
 			($playState == "playing" &&
-				$currentBlockIndex == $blockAmount - 1)}
+				$currentBeatIndex == $beatAmount - 1)}
 	>
 		<Fa icon={faMinus} />
 	</Button>

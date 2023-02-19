@@ -1,21 +1,21 @@
 <script lang="ts">
 	import { Instrument } from "@/ts/Instrument";
-	import type { block } from "@/ts/types";
+	import type { beat } from "@/ts/types";
 	import {
-		currentBlockIndex,
+		currentBeatIndex,
 		currentTime,
 		playState,
 		timelineScrolls,
 	} from "@/ts/stores";
-	export let block: block = [];
-	export let blockIndex: number = 0;
+	export let beat: beat = [];
+	export let beatIndex: number = 0;
 
 	const columns: HTMLElement[] = [];
 
 	$: if (
 		$playState == "playing" &&
 		$timelineScrolls &&
-		blockIndex == $currentBlockIndex
+		beatIndex == $currentBeatIndex
 	) {
 		columns[$currentTime]?.scrollIntoView({
 			inline: "center",
@@ -23,9 +23,9 @@
 	}
 </script>
 
-<div class="block">
-	{#each block as _, timeIndex}
-		{@const timeCode = `${blockIndex + 1}.${timeIndex + 1}`}
+<div class="beat">
+	{#each beat as _, timeIndex}
+		{@const timeCode = `${beatIndex + 1}.${timeIndex + 1}`}
 		<div class="column" bind:this={columns[timeIndex]}>
 			{#each Instrument.list as instrument}
 				<input
@@ -33,8 +33,8 @@
 					class="note"
 					type="checkbox"
 					value={instrument.key}
-					bind:group={block[timeIndex]}
-					class:current={blockIndex == $currentBlockIndex &&
+					bind:group={beat[timeIndex]}
+					class:current={beatIndex == $currentBeatIndex &&
 						timeIndex == $currentTime}
 				/>
 			{/each}
@@ -43,7 +43,7 @@
 </div>
 
 <style lang="scss">
-	.block {
+	.beat {
 		display: flex;
 		column-gap: 0.125rem;
 	}

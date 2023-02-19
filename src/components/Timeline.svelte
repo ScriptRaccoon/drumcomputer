@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { blockAmount, currentTrack } from "@/ts/stores";
+	import { beatAmount, currentTrack } from "@/ts/stores";
 	import InstrumentBar from "@/components/InstrumentBar.svelte";
-	import Block from "@/components/Block.svelte";
+	import Beat from "@/components/Beat.svelte";
 	import TimelineMenu from "./TimelineMenu.svelte";
 	import { scrollRight } from "@/ts/utils";
 
@@ -9,17 +9,15 @@
 </script>
 
 <section aria-label="timeline" bind:this={timelineElement}>
-	{#if $blockAmount > 0}
+	{#if $beatAmount > 0}
 		<InstrumentBar />
-		{#each $currentTrack.blocks as block, blockIndex}
-			<Block bind:block {blockIndex} />
+		{#each $currentTrack.beats as beat, beatIndex}
+			<Beat bind:beat {beatIndex} />
 		{/each}
 	{:else}
-		<p>Add a block</p>
+		<p>Add a beat</p>
 	{/if}
-	<TimelineMenu
-		on:blockAdded={() => scrollRight(timelineElement)}
-	/>
+	<TimelineMenu on:beatAdded={() => scrollRight(timelineElement)} />
 </section>
 
 <style>

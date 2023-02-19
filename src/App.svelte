@@ -10,9 +10,9 @@
 		currentTime,
 		dialogState,
 		playState,
-		currentBlockIndex,
+		currentBeatIndex,
 		showSettings,
-		blockAmount,
+		beatAmount,
 		noteDuration,
 	} from "./ts/stores";
 
@@ -30,7 +30,7 @@
 
 	function stopMusic() {
 		$playState = "stopped";
-		$currentBlockIndex = 0;
+		$currentBeatIndex = 0;
 		$currentTime = 0;
 		scrollLeft(timelineElement);
 	}
@@ -48,7 +48,7 @@
 
 	function playNotes() {
 		const currentNotes =
-			$currentTrack.blocks[$currentBlockIndex][$currentTime];
+			$currentTrack.beats[$currentBeatIndex][$currentTime];
 		const playingInstruments = Instrument.list.filter(
 			(instrument) => currentNotes.includes(instrument.key)
 		);
@@ -59,9 +59,9 @@
 		$currentTime++;
 		if ($currentTime >= $currentTrack.division) {
 			$currentTime = 0;
-			$currentBlockIndex++;
-			if ($currentBlockIndex == $blockAmount) {
-				$currentBlockIndex = 0;
+			$currentBeatIndex++;
+			if ($currentBeatIndex == $beatAmount) {
+				$currentBeatIndex = 0;
 			}
 		}
 	}

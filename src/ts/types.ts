@@ -1,12 +1,12 @@
 export type playStates = "stopped" | "playing" | "paused";
 
 export type track = {
-	blocks: block[];
+	beats: beat[];
 	speed: number;
 	division: number;
 };
 
-export type block = instrumentKey[][];
+export type beat = instrumentKey[][];
 
 export type dialogStateType = {
 	open: boolean;

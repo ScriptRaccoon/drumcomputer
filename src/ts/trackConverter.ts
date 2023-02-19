@@ -1,9 +1,9 @@
-import type { track, block } from "@/ts/types";
+import type { track, beat } from "@/ts/types";
 import { instrumentKeys } from "@/ts/types";
 import { chunkArray, stringIsPositiveInteger } from "@/ts/utils";
 
 export function convertTrackToParams(track: track) {
-	const notesAsString = track.blocks
+	const notesAsString = track.beats
 		.flat()
 		.map((time) => time.join(""))
 		.join("-");
@@ -32,17 +32,17 @@ export function convertURLParamsToTrack(
 	const notesArray = notesString
 		.toLowerCase()
 		.split("-")
-		.map((block) => block.split(""));
-	const blocks = chunkArray(notesArray, division);
-	if (!blocks) return;
-	if (checkBlocks(blocks)) {
-		return { speed, division, blocks };
+		.map((beat) => beat.split(""));
+	const beats = chunkArray(notesArray, division);
+	if (!beats) return;
+	if (checkBeats(beats)) {
+		return { speed, division, beats };
 	}
 }
 
-function checkBlocks(blocks: string[][][]): blocks is block[] {
-	return blocks.every((block) =>
-		block.every((column) =>
+function checkBeats(beats: string[][][]): beats is beat[] {
+	return beats.every((beat) =>
+		beat.every((column) =>
 			column.every((char) =>
 				(instrumentKeys as any as string[]).includes(char)
 			)

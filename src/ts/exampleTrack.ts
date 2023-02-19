@@ -3,7 +3,7 @@ import type { track } from "@/ts/types";
 export const exampleTrack: track = {
 	speed: 120,
 	division: 4,
-	blocks: [
+	beats: [
 		[["h", "d", "b"], ["d"], ["h", "b"], ["d"]],
 		[["h", "s"], ["d"], ["o", "h", "d"], ["b"]],
 		[["h", "d"], [], ["h", "b"], []],

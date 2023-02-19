@@ -72,15 +72,15 @@
 	function decreaseDivision(amount: number) {
 		$currentTrack.division -= amount;
 
-		$currentTrack.blocks = $currentTrack.blocks.map((block) =>
-			block.splice(0, $currentTrack.division)
+		$currentTrack.beats = $currentTrack.beats.map((beat) =>
+			beat.splice(0, $currentTrack.division)
 		);
 	}
 
 	function increaseDivision(amount: number) {
-		for (const block of $currentTrack.blocks) {
+		for (const beat of $currentTrack.beats) {
 			for (let i = 0; i < amount; i++) {
-				block[$currentTrack.division + i] = [];
+				beat[$currentTrack.division + i] = [];
 			}
 		}
 
@@ -127,7 +127,7 @@
 		Ok
 	</Button>
 	<div id="divisionDescription" class="description">
-		<span aria-hidden="true">*</span>number of hits per block
+		<span aria-hidden="true">*</span>number of hits per beat
 	</div>
 </form>
 
