@@ -74,8 +74,9 @@
 	}
 
 	p {
-		font-size: 1.2rem;
+		font-size: var(--larger-font);
 		margin-bottom: 1rem;
+
 		:global(code) {
 			font-size: 1rem;
 			color: var(--dark-font-color);

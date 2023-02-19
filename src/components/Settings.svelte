@@ -130,14 +130,15 @@
 	@use "../scss/mixins" as *;
 
 	h2 {
-		font-weight: 500;
-		font-size: 2rem;
-		line-height: 1;
+		font-weight: 400;
+		font-size: 1.8rem;
 		text-align: center;
-		margin-bottom: 2rem;
+		padding-block: 1rem;
+		border-top: 0.1rem solid var(--thin-color);
 	}
 
 	form {
+		margin-top: 1rem;
 		max-width: 18rem;
 		margin-inline: auto;
 		display: grid;
@@ -147,6 +148,7 @@
 		align-items: center;
 
 		& :global(button) {
+			margin-top: 0.5rem;
 			grid-column: 1 / span 2;
 			justify-self: center;
 		}
@@ -179,7 +181,7 @@
 	}
 
 	label {
-		font-size: 1.25rem;
+		font-size: var(--larger-font);
 		color: var(--dark-font-color);
 		white-space: nowrap;
 	}

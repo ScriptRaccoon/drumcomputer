@@ -24,9 +24,9 @@
 	}
 
 	div {
-		width: 6rem;
 		height: var(--note-size);
 		display: flex;
 		align-items: center;
+		white-space: nowrap;
 	}
 </style>
