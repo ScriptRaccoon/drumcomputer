@@ -2,16 +2,16 @@ import type { track, beat } from "@/ts/types";
 import { instrumentKeys } from "@/ts/types";
 import { chunkArray, stringIsPositiveInteger } from "@/ts/utils";
 
-export function convertTrackToParams(track: track) {
+export function convertTrackToParams(track: track): URLSearchParams {
 	const notesAsString = track.beats
 		.flat()
 		.map((time) => time.join(""))
 		.join("-");
-	return (
-		`?speed=${track.speed}` +
-		`&subdivisions=${track.subdivisions}` +
-		`&notes=${notesAsString}`
-	);
+	const params = new URLSearchParams();
+	params.set("speed", track.speed.toString());
+	params.set("subdivisions", track.subdivisions.toString());
+	params.set("notes", notesAsString);
+	return params;
 }
 
 export function convertURLParamsToTrack(
