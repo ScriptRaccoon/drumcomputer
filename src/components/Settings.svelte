@@ -138,7 +138,7 @@
 	}
 
 	form {
-		max-width: 16rem;
+		max-width: 18rem;
 		margin-inline: auto;
 		display: grid;
 		gap: 1rem;
@@ -167,7 +167,7 @@
 		border: 0.1rem solid var(--dark-font-color);
 		outline: none;
 		border-radius: 0.2rem;
-		width: 5rem;
+		width: 4rem;
 
 		&:focus {
 			border-color: var(--font-color);
