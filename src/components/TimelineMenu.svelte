@@ -21,7 +21,7 @@
 
 	function addBeat() {
 		const emptyBeat: beat = new Array(
-			$currentTrack.division
+			$currentTrack.subdivisions
 		).fill([]);
 		$currentTrack.beats = [...$currentTrack.beats, emptyBeat];
 		dispatch("beatAdded");

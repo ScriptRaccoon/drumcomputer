@@ -9,7 +9,7 @@ export function convertTrackToParams(track: track) {
 		.join("-");
 	return (
 		`?speed=${track.speed}` +
-		`&division=${track.division}` +
+		`&subdivisions=${track.subdivisions}` +
 		`&notes=${notesAsString}`
 	);
 }
@@ -18,25 +18,25 @@ export function convertURLParamsToTrack(
 	urlParams: URLSearchParams
 ): track | undefined {
 	const speedString = urlParams.get("speed");
-	const divisionString = urlParams.get("division");
+	const subdivisionsString = urlParams.get("subdivisions");
 	const notesString = urlParams.get("notes");
 	const valid =
 		speedString &&
-		divisionString &&
+		subdivisionsString &&
 		notesString &&
 		stringIsPositiveInteger(speedString) &&
-		stringIsPositiveInteger(divisionString);
+		stringIsPositiveInteger(subdivisionsString);
 	if (!valid) return;
 	const speed = parseInt(speedString);
-	const division = parseInt(divisionString);
+	const subdivisions = parseInt(subdivisionsString);
 	const notesArray = notesString
 		.toLowerCase()
 		.split("-")
 		.map((beat) => beat.split(""));
-	const beats = chunkArray(notesArray, division);
+	const beats = chunkArray(notesArray, subdivisions);
 	if (!beats) return;
 	if (checkBeats(beats)) {
-		return { speed, division, beats };
+		return { speed, subdivisions, beats };
 	}
 }
 

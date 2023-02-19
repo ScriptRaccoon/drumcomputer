@@ -14,7 +14,7 @@
 
 	const error = {
 		speed: false,
-		division: false,
+		subdivisions: false,
 	};
 
 	function changeSpeed(e: any) {
@@ -34,21 +34,21 @@
 		}
 	}
 
-	function changeDivision(e: any) {
+	function changeSubdivisions(e: any) {
 		const inputElement = e?.target as HTMLInputElement;
 		const value = inputElement.value;
 		if (stringIsPositiveInteger(value)) {
-			error.division = false;
+			error.subdivisions = false;
 			const difference =
-				parseInt(value) - $currentTrack.division;
+				parseInt(value) - $currentTrack.subdivisions;
 			if (difference < 0) {
-				confirmToDecreaseDivision(-difference);
+				confirmToDecreaseSubdivisions(-difference);
 			} else {
-				increaseDivision(difference);
+				increaseSubdivisions(difference);
 			}
 		} else {
-			error.division = true;
-			const content = "Division must be a positive integer";
+			error.subdivisions = true;
+			const content = "Subdivisions must be a positive integer";
 			$dialogState = {
 				open: true,
 				type: "alert",
@@ -57,7 +57,7 @@
 		}
 	}
 
-	function confirmToDecreaseDivision(amount: number) {
+	function confirmToDecreaseSubdivisions(amount: number) {
 		const content =
 			"Decreasing the division will delete all notes " +
 			"which are in the removed columns. Are you sure?";
@@ -65,26 +65,26 @@
 			open: true,
 			type: "confirm",
 			contents: [content],
-			action: () => decreaseDivision(amount),
+			action: () => decreaseSubdivisions(amount),
 		};
 	}
 
-	function decreaseDivision(amount: number) {
-		$currentTrack.division -= amount;
+	function decreaseSubdivisions(amount: number) {
+		$currentTrack.subdivisions -= amount;
 
 		$currentTrack.beats = $currentTrack.beats.map((beat) =>
-			beat.splice(0, $currentTrack.division)
+			beat.splice(0, $currentTrack.subdivisions)
 		);
 	}
 
-	function increaseDivision(amount: number) {
+	function increaseSubdivisions(amount: number) {
 		for (const beat of $currentTrack.beats) {
 			for (let i = 0; i < amount; i++) {
-				beat[$currentTrack.division + i] = [];
+				beat[$currentTrack.subdivisions + i] = [];
 			}
 		}
 
-		$currentTrack.division += amount;
+		$currentTrack.subdivisions += amount;
 	}
 </script>
 
@@ -108,17 +108,15 @@
 		value={$currentTrack.speed}
 		on:change={changeSpeed}
 	/>
-	<label for="divisionInput" aria-describedby="divisionDescription"
-		>Division<span aria-hidden="true">*</span>
-	</label>
+	<label for="divisionInput">Subdivisions per beat </label>
 	<input
 		id="divisionInput"
-		class:error={error.division}
+		class:error={error.subdivisions}
 		type="number"
 		min="1"
 		max="10"
-		value={$currentTrack.division}
-		on:change={changeDivision}
+		value={$currentTrack.subdivisions}
+		on:change={changeSubdivisions}
 	/>
 	<Button
 		disabled={Object.values(error).includes(true)}
@@ -126,9 +124,6 @@
 	>
 		Ok
 	</Button>
-	<div id="divisionDescription" class="description">
-		<span aria-hidden="true">*</span>number of hits per beat
-	</div>
 </form>
 
 <style lang="scss">
@@ -154,10 +149,6 @@
 		& :global(button) {
 			grid-column: 1 / span 2;
 			justify-self: center;
-		}
-
-		& .description {
-			grid-column: 1 / span 2;
 		}
 	}
 
@@ -191,9 +182,5 @@
 		font-size: 1.25rem;
 		color: var(--dark-font-color);
 		white-space: nowrap;
-	}
-
-	.description {
-		color: var(--dark-font-color);
 	}
 </style>

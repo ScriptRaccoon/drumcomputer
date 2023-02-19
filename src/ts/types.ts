@@ -3,7 +3,7 @@ export type playStates = "stopped" | "playing" | "paused";
 export type track = {
 	beats: beat[];
 	speed: number;
-	division: number;
+	subdivisions: number;
 };
 
 export type beat = instrumentKey[][];

@@ -57,7 +57,7 @@
 
 	function incrementTime() {
 		$currentTime++;
-		if ($currentTime >= $currentTrack.division) {
+		if ($currentTime >= $currentTrack.subdivisions) {
 			$currentTime = 0;
 			$currentBeatIndex++;
 			if ($currentBeatIndex == $beatAmount) {
