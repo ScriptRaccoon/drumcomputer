@@ -22,12 +22,16 @@ export function chunkArray<T>(
 	return result;
 }
 
-export async function scrollLeft(element: HTMLElement) {
-	await tick();
-	if (element) element.scrollLeft = 0;
+export function scrollLeft(element: HTMLElement) {
+	element?.scrollTo({
+		left: 0,
+		behavior: "smooth",
+	});
 }
 
-export async function scrollRight(element: HTMLElement) {
-	await tick();
-	if (element) element.scrollLeft = element.scrollWidth;
+export function scrollRight(element: HTMLElement) {
+	element?.scrollTo({
+		left: element?.scrollWidth,
+		behavior: "smooth",
+	});
 }

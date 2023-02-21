@@ -24,7 +24,9 @@
 			$currentTrack.subdivisions
 		).fill([]);
 		$currentTrack.beats = [...$currentTrack.beats, emptyBeat];
-		dispatch("beatAdded");
+		setTimeout(() => {
+			dispatch("beatAdded");
+		}, 100);
 	}
 
 	function removeBeat() {
