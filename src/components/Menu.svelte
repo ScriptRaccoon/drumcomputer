@@ -44,7 +44,6 @@
 	async function shareTrack() {
 		const params = convertTrackToParams($currentTrack);
 		const sharingURL = window.location.origin + "?" + params;
-		console.log(sharingURL);
 		await navigator.clipboard.writeText(sharingURL);
 		$dialogState = {
 			open: true,
