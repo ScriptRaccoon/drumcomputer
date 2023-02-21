@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { fade } from "svelte/transition";
 	import { Instrument } from "@/ts/Instrument";
 	import type { beat } from "@/ts/types";
 	import {
@@ -23,7 +24,7 @@
 	}
 </script>
 
-<div class="beat">
+<div class="beat" transition:fade={{ duration: 150 }}>
 	{#each beat as _, timeIndex}
 		{@const timeCode = `${beatIndex + 1}.${timeIndex + 1}`}
 		<div class="column" bind:this={columns[timeIndex]}>
