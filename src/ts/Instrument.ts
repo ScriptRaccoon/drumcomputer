@@ -1,5 +1,5 @@
 import { AudioPlayer } from "@/ts/AudioPlayer";
-import type { instrumentKey } from "@/ts/types";
+import type { instrumentKey } from "@/ts/instruments";
 
 export class Instrument {
 	key: instrumentKey;
@@ -26,6 +26,6 @@ export class Instrument {
 	}
 
 	static loadAll() {
-		this.list.every((instrument) => instrument.load());
+		Instrument.list.every((instrument) => instrument.load());
 	}
 }

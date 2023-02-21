@@ -1,6 +1,7 @@
 import type { track, beat } from "@/ts/types";
-import { instrumentKeys } from "@/ts/types";
 import { chunkArray, stringIsPositiveInteger } from "@/ts/utils";
+import { Instrument } from "@/ts/Instrument";
+import { instrumentKeys } from "@/ts/instruments";
 
 export function convertTrackToParams(track: track): URLSearchParams {
 	const notesAsString = track.beats
@@ -43,8 +44,8 @@ export function convertURLParamsToTrack(
 function checkBeats(beats: string[][][]): beats is beat[] {
 	return beats.every((beat) =>
 		beat.every((column) =>
-			column.every((char) =>
-				(instrumentKeys as any as string[]).includes(char)
+			column.every((key) =>
+				(instrumentKeys as string[]).includes(key)
 			)
 		)
 	);
