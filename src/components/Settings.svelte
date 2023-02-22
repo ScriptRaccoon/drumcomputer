@@ -119,7 +119,6 @@
 			class:error={error.subdivisions}
 			type="number"
 			min="1"
-			max="10"
 			value={$currentTrack.subdivisions}
 			on:change={changeSubdivisions}
 		/>
@@ -178,6 +177,7 @@
 		outline: none;
 		border-radius: 0.2rem;
 		width: 4rem;
+		transition: border-color 150ms linear;
 
 		&:focus {
 			border-color: var(--font-color);
