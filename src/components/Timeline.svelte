@@ -4,6 +4,7 @@
 	import Beat from "@/components/Beat.svelte";
 	import TimelineMenu from "./TimelineMenu.svelte";
 	import { scrollRight } from "@/ts/utils";
+	import { fade } from "svelte/transition";
 
 	export let timelineElement: HTMLElement;
 </script>
@@ -14,11 +15,13 @@
 		{#each $currentTrack.beats as beat, beatIndex}
 			<Beat bind:beat {beatIndex} />
 		{/each}
-	{:else}
-		<p>Add a beat</p>
 	{/if}
 	<TimelineMenu on:beatAdded={() => scrollRight(timelineElement)} />
 </section>
+
+{#if $beatAmount === 0}
+	<p in:fade={{ duration: 300, delay: 200 }}>Add a beat</p>
+{/if}
 
 <style>
 	section {
@@ -27,7 +30,7 @@
 		display: flex;
 		column-gap: 0.75rem;
 		position: relative;
-		padding: 1rem 1rem 1rem 0rem;
+		padding-block: 1rem;
 	}
 	p {
 		align-self: center;
