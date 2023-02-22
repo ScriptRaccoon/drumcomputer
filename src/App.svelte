@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { onMount } from "svelte";
+	import { fade } from "svelte/transition";
+
 	import Header from "@/components/Header.svelte";
 	import Menu from "@/components/Menu.svelte";
 	import Timeline from "@/components/Timeline.svelte";
@@ -20,6 +22,7 @@
 	import { Instrument } from "@/ts/Instrument";
 	import Settings from "./components/Settings.svelte";
 	import { scrollLeft } from "./ts/utils";
+	import { faEarDeaf } from "@fortawesome/free-solid-svg-icons";
 
 	let timelineElement: HTMLElement;
 
@@ -93,7 +96,10 @@
 {#if $showSettings}
 	<Settings />
 {:else}
-	<main>
+	<main
+		in:fade={{ delay: 150, duration: 120 }}
+		out:fade={{ duration: 120 }}
+	>
 		<Menu {startMusic} {stopMusic} {pauseMusic} />
 		<Timeline bind:timelineElement />
 	</main>

@@ -7,6 +7,7 @@
 	} from "@/ts/stores";
 	import Button from "./Button.svelte";
 	import { stringIsPositiveInteger } from "@/ts/utils";
+	import { fade } from "svelte/transition";
 
 	function hideSettings() {
 		$showSettings = false;
@@ -88,43 +89,48 @@
 	}
 </script>
 
-<h2>Settings</h2>
+<section
+	in:fade={{ delay: 150, duration: 120 }}
+	out:fade={{ duration: 120 }}
+>
+	<h2>Settings</h2>
 
-<form on:submit|preventDefault>
-	<label for="scrollCheckbox"> Scroll timeline </label>
-	<input
-		id="scrollCheckbox"
-		type="checkbox"
-		bind:checked={$timelineScrolls}
-	/>
-	<label for="speedInput">Speed in bpm</label>
+	<form on:submit|preventDefault>
+		<label for="scrollCheckbox"> Scroll timeline </label>
+		<input
+			id="scrollCheckbox"
+			type="checkbox"
+			bind:checked={$timelineScrolls}
+		/>
+		<label for="speedInput">Speed in bpm</label>
 
-	<input
-		id="speedInput"
-		class:error={error.speed}
-		type="number"
-		min="1"
-		max="1000"
-		value={$currentTrack.speed}
-		on:change={changeSpeed}
-	/>
-	<label for="divisionInput">Subdivisions per beat </label>
-	<input
-		id="divisionInput"
-		class:error={error.subdivisions}
-		type="number"
-		min="1"
-		max="10"
-		value={$currentTrack.subdivisions}
-		on:change={changeSubdivisions}
-	/>
-	<Button
-		disabled={Object.values(error).includes(true)}
-		action={hideSettings}
-	>
-		Ok
-	</Button>
-</form>
+		<input
+			id="speedInput"
+			class:error={error.speed}
+			type="number"
+			min="1"
+			max="1000"
+			value={$currentTrack.speed}
+			on:change={changeSpeed}
+		/>
+		<label for="divisionInput">Subdivisions per beat </label>
+		<input
+			id="divisionInput"
+			class:error={error.subdivisions}
+			type="number"
+			min="1"
+			max="10"
+			value={$currentTrack.subdivisions}
+			on:change={changeSubdivisions}
+		/>
+		<Button
+			disabled={Object.values(error).includes(true)}
+			action={hideSettings}
+		>
+			Ok
+		</Button>
+	</form>
+</section>
 
 <style lang="scss">
 	@use "../scss/mixins" as *;
