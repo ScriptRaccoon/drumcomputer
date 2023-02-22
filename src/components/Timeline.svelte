@@ -20,7 +20,7 @@
 </section>
 
 {#if $beatAmount === 0}
-	<p in:fade={{ duration: 300, delay: 200 }}>Add a beat</p>
+	<p in:fade|local={{ duration: 300, delay: 200 }}>Add a beat</p>
 {/if}
 
 <style>
