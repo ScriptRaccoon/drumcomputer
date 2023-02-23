@@ -159,38 +159,52 @@
 		}
 	}
 
-	input[type="checkbox"] {
-		accent-color: var(--button-color);
-		&:focus {
-			outline: 0.1rem solid var(--font-color);
-		}
-		transform-origin: left;
-		scale: 1.4;
+	label {
+		font-size: var(--larger-font);
+		color: var(--dark-font-color);
+		white-space: nowrap;
 	}
 
 	input[type="number"] {
 		@include input-reset;
+		@include field;
 		-moz-appearance: textfield;
 		appearance: textfield;
 		padding: 0.25rem 0.5rem;
-		border: 0.1rem solid var(--dark-font-color);
-		outline: none;
-		border-radius: 0.2rem;
 		width: 4rem;
-		transition: border-color 150ms linear;
-
-		&:focus {
-			border-color: var(--font-color);
-		}
 
 		&.error {
 			border-color: red;
 		}
 	}
 
-	label {
-		font-size: var(--larger-font);
-		color: var(--dark-font-color);
-		white-space: nowrap;
+	input[type="checkbox"] {
+		@include field;
+		appearance: none;
+		-webkit-appearance: none;
+		width: 1.4rem;
+		aspect-ratio: 1;
+		cursor: pointer;
+		position: relative;
+
+		&:hover {
+			--color: var(--font-color);
+		}
+
+		&::before {
+			content: "";
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			translate: -50% -50%;
+			width: 60%;
+			aspect-ratio: 1;
+			background-color: transparent;
+			transition: background-color var(--duration) linear;
+		}
+
+		&:checked::before {
+			background-color: var(--color);
+		}
 	}
 </style>
