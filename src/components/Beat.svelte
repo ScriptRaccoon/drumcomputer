@@ -13,14 +13,17 @@
 
 	const columns: HTMLElement[] = [];
 
-	$: if (
-		$playState == "playing" &&
-		$timelineScrolls &&
-		beatIndex == $currentBeatIndex
-	) {
-		columns[$currentTime]?.scrollIntoView({
-			inline: "center",
-		});
+	const scrollOptions: ScrollIntoViewOptions = { inline: "center" };
+
+	$: scrollToColumn($currentBeatIndex, $currentTime);
+
+	function scrollToColumn(index: number, time: number) {
+		const column = columns[time];
+		const scrolls =
+			beatIndex == index &&
+			$playState == "playing" &&
+			$timelineScrolls;
+		if (scrolls) column?.scrollIntoView(scrollOptions);
 	}
 </script>
 
