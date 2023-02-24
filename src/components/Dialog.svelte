@@ -7,7 +7,9 @@
 
 	function closeDialog() {
 		$dialogState.open = false;
-		dialogElement?.close();
+		setTimeout(() => {
+			dialogElement?.close();
+		}, 150);
 	}
 
 	async function openDialog() {
@@ -27,6 +29,7 @@
 </script>
 
 <dialog
+	class:open={$dialogState.open}
 	bind:this={dialogElement}
 	aria-label={$dialogState.type}
 	aria-describedby="dialogContent"
@@ -66,10 +69,15 @@
 		border-radius: 0.8rem;
 		text-align: center;
 		border: 0.1rem solid var(--font-color);
+		opacity: 0;
+		transition: opacity 150ms linear;
+
+		&.open {
+			opacity: 1;
+		}
 
 		&::backdrop {
-			background: #000a;
-			backdrop-filter: blur(0.1rem);
+			background-color: #0005;
 		}
 	}
 
