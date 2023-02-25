@@ -13,16 +13,3 @@
 	background: none;
 	border: none;
 }
-
-@mixin field {
-	--color: var(--dark-font-color);
-	--duration: 150ms;
-	border: 0.1rem solid var(--color);
-	outline: none;
-	border-radius: 0.2rem;
-	transition: border-color var(--duration) linear;
-
-	&:focus {
-		--color: var(--font-color);
-	}
-}
